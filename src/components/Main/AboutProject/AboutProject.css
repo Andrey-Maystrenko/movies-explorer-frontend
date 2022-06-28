@@ -1,0 +1,90 @@
+.about-project {
+    width : 100%;
+    height: 608px;
+    margin: 0 auto;
+    border: 1px solid red;
+}
+
+.about-project_title {
+    width         : 1140px;
+    height        : 50px;
+    font-style    : normal;
+    font-weight   : 400;
+    font-size     : 22px;
+    line-height   : 27px;
+    letter-spacing: -0.04em;
+    color         : #FFFFFF;
+    margin        : 110px auto 70px;
+    border-bottom : 1px solid #DADADA;
+}
+
+.two-columns {
+    width          : 1140px;
+    margin         : 0 auto 0;
+    display        : flex;
+    justify-content: space-between;
+}
+
+.two-columns__column {
+    width: 550px;
+}
+
+.two-columns__brief {
+    margin        : 0;
+    font-style    : normal;
+    font-weight   : 400;
+    font-size     : 20px;
+    line-height   : 24px;
+    letter-spacing: -0.04em;
+}
+
+.two-columns__main-text {
+    margin-top : 26px;
+    font-style : normal;
+    font-weight: 400;
+    font-size  : 14px;
+    line-height: 20px;
+}
+
+.timeline {
+    height     : 36px;
+    font-size  : 14px;
+    line-height: 33px;
+    text-align : center;
+}
+
+.timeline__schema {
+    margin-top: 110px;
+}
+
+.timeline__backend {
+    width     : 228px;
+    /* background: #3DDC84;
+    color     : black */
+}
+
+.timeline__frontend {
+    width     : 912px;
+    /* background: #303030; */
+}
+
+.timeline__subscrypt {
+    color: #8B8B8B;
+}
+
+/* .timeline__subscrypt_backend {
+    width     : 228px;
+}
+
+.timeline__subscrypt_frontend{
+    width     : 912px;
+} */
+
+.timeline__backend_schema {
+    background: #3DDC84;
+    color     : black
+}
+
+.timeline__frontend_schema {
+    background: #303030;
+}
