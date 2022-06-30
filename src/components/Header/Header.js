@@ -9,7 +9,7 @@ function Header() {
             <img className="header__logo" src={logo} alt="логотип" />
             <Switch>
                 <Route exact path="/">
-                    <Link className="header__link" to="/signup">
+                    <Link className="header__link header__link_register" to="/signup">
                         Регистрация
                     </Link>
                     <Link to="/signin">
@@ -19,10 +19,10 @@ function Header() {
                     </Link>
                 </Route>
                 <Route path="/movies">
-                    <Link className="header__link" to="">
+                    <Link className="header__link header__link_movies" to="">
                         Фильмы
                     </Link>
-                    <Link className="header__link" to="">
+                    <Link className="header__link header__link_saved-movies" to="">
                         Сохраненные фильмы
                     </Link>
                     <Link to="/signin">
