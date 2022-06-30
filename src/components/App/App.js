@@ -22,9 +22,9 @@ import AboutMe from "../Main/AboutMe/AboutMe";
 
 function App() {
   return (
-      <div className="page">Test
+      <div className="page">
         {/* <Header email={email} onSignOut={onSignOut} /> */}
-        {/* <Header /> */}
+        <Header />
         <Switch>
           <Route exact path="/">
             <AboutProject />
