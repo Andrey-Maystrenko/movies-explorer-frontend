@@ -17,6 +17,8 @@ import AboutProject from "../Main/AboutProject/AboutProject";
 import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
 import SavedMovies from "../SavedMovies/MoviesCardList/MoviesCardList";
 import AboutMe from "../Main/AboutMe/AboutMe";
+import Promo from "../Main/Promo/Promo";
+import NavTab from "../Main/NavTab/NavTab";
 // import ProtectedRoute from "./ProtectedRoute";
 // import * as mestoAuth from "../utils/moviesAuth";
 
@@ -27,6 +29,8 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/">
+            <Promo />
+            <NavTab />
             <AboutProject />
           </Route>
         </Switch>
