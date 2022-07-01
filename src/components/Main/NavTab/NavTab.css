@@ -1,0 +1,23 @@
+.navtab {
+    width          : 308px;
+    height         : 36px;
+    margin         : -76px auto 40px;
+    display        : flex;
+    justify-content: space-between;
+}
+
+.navtab__button {
+    width        : 96px;
+    height       : 36px;
+    background   : #303030;
+    border-radius: 10px;
+    cursor       : pointer;
+}
+
+.navtab__button-text {
+    font-style : normal;
+    font-weight: 500;
+    font-size  : 12px;
+    line-height: 16px;
+    color      : #FFFFFF;
+}

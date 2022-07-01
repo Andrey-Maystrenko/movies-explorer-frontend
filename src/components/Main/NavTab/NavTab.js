@@ -8,18 +8,18 @@ function NavTab() {
             <Switch>
                 <Route>
                     <Link to="/signin">
-                        <button className="header__login" type="button">
-                            <span className="header__login-text">Войти</span>
+                        <button className="navtab__button" type="button">
+                            <span className="navtab__button-text">О проекте</span>
                         </button>
                     </Link>
                     <Link to="/signin">
-                        <button className="header__login" type="button">
-                            <span className="header__login-text">Войти</span>
+                        <button className="navtab__button" type="button">
+                            <span className="navtab__button-text">Технологии</span>
                         </button>
                     </Link>
                     <Link to="/signin">
-                        <button className="header__login" type="button">
-                            <span className="header__login-text">Войти</span>
+                        <button className="navtab__button" type="button">
+                            <span className="navtab__button-text">Студент</span>
                         </button>
                     </Link>
                 </Route>
