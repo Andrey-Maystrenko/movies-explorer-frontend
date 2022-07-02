@@ -1,0 +1,32 @@
+.title-text_about-me {}
+
+.about-me__content {
+    width          : 1140px;
+    margin         : 66px auto 0;
+    display        : flex;
+    justify-content: space-between;
+}
+
+.about-me__about {
+    width: 600px;
+}
+
+.about-me__image {
+    width        : 270px;
+    height       : 327px;
+    object-fit   : cover;
+    border-radius: 10px;
+}
+
+.about-me__description {
+    width: 600px;
+}
+
+.subtitle-text {
+    margin: 18px 0 0 0;
+}
+
+.about-me__description {
+    margin: 26px 0 0 0;
+    height: 88px;
+}

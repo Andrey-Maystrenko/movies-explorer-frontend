@@ -6,7 +6,9 @@ import { Route, Switch, Link } from "react-router-dom";
 function Header() {
     return (
         <header className="header">
+            <a href="/#">
             <img className="header__logo" src={logo} alt="логотип" />
+            </a>
             <Switch>
                 <Route exact path="/">
                     <Link className="header__link header__link_register" to="/signup">

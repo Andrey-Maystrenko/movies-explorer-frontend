@@ -35,11 +35,9 @@ function App() {
             <NavTab />
             <AboutProject />
             <Techs />
+            <AboutMe />
             <Portfolio />
           </Route>
-          {/* <Route exact path="/#about-project">
-            <AboutProject id="about-project"/>
-          </Route> */}
         </Switch>
         {/* <Switch>
           <Route exact path="/">
@@ -66,7 +64,7 @@ function App() {
             {loggedIn ? <Redirect to="/main" /> : <Redirect to="/signup" />}
           </Route>
         </Switch> */}
-        {/* <Footer /> */}
+        <Footer />
         {/* <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}

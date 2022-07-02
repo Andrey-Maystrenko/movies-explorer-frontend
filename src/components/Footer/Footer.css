@@ -1,0 +1,36 @@
+.footer__title {
+    width        : 1140px;
+    height       : 36px;
+    font-style   : normal;
+    font-weight  : 400;
+    font-size    : 13px;
+    line-height  : 16px;
+    text-align   : center;
+    color        : #8B8B8B;
+    margin       : 79px auto 0;
+    border-bottom: 1px solid #8B8B8B;
+}
+
+.footer__content {
+    width          : 1140px;
+    height         : 56px;
+    margin         : 0 auto;
+    display        : flex;
+    justify-content: flex-start;
+    margin-top     : 0;
+    margin-bottom  : 0;
+}
+
+.footer__content-item {
+    margin-right : 20px;
+    margin-top   : 20px;
+    margin-bottom: 0;
+}
+
+.footer__content-item:first-of-type {
+    margin-right: auto;
+}
+
+.footer__content-item:last-of-type {
+    margin-right: 0;
+}

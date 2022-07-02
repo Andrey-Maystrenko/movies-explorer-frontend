@@ -17,7 +17,7 @@ function NavTab() {
                             <span className="navtab__button-text">Технологии</span>
                         </button>
                     </a>
-                    <a href="#student">
+                    <a href="#about-me">
                         <button className="navtab__button" type="button">
                             <span className="navtab__button-text">Студент</span>
                         </button>
