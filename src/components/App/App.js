@@ -19,6 +19,8 @@ import SavedMovies from "../SavedMovies/MoviesCardList/MoviesCardList";
 import AboutMe from "../Main/AboutMe/AboutMe";
 import Promo from "../Main/Promo/Promo";
 import NavTab from "../Main/NavTab/NavTab";
+import Techs from "../Main/Techs/Techs";
+import Portfolio from "../Main/Portfolio/Portfolio";
 // import ProtectedRoute from "./ProtectedRoute";
 // import * as mestoAuth from "../utils/moviesAuth";
 
@@ -32,7 +34,12 @@ function App() {
             <Promo />
             <NavTab />
             <AboutProject />
+            <Techs />
+            <Portfolio />
           </Route>
+          {/* <Route exact path="/#about-project">
+            <AboutProject id="about-project"/>
+          </Route> */}
         </Switch>
         {/* <Switch>
           <Route exact path="/">

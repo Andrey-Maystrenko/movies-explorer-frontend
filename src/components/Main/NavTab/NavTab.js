@@ -7,21 +7,21 @@ function NavTab() {
         <section className="navtab">
             <Switch>
                 <Route>
-                    <Link to="/signin">
+                    <a href="#about-project">
                         <button className="navtab__button" type="button">
                             <span className="navtab__button-text">О проекте</span>
                         </button>
-                    </Link>
-                    <Link to="/signin">
+                    </a>
+                    <a href="#techs">
                         <button className="navtab__button" type="button">
                             <span className="navtab__button-text">Технологии</span>
                         </button>
-                    </Link>
-                    <Link to="/signin">
+                    </a>
+                    <a href="#student">
                         <button className="navtab__button" type="button">
                             <span className="navtab__button-text">Студент</span>
                         </button>
-                    </Link>
+                    </a>
                 </Route>
             </Switch>
         </section>

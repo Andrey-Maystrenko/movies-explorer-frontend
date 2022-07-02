@@ -6,8 +6,7 @@ function Promo() {
     return (
         <section className="promo">
             <div className="title">
-                <h1 className="title-text">Учебный проект студента факультета Веб-разработки.</h1>
-            {/* <NavTab /> */}
+                <h1 className="title-text title-text_promo">Учебный проект студента факультета Веб-разработки.</h1>
             </div>
 
         </section>
