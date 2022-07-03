@@ -1,6 +1,6 @@
 import React from "react";
 import "./Promo.css";
-import NavTab from "../NavTab/NavTab"
+import "../../../index.css";
 
 function Promo() {
     return (

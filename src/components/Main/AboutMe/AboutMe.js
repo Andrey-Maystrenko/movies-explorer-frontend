@@ -1,5 +1,6 @@
 import React from "react";
 import "./AboutMe.css";
+import "../../../index.css";
 import avatar from "../../../images/avatar.jpg";
 
 function AboutMe() {

@@ -1,5 +1,6 @@
 import React from "react";
 import "./Portfolio.css";
+import "../../../index.css";
 import pictogram from "../../../images/link-to-portfolio-item.svg";
 
 function Portfolio() {
