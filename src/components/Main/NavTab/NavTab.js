@@ -1,7 +1,7 @@
 import React from "react";
 import "./NavTab.css";
 import "../../../index.css";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 function NavTab() {
     return (

@@ -18,15 +18,21 @@
     border-radius: 10px;
 }
 
-.about-me__description {
-    width: 600px;
-}
-
 .subtitle-text {
     margin: 18px 0 0 0;
 }
 
 .about-me__description {
     margin: 26px 0 0 0;
-    height: 88px;
+    /* height: 88px; */
+}
+
+.links {
+    display: flex;
+    /* margin : 99px 0 0 0; */
+    margin : 77px 0 0 0;
+}
+
+.link {
+    margin: 0 20px 0 0;
 }

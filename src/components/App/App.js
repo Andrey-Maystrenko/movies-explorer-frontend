@@ -1,5 +1,7 @@
 import React from "react";
 import "./App.css";
+import "../../index.css";
+import Preloader from "../../vendor/preloader/Preloader";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 // import api from "../utils/api";
@@ -21,6 +23,7 @@ import Promo from "../Main/Promo/Promo";
 import NavTab from "../Main/NavTab/NavTab";
 import Techs from "../Main/Techs/Techs";
 import Portfolio from "../Main/Portfolio/Portfolio";
+import Profile from "../Profile/Profile"
 // import ProtectedRoute from "./ProtectedRoute";
 // import * as mestoAuth from "../utils/moviesAuth";
 
@@ -38,11 +41,6 @@ function App() {
             <AboutMe />
             <Portfolio />
           </Route>
-        </Switch>
-        {/* <Switch>
-          <Route exact path="/">
-            <AboutProject />
-          </Route>
           <Route path="/movies">
             <MoviesCardList />
           </Route>
@@ -50,21 +48,26 @@ function App() {
             <SavedMovies />
           </Route>
           <Route path="/profile">
-            <AboutMe />
+            <Profile />
           </Route>
           <Route path="/signin">
-            <Login handleLogin={handleLogin} />
+            {/* <Login handleLogin={handleLogin} /> */}
+            <Login />
             <Login />
           </Route>
           <Route path="/signup">
-            <Register handleRegister={handleRegister} />
+            {/* <Register handleRegister={handleRegister} /> */}
+            <Register />
             <Register />
           </Route>
+        </Switch>
+        {/* <Switch>
           <Route>
             {loggedIn ? <Redirect to="/main" /> : <Redirect to="/signup" />}
           </Route>
         </Switch> */}
         <Footer />
+        <Preloader />
         {/* <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
