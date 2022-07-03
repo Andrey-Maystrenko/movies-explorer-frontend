@@ -11,17 +11,20 @@
 
 .portfolio {
     width : 1140px;
-    margin: 50px auto 10px;
+    margin: 50px auto 30px;
 }
 
 .portfolio__item {
     display        : flex;
     justify-content: space-between;
-    margin-top     : 40px;
+    margin-top     : 20px;
+    height         : 69px;
+    border-bottom  : 1px solid #424242;
 }
 
 .portfolio__item:last-child {
     margin-bottom: 204px;
+    border-bottom: none;
 }
 
 .porfolio__item-title {
@@ -32,4 +35,8 @@
     letter-spacing: -0.04em;
     color         : #FFFFFF;
     margin        : 0;
+}
+
+.portfolio__pictorgam {
+    width: 29px;
 }
