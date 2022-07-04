@@ -1,10 +1,9 @@
 .header {
-    width             : 1280px;
-    height            : 74px;
-    display           : flex;
-    align-items       : center;
-    margin            : 0 auto;
-    /* justify-content: space-between; */
+    width      : 1280px;
+    height     : 74px;
+    display    : flex;
+    align-items: center;
+    margin     : 0 auto;
 }
 
 .header__logo {
@@ -73,4 +72,18 @@
     font-size  : 12px;
     line-height: 16px;
     color      : #FFFFFF;
+}
+
+@media screen and (max-width: 1279px) {
+    .header {
+        width: 768px;
+    }
+
+    .header__logo {
+        margin-left: 30px;
+    }
+
+    .header__login {
+        margin-right: 30px;
+    }
 }

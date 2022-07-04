@@ -29,46 +29,46 @@ import Profile from "../Profile/Profile"
 
 function App() {
   return (
-      <div className="page">
-        {/* <Header email={email} onSignOut={onSignOut} /> */}
-        <Header />
-        <Switch>
-          <Route exact path="/">
-            <Promo />
-            <NavTab />
-            <AboutProject />
-            <Techs />
-            <AboutMe />
-            <Portfolio />
-          </Route>
-          <Route path="/movies">
-            <MoviesCardList />
-          </Route>
-          <Route path="/saved-movies">
-            <SavedMovies />
-          </Route>
-          <Route path="/profile">
-            <Profile />
-          </Route>
-          <Route path="/signin">
-            {/* <Login handleLogin={handleLogin} /> */}
-            <Login />
-            <Login />
-          </Route>
-          <Route path="/signup">
-            {/* <Register handleRegister={handleRegister} /> */}
-            <Register />
-            <Register />
-          </Route>
-        </Switch>
-        {/* <Switch>
+    <div className="page">
+      {/* <Header email={email} onSignOut={onSignOut} /> */}
+      <Header />
+      <Switch>
+        <Route exact path="/">
+          <Promo />
+          <NavTab />
+          <AboutProject />
+          <Techs />
+          <AboutMe />
+          <Portfolio />
+        </Route>
+        <Route path="/movies">
+          <MoviesCardList />
+        </Route>
+        <Route path="/saved-movies">
+          <SavedMovies />
+        </Route>
+        <Route path="/profile">
+          <Profile />
+        </Route>
+        <Route path="/signin">
+          {/* <Login handleLogin={handleLogin} /> */}
+          <Login />
+          <Login />
+        </Route>
+        <Route path="/signup">
+          {/* <Register handleRegister={handleRegister} /> */}
+          <Register />
+          <Register />
+        </Route>
+      </Switch>
+      {/* <Switch>
           <Route>
             {loggedIn ? <Redirect to="/main" /> : <Redirect to="/signup" />}
           </Route>
         </Switch> */}
-        <Footer />
-        <Preloader />
-        {/* <EditProfilePopup
+      <Footer />
+      <Preloader />
+      {/* <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
@@ -99,7 +99,7 @@ function App() {
           failureMessge="Что-то пошло не так! Попробуйте еще раз."
 
           /> */}
-      </div>
+    </div>
   );
 }
 export default withRouter(App);

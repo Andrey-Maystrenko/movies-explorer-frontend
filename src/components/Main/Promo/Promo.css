@@ -14,7 +14,7 @@
 }
 
 .title-text {
-    width         : 730px;
+    /* width         : 730px; */
     margin        : 0 auto;
     font-style    : normal;
     font-weight   : 400;
@@ -25,7 +25,33 @@
 }
 
 .title-text_promo {
+    width      : 730px;
     padding-top: 160px;
     height     : 116px;
     text-align : center;
+}
+
+@media screen and (max-width: 1279px) {
+    .title {
+        width : 728px;
+        height: 834px;
+    }
+
+    .title-text {
+        width      : 680px;
+        font-size  : 40px;
+        line-height: 52px;
+    }
+
+    .title-text_promo {
+        padding-top: 350px;
+        height     : 104px;
+    }
+
+    .promo {
+        width      : 768px;
+        height     : 854px;
+        padding-top: 20px;
+        margin     : 0 auto;
+    }
 }

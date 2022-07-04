@@ -4,7 +4,7 @@ import "../../../index.css";
 
 function Techs() {
     return (
-        <section className="section" id="techs">
+        <section className="section section__techs" id="techs">
             <h2 className="section__title">Технологии</h2>
             <h3 className="title-text title-text_techs">7 технологий</h3>
             <p className="techs__description two-columns__main-text">

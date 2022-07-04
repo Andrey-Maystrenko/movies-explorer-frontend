@@ -1,6 +1,5 @@
 .section {
     width : 100%;
-    /* height: 608px; */
     margin: 0 auto;
 }
 
@@ -13,7 +12,8 @@
     line-height   : 27px;
     letter-spacing: -0.04em;
     color         : #FFFFFF;
-    margin        : 110px auto 70px;
+    margin        : 0 auto 70px;
+    padding-top   : 100px;
     border-bottom : 1px solid #DADADA;
 }
 
@@ -57,27 +57,17 @@
 }
 
 .timeline__backend {
-    width     : 228px;
-    /* background: #3DDC84;
-    color     : black */
+    width: 228px;
 }
 
 .timeline__frontend {
-    width     : 912px;
-    /* background: #303030; */
+    width: 912px;
 }
 
 .timeline__subscrypt {
-    color: #8B8B8B;
+    color        : #8B8B8B;
+    margin-bottom: 110px;
 }
-
-/* .timeline__subscrypt_backend {
-    width     : 228px;
-}
-
-.timeline__subscrypt_frontend{
-    width     : 912px;
-} */
 
 .timeline__backend_schema {
     background: #3DDC84;
@@ -86,4 +76,43 @@
 
 .timeline__frontend_schema {
     background: #303030;
+}
+
+@media screen and (max-width: 1279px) {
+    .section__title {
+        width : 668px;
+        height: 50px;
+    }
+
+    .two-columns {
+        width          : 668px;
+        margin         : 0 auto 0;
+        display        : flex;
+        justify-content: space-between;
+    }
+
+    .two-columns__column {
+        width: 319px;
+    }
+
+    .two-columns__main-text {
+        font-size  : 12px;
+        line-height: 18px;
+    }
+
+    .timeline__schema {
+        margin-top: 93px;
+    }
+
+    .timeline__subscrypt {
+        margin-bottom: 70px;
+    }
+
+    .timeline__backend {
+        width: 140px;
+    }
+
+    .timeline__frontend {
+        width: 528px;
+    }
 }
