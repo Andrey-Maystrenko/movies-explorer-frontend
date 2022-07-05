@@ -5,7 +5,7 @@ import pictogram from "../../../images/link-to-portfolio-item.svg";
 
 function Portfolio() {
     return (
-        <section className="section" id="about-project">
+        <section className="section">
             <h2 className="poftolio__list">Портфолио</h2>
             <ul className="portfolio list">
                 <li className="portfolio__item">

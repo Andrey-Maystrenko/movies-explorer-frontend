@@ -40,3 +40,19 @@
 .portfolio__pictorgam {
     width: 29px;
 }
+
+@media screen and (max-width: 1279px) {
+    .poftolio__list {
+        width         : 668px;
+        margin        : 90px auto 0;
+    }
+
+    .portfolio {
+        width : 668px;
+        margin: 50px auto 40px;
+    }
+
+    .porfolio__item-title {
+        font-size     : 28px;
+    }
+}

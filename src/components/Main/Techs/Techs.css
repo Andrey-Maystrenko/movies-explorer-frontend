@@ -6,7 +6,6 @@
     padding-top: 20px;
     height     : 58px;
     text-align : center;
-
 }
 
 .techs__description {
@@ -44,4 +43,23 @@
 
 .techs-item:last-child {
     margin: 0;
+}
+
+@media screen and (max-width: 1279px) {
+    .title-text_techs {
+        padding-top: 10px;
+        height     : 58px;
+        text-align : center;
+    }
+
+    .two-columns__main-text {
+        margin-top : 22px;
+        font-size  : 12px;
+        line-height: 18px;
+    }
+
+    .techs {
+        margin         : 83px auto 0;
+        padding-bottom : 90px;
+    }
 }
