@@ -66,3 +66,37 @@
         margin: 62px 0 0 0;
     }
 }
+
+@media screen and (max-width: 1279px) {
+    .about-me__content {
+        width          : 292px;
+        margin         : 60px auto 0;
+        display        : flex;
+        flex-direction : column-reverse;
+        justify-content: space-between;
+    }
+
+    .about-me__image {
+        width : 292px;
+        height: 352px;
+    }
+
+    .about-me__about {
+        width     : 292px;
+        margin-top: 40px;
+    }
+
+    .subtitle-text {
+        margin     : 20px 0 0 0;
+        font-size  : 11px;
+        line-height: 16px;
+    }
+
+    .about-me__description {
+        margin: 20px 0 0 0;
+    }
+
+    .links {
+        margin: 40px 0 0 0;
+    }
+}

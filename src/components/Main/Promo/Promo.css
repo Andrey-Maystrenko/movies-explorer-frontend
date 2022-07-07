@@ -37,12 +37,12 @@
     }
 
     .title-text {
-        width      : 680px;
         font-size  : 40px;
         line-height: 52px;
     }
-
+    
     .title-text_promo {
+        width      : 680px;
         padding-top: 350px;
         height     : 104px;
     }
