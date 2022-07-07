@@ -55,3 +55,33 @@
         margin-bottom  : 0;
     }
 }
+
+@media screen and (max-width: 767px) {
+    .footer__title {
+        width : 300px;
+        margin: 79px auto 0;
+    }
+
+    .footer__content {
+        width         : 292px;
+        height        : 136px;
+        margin        : 30px auto 10px;
+        display       : flex;
+        align-items   : center;
+        flex-direction: column-reverse;
+    }
+
+    .footer__content-item {
+        margin     : 12px auto 0;
+        font-size  : 12px;
+        line-height: 15px;
+    }
+
+    .footer__content-item:last-of-type {
+        margin     : 12px auto 0;
+    }
+
+    .footer__content-item:first-of-type {
+        margin: 30px auto 0;
+    }
+}
