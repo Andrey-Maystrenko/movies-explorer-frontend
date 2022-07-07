@@ -87,3 +87,38 @@
         margin-right: 30px;
     }
 }
+
+@media screen and (max-width: 767px) {
+    .header {
+        width: 320px;
+    }
+
+    .header__logo {
+        margin-left: 14px;
+    }
+
+    .header__login {
+        margin-right: 14px;
+    }
+
+    .header__link_register {
+        margin: 0 14px 0 auto;
+    }
+
+    .header__link {
+        font-size: 10px;
+    }
+
+    .header__login-text {
+        font-size: 10px;
+    }
+
+    .header__login {
+        width : 54px;
+        height: 26px;
+    }
+
+    .header__link_register {
+        width: 64px;
+    }
+}

@@ -21,3 +21,28 @@
     line-height: 16px;
     color      : #FFFFFF;
 }
+
+@media screen and (max-width: 1279px) {
+    .navtab {
+        margin: -76px auto 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .navtab {
+        width : 258px;
+        height: 26px;
+        margin: -51px auto 10px;
+    }
+
+    .navtab__button {
+        width        : 82px;
+        height       : 26px;
+        border-radius: 6px;
+    }
+
+    .navtab__button-text {
+        font-size  : 10px;
+        line-height: 16px;
+    }
+}

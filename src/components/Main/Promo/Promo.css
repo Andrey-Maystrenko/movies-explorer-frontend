@@ -54,3 +54,29 @@
         margin     : 0 auto;
     }
 }
+
+@media screen and (max-width: 767px) {
+    .promo {
+        width      : 320px;
+        height     : 600px;
+        padding-top: 14px;
+        margin     : 0 auto;
+    }
+
+    .title {
+        width : 292px;
+        height: 586px;
+    }
+
+    .title-text_promo {
+        width      : 292px;
+        padding-top: 220px;
+        height     : 111px;
+        text-align : center;
+    }
+
+    .title-text {
+        font-size  : 29px;
+        line-height: 37px;
+    }
+}
