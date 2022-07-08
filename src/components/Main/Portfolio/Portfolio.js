@@ -10,15 +10,21 @@ function Portfolio() {
             <ul className="portfolio list">
                 <li className="portfolio__item">
                     <p className="porfolio__item-title">Статичный сайт</p>
-                    <img className="portfolio__pictorgam" src={pictogram} alt="пиктограмма ссылки на позицию портфолио" />
+                    <a href="/#">
+                        <img className="portfolio__pictorgam" src={pictogram} alt="пиктограмма ссылки на позицию портфолио" />
+                    </a>
                 </li>
                 <li className="portfolio__item">
                     <p className="porfolio__item-title">Адаптивный сайт</p>
-                    <img className="portfolio__pictorgam" src={pictogram} alt="пиктограмма ссылки на позицию портфолио" />
+                    <a href="/#">
+                        <img className="portfolio__pictorgam" src={pictogram} alt="пиктограмма ссылки на позицию портфолио" />
+                    </a>
                 </li>
                 <li className="portfolio__item">
                     <p className="porfolio__item-title">Одностраничное приложение</p>
-                    <img className="portfolio__pictorgam" src={pictogram} alt="пиктограмма ссылки на позицию портфолио" />
+                    <a href="/#">
+                        <img className="portfolio__pictorgam" src={pictogram} alt="пиктограмма ссылки на позицию портфолио" />
+                    </a>
                 </li>
             </ul>
         </section>
