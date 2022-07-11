@@ -1,0 +1,126 @@
+.search__area {
+    width        : 1140px;
+    height       : 72px;
+    margin       : 70px auto 80px;
+    display      : flex;
+    background   : #2F2F2F;
+    border-radius: 9px;
+}
+
+.search__loop {
+    width : 34px;
+    height: 34px;
+    margin: 19px 10px 19px 19px;
+}
+
+.search__form {
+    width  : 883px;
+    display: flex;
+}
+
+.search__input {
+    width     : 740px;
+    height    : 22px;
+    margin    : 25px auto 25px 0;
+    background: none;
+    border    : none;
+    color     : #FFFFFF;
+}
+
+.search__input::placeholder {
+    color: #8B8B8B;
+}
+
+.search__form-button {
+    /* width     : 80px;
+    height    : 34px; */
+    margin    : 19px 0 19px;
+    background: 0;
+    border    : 0;
+    cursor    : pointer;
+    padding   : 0;
+}
+
+.search__form-button-image {
+    width : 80px;
+    height: 34px;
+}
+
+.switch-group {
+    width          : 167px;
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display : inline-block;
+    width   : 36px;
+    height  : 20px;
+    margin  : 26px 0 26px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width  : 0;
+    height : 0;
+}
+
+/* The slider */
+.slider {
+    position          : absolute;
+    cursor            : pointer;
+    top               : 0;
+    left              : 0;
+    right             : 0;
+    bottom            : 0;
+    background-color  : #8B8B8B;
+    -webkit-transition: .4s;
+    transition        : .4s;
+}
+
+.slider:before {
+    position          : absolute;
+    content           : "";
+    height            : 18px;
+    width             : 18px;
+    left              : 2px;
+    bottom            : 1px;
+    background-color  : white;
+    -webkit-transition: .4s;
+    transition        : .4s;
+}
+
+input:checked+.slider {
+    background-color: #3DDC84;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #3DDC84;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(14px);
+    -ms-transform    : translateX(14px);
+    transform        : translateX(14px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 15px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.switch-name {
+    margin     : 0;
+    font-style : normal;
+    font-weight: 400;
+    font-size  : 13px;
+    line-height: 18px;
+}
