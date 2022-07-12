@@ -30,7 +30,7 @@ function SearchForm() {
                     <img className="search__form-button-image" alt="кнопка поиска фильма" src={search}></img>
                 </button>
             </form>
-            <div className="search__option-separator"></div>
+            <div className="search__separator"></div>
             <div className="switch-group">
                 <label class="switch">
                     <input type="checkbox" />
