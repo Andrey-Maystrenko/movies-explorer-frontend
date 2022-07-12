@@ -1,7 +1,7 @@
 .search__area {
     width          : 1140px;
     height         : 72px;
-    margin         : 70px auto 80px;
+    margin         : 70px auto 69px;
     display        : flex;
     background     : #2F2F2F;
     border-radius  : 9px;
@@ -131,4 +131,21 @@ input:checked+.slider:before {
     font-weight: 400;
     font-size  : 13px;
     line-height: 18px;
+}
+
+@media screen and (max-width: 1279px) {
+    .search__area {
+        width          : 708px;
+        height         : 72px;
+        margin         : 80px auto 109px;
+        display        : flex;
+        background     : #2F2F2F;
+        border-radius  : 9px;
+        justify-content: space-between;
+        align-items    : center;
+    }
+
+    .search__form {
+        width: 481px;
+    }
 }

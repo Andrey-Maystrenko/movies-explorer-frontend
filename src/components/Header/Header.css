@@ -75,6 +75,19 @@
     color      : #FFFFFF;
 }
 
+.sandwich {
+    display            : none;
+    width              : 44px;
+    height             : 44px;
+    margin             : 0 30px 0 auto;
+    background-image   : url(../../images/sandwich.svg);
+    padding            : 0;
+    border             : none;
+    background-position: center;
+    background-color   : transparent;
+    cursor             : pointer;
+}
+
 @media screen and (max-width: 1279px) {
     .header {
         width: 768px;
@@ -86,6 +99,22 @@
 
     .header__login {
         margin-right: 30px;
+    }
+
+    .header__link_movies {
+        display: none;
+    }
+
+    .header__link_saved-movies {
+        display: none;
+    }
+
+    .header__account {
+        display: none;
+    }
+
+    .sandwich {
+        display: block;
     }
 }
 

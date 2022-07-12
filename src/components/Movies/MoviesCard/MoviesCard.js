@@ -2,7 +2,7 @@ import React from "react";
 import "./MoviesCard.css";
 import movie from "../../../images/movie.jpg";
 
-function MoviesCard() {
+function MoviesCard({cardType}) {
     return (
         <div className="movie">
             <div className="movie__title-group">
@@ -17,8 +17,8 @@ function MoviesCard() {
                     </p>
                 </div>
                 <button
-                    className="movie__saved movie__unsaved movie__delete"
-                    // className={cardLikeButtonClassName}
+                    // className="movie__saved movie__unsaved movie__delete"
+                    className={cardType}
                     type="button"
                 // onClick={handleLikeClick}
                 >

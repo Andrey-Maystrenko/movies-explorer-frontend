@@ -2,12 +2,13 @@ import React from "react";
 import "./Header.css";
 import logo from "../../images/logo.svg";
 import { Route, Switch, Link } from "react-router-dom";
+import Navigation from "../Navigation/Navigation";
 
 function Header() {
     return (
         <header className="header">
             <a href="/#">
-            <img className="header__logo" src={logo} alt="логотип" />
+                <img className="header__logo" src={logo} alt="логотип" />
             </a>
             <Switch>
                 <Route exact path="/">
@@ -32,6 +33,10 @@ function Header() {
                             <span className="header__account-text">Аккаунт</span>
                         </button>
                     </Link>
+                    <button className="sandwich"></button>
+                    <nav className="navigation">
+                        <Navigation />
+                    </nav>
                 </Route>
             </Switch>
         </header>

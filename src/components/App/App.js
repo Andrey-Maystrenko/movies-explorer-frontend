@@ -46,7 +46,6 @@ function App() {
         <Route path="/movies">
           <SearchForm />
           <MoviesCardList />
-          <MoviesCard />
         </Route>
         <Route path="/saved-movies">
           <SavedMovies />

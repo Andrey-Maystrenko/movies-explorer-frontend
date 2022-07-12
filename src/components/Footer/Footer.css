@@ -1,14 +1,16 @@
 .footer__title {
-    width        : 1140px;
-    height       : 36px;
-    font-style   : normal;
-    font-weight  : 400;
-    font-size    : 13px;
-    line-height  : 16px;
-    text-align   : center;
-    color        : #8B8B8B;
-    margin       : 79px auto 0;
-    border-bottom: 1px solid #8B8B8B;
+    width           : 1140px;
+    height          : 36px;
+    font-style      : normal;
+    font-weight     : 400;
+    font-size       : 13px;
+    line-height     : 16px;
+    text-align      : center;
+    color           : #8B8B8B;
+    /* margin       : 79px auto 0; */
+    margin          : 0 auto 0;
+    padding-top     : 79px;
+    border-bottom   : 1px solid #8B8B8B;
 }
 
 .footer__content {
@@ -55,8 +57,9 @@
 
 @media screen and (max-width: 1279px) {
     .footer__title {
-        width : 708px;
-        margin: 129px auto 0;
+        width      : 708px;
+        /* margin  : 129px auto 0; */
+        padding-top: 129px;
     }
 
     .footer__content {
@@ -70,8 +73,9 @@
 
 @media screen and (max-width: 767px) {
     .footer__title {
-        width : 300px;
-        margin: 79px auto 0;
+        width      : 300px;
+        /* margin  : 79px auto 0; */
+        padding-top: 79px;
     }
 
     .footer__content {

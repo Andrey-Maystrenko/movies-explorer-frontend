@@ -38,7 +38,6 @@ function SearchForm() {
                 </label>
                 <p className="switch-name">Короткометражки</p>
             </div>
-
         </section>
     )
 }

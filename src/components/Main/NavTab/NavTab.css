@@ -12,6 +12,7 @@
     background   : #303030;
     border-radius: 10px;
     cursor       : pointer;
+    border       : none;
 }
 
 .navtab__button-text {
