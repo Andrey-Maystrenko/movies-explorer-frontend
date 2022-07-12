@@ -25,6 +25,7 @@ import Techs from "../Main/Techs/Techs";
 import Portfolio from "../Main/Portfolio/Portfolio";
 import Profile from "../Profile/Profile"
 import SearchForm from "../Movies/SearchForm/SearchForm";
+import MoviesCard from "../Movies/MoviesCard/MoviesCard";
 // import ProtectedRoute from "./ProtectedRoute";
 // import * as mestoAuth from "../utils/moviesAuth";
 
@@ -45,6 +46,7 @@ function App() {
         <Route path="/movies">
           <SearchForm />
           <MoviesCardList />
+          <MoviesCard />
         </Route>
         <Route path="/saved-movies">
           <SavedMovies />

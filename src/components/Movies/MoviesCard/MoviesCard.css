@@ -1,0 +1,51 @@
+.movie {
+    width : 364px;
+    height: 271px;
+}
+
+.movie__title-group {
+    width          : 100%;
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+}
+
+.movie__parameters {
+    width: 280px;
+}
+
+.movie__title {
+    font-style : normal;
+    font-weight: 500;
+    font-size  : 15px;
+    line-height: 18px;
+    margin     : 14px 0 0 14px;
+}
+
+.movie__duration {
+    font-style : normal;
+    font-weight: 400;
+    font-size  : 11px;
+    line-height: 13px;
+    color      : #8B8B8B;
+    margin     : 9px 0 14px 14px;
+}
+
+.movie__saved {
+    width              : 30px;
+    height             : 30px;
+    margin             : 0 14px 0 0;
+    background-image   : url(../../../images/saved.svg);
+    padding            : 0;
+    border             : none;
+    background-position: center;
+    background-color   : transparent;
+    cursor             : pointer;
+}
+
+.movie__image {
+    width          : 100%;
+    height         : 203px;
+    object-fit     : cover;
+    object-position: center;
+}

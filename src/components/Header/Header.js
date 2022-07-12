@@ -21,10 +21,10 @@ function Header() {
                     </Link>
                 </Route>
                 <Route path="/movies">
-                    <Link className="header__link header__link_movies" to="">
+                    <Link className="header__link header__link_movies" to="/movies">
                         Фильмы
                     </Link>
-                    <Link className="header__link header__link_saved-movies" to="">
+                    <Link className="header__link header__link_saved-movies" to="/saved-movies">
                         Сохраненные фильмы
                     </Link>
                     <Link to="/signin">
