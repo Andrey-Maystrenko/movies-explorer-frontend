@@ -67,6 +67,10 @@
     border       : none;
 }
 
+.header__account_hidden {
+    display: block;
+}
+
 .header__account-text {
     font-style : normal;
     font-weight: 500;
@@ -101,15 +105,19 @@
         margin-right: 30px;
     }
 
-    .header__link_movies {
+    /* .header__link_movies {
         display: none;
     }
 
     .header__link_saved-movies {
         display: none;
+    } */
+
+    .header__account_hidden {
+        display: none;
     }
 
-    .header__account {
+    .header__link_hidden {
         display: none;
     }
 

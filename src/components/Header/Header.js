@@ -22,14 +22,14 @@ function Header() {
                     </Link>
                 </Route>
                 <Route path="/movies">
-                    <Link className="header__link header__link_movies" to="/movies">
+                    <Link className="header__link header__link_movies header__link_hidden" to="/movies">
                         Фильмы
                     </Link>
-                    <Link className="header__link header__link_saved-movies" to="/saved-movies">
+                    <Link className="header__link header__link_saved-movies header__link_hidden" to="/saved-movies">
                         Сохраненные фильмы
                     </Link>
                     <Link to="/signin">
-                        <button className="header__account" type="button">
+                        <button className="header__account header__account_hidden" type="button">
                             <span className="header__account-text">Аккаунт</span>
                         </button>
                     </Link>
