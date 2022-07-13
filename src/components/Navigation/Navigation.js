@@ -7,6 +7,11 @@ import { Link } from "react-router-dom";
 function Navigation() {
     return (
         <div className="popup hidden">
+            <button
+                className="popup__close-button"
+                // type="button"
+                // onClick={onClose}
+            ></button>
             <div className="popup__menu">
                 <Link className="popup__link popup__link_main" to="/#">
                     Главная
