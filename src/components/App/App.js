@@ -17,7 +17,7 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import AboutProject from "../Main/AboutProject/AboutProject";
 import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
-import SavedMovies from "../SavedMovies/MoviesCardList/MoviesCardList";
+import SavedMovies from "../SavedMovies/MoviesCardList/MoviesCardListSaved";
 import AboutMe from "../Main/AboutMe/AboutMe";
 import Promo from "../Main/Promo/Promo";
 import NavTab from "../Main/NavTab/NavTab";
@@ -25,7 +25,6 @@ import Techs from "../Main/Techs/Techs";
 import Portfolio from "../Main/Portfolio/Portfolio";
 import Profile from "../Profile/Profile"
 import SearchForm from "../Movies/SearchForm/SearchForm";
-import MoviesCard from "../Movies/MoviesCard/MoviesCard";
 // import ProtectedRoute from "./ProtectedRoute";
 // import * as mestoAuth from "../utils/moviesAuth";
 
@@ -48,6 +47,7 @@ function App() {
           <MoviesCardList />
         </Route>
         <Route path="/saved-movies">
+          <SearchForm />
           <SavedMovies />
         </Route>
         <Route path="/profile">
@@ -56,12 +56,16 @@ function App() {
         <Route path="/signin">
           {/* <Login handleLogin={handleLogin} /> */}
           <Login />
-          <Login />
         </Route>
         <Route path="/signup">
           {/* <Register handleRegister={handleRegister} /> */}
           <Register />
-          <Register />
+        </Route>
+        <Route path={["/movies", "/saved-movies"]}>
+        <Footer />
+        </Route>
+        <Route exact path="/">
+        <Footer />
         </Route>
       </Switch>
       {/* <Switch>
@@ -69,7 +73,6 @@ function App() {
             {loggedIn ? <Redirect to="/main" /> : <Redirect to="/signup" />}
           </Route>
         </Switch> */}
-      <Footer />
       <Preloader />
       {/* <EditProfilePopup
           isOpen={isEditProfilePopupOpen}

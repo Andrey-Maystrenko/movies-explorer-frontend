@@ -21,7 +21,7 @@ function Header() {
                         </button>
                     </Link>
                 </Route>
-                <Route path="/movies">
+                <Route path={["/movies", "/saved-movies", "/profile"]}>
                     <Link className="header__link header__link_movies header__link_hidden" to="/movies">
                         Фильмы
                     </Link>
