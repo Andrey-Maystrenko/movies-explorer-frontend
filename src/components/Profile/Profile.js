@@ -36,7 +36,7 @@ function Profile() {
                             Редактировать
                         </span>
                     </button>
-                    <a className="profile__save-button-text profile__save-button-text_red" href="#/">Выйти из аккаунта</a>
+                    <a className="profile__save-button-text profile__save-button-text_red" href="/#">Выйти из аккаунта</a>
                 </form>
             </section>
         </div>

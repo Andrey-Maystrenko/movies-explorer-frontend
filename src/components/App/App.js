@@ -62,10 +62,10 @@ function App() {
           <Register />
         </Route>
         <Route path={["/movies", "/saved-movies"]}>
-        <Footer />
+          <Footer />
         </Route>
         <Route exact path="/">
-        <Footer />
+          <Footer />
         </Route>
       </Switch>
       {/* <Switch>
