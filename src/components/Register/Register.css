@@ -1,0 +1,131 @@
+.profile__window {
+    position              : relative;
+    background            : none;
+    width                 : 396px;
+    /* height             : 482px; */
+    /* min-height         : 330px; */
+    margin                : 0 auto;
+    padding               : 40px 0 0;
+}
+
+.profile__content {
+    display        : flex;
+    flex-direction : column;
+    justify-content: flex-start;
+    align-items    : center;
+}
+
+.profile__title {
+    font-style : normal;
+    font-weight: 500;
+    font-size  : 24px;
+    line-height: 29px;
+    margin     : 0;
+}
+
+.form {
+    position       : relative;
+    display        : flex;
+    flex-direction : column;
+    justify-content: flex-start;
+    align-items    : center;
+}
+
+.profile__userdata {
+    font-style : normal;
+    font-weight: 400;
+    font-size  : 10px;
+    line-height: 12px;
+    color      : #8B8B8B;
+
+}
+
+.profile__userdata-value {
+    font-style : normal;
+    font-weight: 400;
+    font-size  : 14px;
+    line-height: 17px;
+    color      : #FFFFFF;
+}
+
+.profile__username-position_register {
+    position: absolute;
+    top     : 41px;
+    left    : 0;
+}
+
+.form__input_register {
+    width        : 100%;
+    height       : 37px;
+    color        : #FFFFff;
+    border       : none;
+    border-bottom: 1px solid #424242;
+    margin       : 52px 0 0;
+    padding      : 0;
+    text-align   : left;
+    background   : none;
+}
+
+.form__input_register:nth-of-type(2) {
+    margin: 41px 0 0;
+}
+
+.profile__useremail-position_register {
+    position: absolute;
+    top     : 119px;
+    left    : 0;
+}
+
+.profile__save-button {
+    width        : 410px;
+    height       : 16px;
+    border-radius: 2px;
+    margin       : 202px 0 0px;
+    background   : none;
+    cursor       : pointer;
+    text-align   : center;
+    padding      : 0;
+    border       : 0;
+}
+
+.profile__save-button-text {
+    font-style : normal;
+    font-weight: 400;
+    font-size  : 13px;
+    line-height: 16px;
+    color      : #FFFFff;
+    transition : opacity .3s;
+    margin     : 16px 0 0;
+}
+
+.profile__save-button-text:hover {
+    opacity: .8;
+}
+
+.profile__save-button-text_red {
+    color          : red;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 767px) {
+    .profile__window {
+        width: 260px;
+    }
+
+    .form__input {
+        margin: 64px 0 0;
+    }
+
+    .profile__save-button {
+        width : 260px;
+        margin: 379px 0 0;
+    }
+
+    .profile__username-position {
+        top: 80px;
+    }
+
+    .profile__useremail-position {
+        top: 129px;
+    }
+}

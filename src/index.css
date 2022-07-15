@@ -1,3 +1,4 @@
+@import url(../src/vendor/normalize.css);
 @import url(../src/vendor/fonts/inter.css);
 @import url(../src/components/App/App.css);
 @import url(../src/components/Main/AboutProject/AboutProject.css);

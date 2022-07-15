@@ -41,14 +41,17 @@ function App() {
           <Techs />
           <AboutMe />
           <Portfolio />
+          <Footer />
         </Route>
         <Route path="/movies">
           <SearchForm />
           <MoviesCardList />
+          <Footer />
         </Route>
         <Route path="/saved-movies">
           <SearchForm />
           <SavedMovies />
+          <Footer />
         </Route>
         <Route path="/profile">
           <Profile />
@@ -61,13 +64,14 @@ function App() {
           {/* <Register handleRegister={handleRegister} /> */}
           <Register />
         </Route>
-        <Route path={["/movies", "/saved-movies"]}>
+        {/* <Route path={["/movies", "/saved-movies"]}>
           <Footer />
         </Route>
         <Route exact path="/">
           <Footer />
-        </Route>
+        </Route> */}
       </Switch>
+      {/* <Footer /> */}
       {/* <Switch>
           <Route>
             {loggedIn ? <Redirect to="/main" /> : <Redirect to="/signup" />}
