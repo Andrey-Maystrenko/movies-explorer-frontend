@@ -137,6 +137,10 @@
     .sandwich {
         display: block;
     }
+
+    .header__logo-auth {
+        margin: 232px 544px 0 186px;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -175,8 +179,10 @@
     }
 
     .sandwich {
-        margin       : 0 14px 0 auto;
-        /* margin    : 0 0 0 auto;
-        padding-right: 14px; */
+        margin: 0 14px 0 auto;
+    }
+
+    .header__logo-auth {
+        margin: 56px 141px 0;
     }
 }
