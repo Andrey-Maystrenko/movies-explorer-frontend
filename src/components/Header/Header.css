@@ -47,6 +47,7 @@
     margin-right : 70px;
     cursor       : pointer;
     padding      : 0;
+    border       : 0;
 }
 
 .header__login-text {
