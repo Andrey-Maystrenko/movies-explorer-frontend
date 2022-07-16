@@ -1,4 +1,4 @@
-.register__window {
+.login__window {
     position              : relative;
     background            : none;
     width                 : 396px;
@@ -8,14 +8,14 @@
     padding               : 40px 0 0;
 }
 
-.register__content {
+.login__content {
     display        : flex;
     flex-direction : column;
     justify-content: flex-start;
     align-items    : center;
 }
 
-.register__title {
+.login__title {
     font-style : normal;
     font-weight: 500;
     font-size  : 24px;
@@ -31,7 +31,7 @@
     align-items    : center;
 }
 
-.register__userdata {
+.login__userdata {
     font-style : normal;
     font-weight: 400;
     font-size  : 10px;
@@ -40,7 +40,7 @@
 
 }
 
-.register__userdata-value {
+.login__userdata-value {
     font-style : normal;
     font-weight: 400;
     font-size  : 14px;
@@ -48,13 +48,13 @@
     color      : #FFFFFF;
 }
 
-.register__username-position {
+.login__username-position {
     position: absolute;
     top     : 41px;
     left    : 0;
 }
 
-.form__input_register {
+.form__input_login {
     width        : 100%;
     height       : 37px;
     color        : #FFFFff;
@@ -66,23 +66,23 @@
     background   : none;
 }
 
-.form__input_register:nth-of-type(1) {
+.form__input_login:nth-of-type(1) {
     margin: 52px 0 0;
 }
 
-.register__useremail-position {
+.login__useremail-position {
+    position: absolute;
+    top     : 39px;
+    left    : 0;
+}
+
+.login__password-position {
     position: absolute;
     top     : 119px;
     left    : 0;
 }
 
-.register__password-position {
-    position: absolute;
-    top     : 198px;
-    left    : 0;
-}
-
-.register__error {
+.login__error {
     font-style : normal;
     font-weight: 400;
     font-size  : 10px;
@@ -94,11 +94,11 @@
 }
 
 
-.register__save-button {
+.login__save-button {
     width        : 396px;
     height       : 45px;
     border-radius: 3px;
-    margin       : 152px 0 0px;
+    margin       : 221px 0 0px;
     background   : #4285F4;
     cursor       : pointer;
     text-align   : center;
@@ -106,7 +106,7 @@
     border       : 0;
 }
 
-.register__save-button-text {
+.login__save-button-text {
     font-style : normal;
     font-weight: 500;
     font-size  : 14px;
@@ -116,16 +116,16 @@
     margin     : 16px 0 0;
 }
 
-.register__save-button-text:hover {
+.login__save-button-text:hover {
     opacity: .8;
 }
 
-.register__save-button-text_red {
+.login__save-button-text_red {
     color          : red;
     text-decoration: none;
 }
 
-.register__login-option {
+.login__register-option {
     font-style : normal;
     font-weight: 400;
     font-size  : 14px;
@@ -135,40 +135,27 @@
     margin     : 16px 0 0;
 }
 
-.register__login-option_link {
+.login__register-option_link {
     color          : #4285F4;
     text-decoration: none;
 }
 
 
 @media screen and (max-width: 767px) {
-    .register__window {
+    .login__window {
         width  : 260px;
         padding: 50px 0 0;
     }
 
-    .register__save-button {
+    .login__save-button {
         width : 260px;
-        margin: 230px 0 0;
+        margin: 309px 0 0;
     }
 
-    .register__login-option {
+    .login__register-option {
         font-weight: 400;
         font-size  : 12px;
         line-height: 15px;
         margin     : 14px 0 0;
     }
-
-    /* .form__input {
-        margin: 64px 0 0;
-    }
-
-
-    .register__username-position {
-        top: 80px;
-    }
-
-    .register__useremail-position {
-        top: 129px;
-    } */
 }

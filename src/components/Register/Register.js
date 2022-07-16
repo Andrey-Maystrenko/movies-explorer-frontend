@@ -40,7 +40,7 @@ function Register() {
                         type="submit"
                     >
                         <span className="register__save-button-text">
-                            Редактировать
+                            Зарегистрироваться
                         </span>
                     </button>
                     <p className="register__login-option">
