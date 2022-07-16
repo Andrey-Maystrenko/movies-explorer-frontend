@@ -35,7 +35,7 @@ function Login() {
                     </button>
                     <p className="login__register-option">
                         {`Еще не зарегистрированы? `}
-                        <Link className="login__register-option login__register-option_link" to="/signin">Регистрация</Link>
+                        <Link className="login__register-option login__register-option_link" to="/signup">Регистрация</Link>
                     </p>
                 </form>
             </section>

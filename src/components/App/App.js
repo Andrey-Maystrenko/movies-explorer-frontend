@@ -25,6 +25,7 @@ import Techs from "../Main/Techs/Techs";
 import Portfolio from "../Main/Portfolio/Portfolio";
 import Profile from "../Profile/Profile"
 import SearchForm from "../Movies/SearchForm/SearchForm";
+import NotFound from "../NotFound/NotFound";
 // import ProtectedRoute from "./ProtectedRoute";
 // import * as mestoAuth from "../utils/moviesAuth";
 
@@ -64,20 +65,16 @@ function App() {
           {/* <Register handleRegister={handleRegister} /> */}
           <Register />
         </Route>
-        {/* <Route path={["/movies", "/saved-movies"]}>
-          <Footer />
+        <Route path="/notfound">
+          <NotFound />
         </Route>
-        <Route exact path="/">
-          <Footer />
-        </Route> */}
       </Switch>
-      {/* <Footer /> */}
+      <Preloader />
       {/* <Switch>
           <Route>
             {loggedIn ? <Redirect to="/main" /> : <Redirect to="/signup" />}
           </Route>
         </Switch> */}
-      <Preloader />
       {/* <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}

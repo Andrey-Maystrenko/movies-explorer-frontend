@@ -161,6 +161,10 @@ input:checked+.slider:before {
         margin: 19px 0 0 0;
     }
 
+    .search__input {
+        width: 200px;
+    }
+
     .search__loop {
         display: none;
     }

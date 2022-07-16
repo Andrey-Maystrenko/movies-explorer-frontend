@@ -1,5 +1,5 @@
-.hidden{
-    /* display: block; */
+.hidden {
+    /* display   : block; */
     display: none;
 }
 
@@ -15,16 +15,16 @@
 }
 
 .popup__menu {
-    display           : flex;
-    flex-direction    : column;
-    align-items       : center;
-    position          : absolute;
-    width             : 520px;
-    min-height        : 100vh;
-    right             : 0;
-    top               : 0;
-    background        : #202020;
-    z-index           : 2;
+    display       : flex;
+    flex-direction: column;
+    align-items   : center;
+    position      : absolute;
+    width         : 520px;
+    min-height    : 100vh;
+    right         : 0;
+    top           : 0;
+    background    : #202020;
+    z-index       : 2;
 }
 
 .popup__link {
@@ -94,15 +94,24 @@
 
 @media screen and (max-width: 767px) {
     .popup__menu {
-        display           : flex;
-        flex-direction    : column;
-        align-items       : center;
-        position          : absolute;
-        width             : 100vw;
-        min-height        : 100vh;
-        right             : 0;
-        top               : 0;
-        background        : #202020;
-        z-index           : 2;
+        display              : flex;
+        flex-direction       : column;
+        align-items          : center;
+        position             : absolute;
+        /* width             : 100vw; */
+        width                : 100vw;
+        min-height           : 100vh;
+        right                : 0;
+        top                  : 0;
+        background           : #202020;
+        z-index              : 2;
+    }
+
+    .popup__close-button::before {
+        height: 22px;
+    }
+
+    .popup__close-button::after {
+        height: 22px;
     }
 }
