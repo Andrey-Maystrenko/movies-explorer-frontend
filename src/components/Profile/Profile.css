@@ -1,0 +1,126 @@
+.profile__window {
+    position              : relative;
+    background            : none;
+    width                 : 410px;
+    /* height             : 482px; */
+    /* min-height         : 330px; */
+    margin                : 0 auto;
+    padding               : 74px 0 0;
+}
+
+.profile__content {
+    display        : flex;
+    flex-direction : column;
+    justify-content: flex-start;
+    align-items    : center;
+}
+
+.profile__title {
+    font-style : normal;
+    font-weight: 500;
+    font-size  : 24px;
+    line-height: 29px;
+    margin     : 0;
+}
+
+.form {
+    position       : relative;
+    display        : flex;
+    flex-direction : column;
+    justify-content: flex-start;
+    align-items    : center;
+}
+
+.profile__userdata {
+    font-style : normal;
+    font-weight: 500;
+    font-size  : 11px;
+    line-height: 13px;
+}
+
+.profile__username-position {
+    position: absolute;
+    top     : 56px;
+    left    : 0;
+}
+
+.form__input {
+    width        : 100%;
+    height       : 46px;
+    color        : #FFFFff;
+    border       : none;
+    border-bottom: 1px solid #424242;
+    margin       : 42px 0 0;
+    padding      : 0;
+    text-align   : right;
+    background   : none;
+}
+
+.form__input:nth-of-type(2) {
+    border: 0;
+    margin: 0;
+}
+
+.form__input::placeholder {
+    color: #FFFFff;
+}
+
+.profile__useremail-position {
+    position: absolute;
+    top     : 107px;
+    left    : 0;
+}
+
+.profile__save-button {
+    width        : 410px;
+    height       : 16px;
+    border-radius: 2px;
+    margin       : 202px 0 0px;
+    background   : none;
+    cursor       : pointer;
+    text-align   : center;
+    padding      : 0;
+    border       : 0;
+}
+
+.profile__save-button-text {
+    font-style : normal;
+    font-weight: 400;
+    font-size  : 13px;
+    line-height: 16px;
+    color      : #FFFFff;
+    transition : opacity .3s;
+    margin     : 16px 0 0;
+}
+
+.profile__save-button-text:hover {
+    opacity: .8;
+}
+
+.profile__save-button-text_red {
+    color          : red;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 767px) {
+    .profile__window {
+        width: 260px;
+    }
+
+    .form__input {
+        margin: 64px 0 0;
+    }
+
+    .profile__save-button {
+        width : 260px;
+        margin: 379px 0 0;
+    }
+
+    .profile__username-position {
+        top     : 80px;
+    }
+
+    .profile__useremail-position {
+        top     : 129px;
+    }    
+}

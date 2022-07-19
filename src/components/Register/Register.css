@@ -1,0 +1,174 @@
+.register__window {
+    position              : relative;
+    background            : none;
+    width                 : 396px;
+    /* height             : 482px; */
+    /* min-height         : 330px; */
+    margin                : 0 auto;
+    padding               : 40px 0 0;
+}
+
+.register__content {
+    display        : flex;
+    flex-direction : column;
+    justify-content: flex-start;
+    align-items    : center;
+}
+
+.register__title {
+    font-style : normal;
+    font-weight: 500;
+    font-size  : 24px;
+    line-height: 29px;
+    margin     : 0;
+}
+
+.form {
+    position       : relative;
+    display        : flex;
+    flex-direction : column;
+    justify-content: flex-start;
+    align-items    : center;
+}
+
+.register__userdata {
+    font-style : normal;
+    font-weight: 400;
+    font-size  : 10px;
+    line-height: 12px;
+    color      : #8B8B8B;
+
+}
+
+.register__userdata-value {
+    font-style : normal;
+    font-weight: 400;
+    font-size  : 14px;
+    line-height: 17px;
+    color      : #FFFFFF;
+}
+
+.register__username-position {
+    position: absolute;
+    top     : 41px;
+    left    : 0;
+}
+
+.form__input_register {
+    width        : 100%;
+    height       : 37px;
+    color        : #FFFFff;
+    border       : none;
+    border-bottom: 1px solid #424242;
+    margin       : 41px 0 0;
+    padding      : 0;
+    text-align   : left;
+    background   : none;
+}
+
+.form__input_register:nth-of-type(1) {
+    margin: 52px 0 0;
+}
+
+.register__useremail-position {
+    position: absolute;
+    top     : 119px;
+    left    : 0;
+}
+
+.register__password-position {
+    position: absolute;
+    top     : 198px;
+    left    : 0;
+}
+
+.register__error {
+    font-style : normal;
+    font-weight: 400;
+    font-size  : 10px;
+    line-height: 12px;
+    color      : #EE3465;
+    position   : absolute;
+    top        : 256px;
+    left       : 0;
+}
+
+
+.register__save-button {
+    width        : 396px;
+    height       : 45px;
+    border-radius: 3px;
+    margin       : 152px 0 0px;
+    background   : #4285F4;
+    cursor       : pointer;
+    text-align   : center;
+    padding      : 0;
+    border       : 0;
+}
+
+.register__save-button-text {
+    font-style : normal;
+    font-weight: 500;
+    font-size  : 14px;
+    line-height: 17px;
+    color      : #FFFFff;
+    transition : opacity .3s;
+    margin     : 16px 0 0;
+}
+
+.register__save-button-text:hover {
+    opacity: .8;
+}
+
+.register__save-button-text_red {
+    color          : red;
+    text-decoration: none;
+}
+
+.register__login-option {
+    font-style : normal;
+    font-weight: 400;
+    font-size  : 14px;
+    line-height: 17px;
+    text-align : center;
+    color      : #8B8B8B;
+    margin     : 16px 0 0;
+}
+
+.register__login-option_link {
+    color          : #4285F4;
+    text-decoration: none;
+}
+
+
+@media screen and (max-width: 767px) {
+    .register__window {
+        width  : 260px;
+        padding: 50px 0 0;
+    }
+
+    .register__save-button {
+        width : 260px;
+        margin: 230px 0 0;
+    }
+
+    .register__login-option {
+        font-weight: 400;
+        font-size  : 12px;
+        line-height: 15px;
+        margin     : 14px 0 0;
+    }
+
+    /* .form__input {
+        margin: 64px 0 0;
+    }
+
+
+    .register__username-position {
+        top: 80px;
+    }
+
+    .register__useremail-position {
+        top: 129px;
+    } */
+}

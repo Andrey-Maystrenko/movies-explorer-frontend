@@ -1,0 +1,117 @@
+.hidden {
+    /* display   : block; */
+    display: none;
+}
+
+.popup {
+    /* display   : block; */
+    background: rgba(0, 0, 0, .5);
+    position  : fixed;
+    z-index   : 1;
+    top       : 0;
+    left      : 0;
+    right     : 0;
+    bottom    : 0;
+}
+
+.popup__menu {
+    display       : flex;
+    flex-direction: column;
+    align-items   : center;
+    position      : absolute;
+    width         : 520px;
+    min-height    : 100vh;
+    right         : 0;
+    top           : 0;
+    background    : #202020;
+    z-index       : 2;
+}
+
+.popup__link {
+    font-style     : normal;
+    font-weight    : 500;
+    font-size      : 18px;
+    line-height    : 22px;
+    text-decoration: none;
+    color          : #FFFFFF;
+}
+
+.popup__link_main {
+    margin: 16vh 0 0;
+}
+
+.popup__link_movies {
+    width        : 72px;
+    height       : 26px;
+    border-bottom: 2px solid #FFFFFF;
+    margin       : 3vh 0 0;
+}
+
+.popup__link_saved-movies {
+    margin: 2vh 0 0;
+}
+
+.popup__account {
+    margin: 50vh 0 9vh;
+}
+
+.popup__close-button {
+    position  : absolute;
+    right     : 40px;
+    top       : 40px;
+    cursor    : pointer;
+    border    : none;
+    background: none;
+    width     : 20px;
+    height    : 20px;
+    transition: opacity .3s;
+    z-index   : 3;
+}
+
+.popup__close-button:hover {
+    opacity: .6;
+}
+
+.popup__close-button::before {
+    position        : absolute;
+    content         : '';
+    border          : 2px solid white;
+    background-color: white;
+    height          : 29px;
+    top             : 0;
+    transform       : rotate(45deg);
+}
+
+.popup__close-button::after {
+    position        : absolute;
+    content         : '';
+    border          : 2px solid white;
+    background-color: white;
+    height          : 29px;
+    top             : 0;
+    transform       : rotate(-45deg);
+}
+
+@media screen and (max-width: 767px) {
+    .popup__menu {
+        display              : flex;
+        flex-direction       : column;
+        align-items          : center;
+        position             : absolute;
+        /* width             : 100vw; */
+        width                : 100vw;
+        min-height           : 100vh;
+        right                : 0;
+        top                  : 0;
+        background           : #202020;
+        z-index              : 2;
+    }
+
+    .popup__close-button::before {
+        height: 22px;
+    }
+
+    .popup__close-button::after {
+        height: 22px;
+    }
+}
