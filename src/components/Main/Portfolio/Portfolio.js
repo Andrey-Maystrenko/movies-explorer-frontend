@@ -16,13 +16,13 @@ function Portfolio() {
                 </li>
                 <li className="portfolio__item">
                     <p className="porfolio__item-title">Адаптивный сайт</p>
-                    <a href="/#">
+                    <a href="https://andrey-maystrenko.github.io/russian-travel/" target="_blank" rel="noreferrer">
                         <img className="portfolio__pictorgam" src={pictogram} alt="пиктограмма ссылки на позицию портфолио" />
                     </a>
                 </li>
                 <li className="portfolio__item">
                     <p className="porfolio__item-title">Одностраничное приложение</p>
-                    <a href="/#">
+                    <a href="https://diploma-koga-717.nomoredomains.xyz/movies" target="_blank" rel="noreferrer">
                         <img className="portfolio__pictorgam" src={pictogram} alt="пиктограмма ссылки на позицию портфолио" />
                     </a>
                 </li>

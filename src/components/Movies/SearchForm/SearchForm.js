@@ -20,6 +20,7 @@ function SearchForm() {
                     minLength="2"
                     maxLength="300"
                     id="form__input"
+                    required
                 // value={name}
                 // onChange={handleAddPlaceNameChange}
                 />

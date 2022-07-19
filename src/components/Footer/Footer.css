@@ -16,9 +16,10 @@
 .footer__content {
     width          : 1140px;
     height         : 16px;
-    margin         : 20px auto 20px;
+    margin         : 20px auto 0;
     display        : flex;
     justify-content: space-between;
+    padding-bottom : 70px;
 }
 
 .footer__copyright {
@@ -65,9 +66,10 @@
     .footer__content {
         width          : 708px;
         height         : 16px;
-        margin         : 20px auto 20px;
+        margin         : 20px auto 0;
         display        : flex;
         justify-content: space-between;
+        padding-bottom : 50px;
     }
 }
 
@@ -81,10 +83,11 @@
     .footer__content {
         width         : 292px;
         height        : 114px;
-        margin        : 30px auto 10px;
+        margin        : 30px auto 0;
         display       : flex;
         align-items   : center;
         flex-direction: column-reverse;
+        padding-bottom: 30px;
     }
 
     .footer__items {
