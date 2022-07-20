@@ -36,7 +36,7 @@ function Header() {
                             <span className="header__account-text">Аккаунт</span>
                         </button>
                     </Link>
-                    <button className="sandwich"></button>
+                    <button className="sandwich" ></button>
                     <nav className="navigation">
                         <Navigation />
                     </nav>

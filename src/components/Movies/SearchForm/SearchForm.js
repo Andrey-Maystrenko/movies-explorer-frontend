@@ -3,13 +3,24 @@ import "./SearchForm.css";
 import loop from "../../../images/loop.svg";
 import search from "../../../images/search.svg";
 
-function SearchForm() {
+function SearchForm({ onFindMovie }) {
+    const [keyWord, setKeyWord] = React.useState('');
+
+    function handleSubmit(e) {
+        onFindMovie(keyWord);
+        e.preventDefault();
+    }
+
+    function handleSearchFormChange(e) {
+        setKeyWord(e.target.value);
+    }
+
     return (
         <section className="search__area">
             <form
                 className="search__form"
-            // noValidate
-            // onSubmit={onSubmit}
+                // noValidate
+                onSubmit={handleSubmit}
             >
                 <img className="search__loop" src={loop} alt="иконка лупы"></img>
                 <input
@@ -21,8 +32,8 @@ function SearchForm() {
                     maxLength="300"
                     id="form__input"
                     required
-                // value={name}
-                // onChange={handleAddPlaceNameChange}
+                    value={keyWord}
+                    onChange={handleSearchFormChange}
                 />
                 <button
                     className="search__form-button"
@@ -33,7 +44,7 @@ function SearchForm() {
             </form>
             <div className="search__separator"></div>
             <div className="switch-group">
-                <label class="switch">
+                <label className="switch">
                     <input type="checkbox" />
                     <span className="slider round"></span>
                 </label>

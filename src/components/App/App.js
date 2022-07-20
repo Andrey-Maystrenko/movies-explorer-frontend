@@ -26,10 +26,13 @@ import Portfolio from "../Main/Portfolio/Portfolio";
 import Profile from "../Profile/Profile"
 import SearchForm from "../Movies/SearchForm/SearchForm";
 import NotFound from "../NotFound/NotFound";
+import Movies from "../Movies/Movies";
 // import ProtectedRoute from "./ProtectedRoute";
-// import * as mestoAuth from "../utils/moviesAuth";
+// import * as MainApi from "../utils/MainApi";
+
 
 function App() {
+ 
   return (
     <div className="page">
       {/* <Header email={email} onSignOut={onSignOut} /> */}
@@ -45,9 +48,12 @@ function App() {
           <Footer />
         </Route>
         <Route path="/movies">
-          <SearchForm />
-          <MoviesCardList />
-          <Footer />
+          <Movies />
+          {/* <SearchForm />
+          <MoviesCardList 
+          onFindMovie={}
+          />
+          <Footer /> */}
         </Route>
         <Route path="/saved-movies">
           <SearchForm />
