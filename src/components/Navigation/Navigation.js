@@ -4,22 +4,30 @@ import "../Header/Header.css";
 import { Link } from "react-router-dom";
 
 
-function Navigation() {
+function Navigation({isOpen, onClose}) {
     return (
-        <div className="popup hidden">
+        <div className={`popup ${isOpen ? "" : "hidden"}`}>
             <button
                 className="popup__close-button"
-                // type="button"
-                // onClick={onClose}
+                type="button"
+                onClick={onClose}
             ></button>
             <div className="popup__menu">
                 <Link className="popup__link popup__link_main" to="/#">
                     Главная
                 </Link>
-                <Link className="popup__link popup__link_movies" to="/movies">
+                <Link 
+                className="popup__link popup__link_movies"
+                to="/movies"
+                onClick={onClose}
+                >
                     Фильмы
                 </Link>
-                <Link className="popup__link popup__link_saved-movies" to="/saved-movies">
+                <Link 
+                className="popup__link popup__link_saved-movies"
+                to="/saved-movies"
+                onClick={onClose}
+                >
                     Сохраненные фильмы
                 </Link>
                 <Link className="popup__account" to="/signin">

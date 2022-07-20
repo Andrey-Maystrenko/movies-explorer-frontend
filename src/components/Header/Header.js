@@ -5,6 +5,15 @@ import { Route, Switch, Link } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 
 function Header() {
+    const [navigationState, setNavigationState] = React.useState(false)
+    function openNavigation() {
+        setNavigationState(true);
+    }
+
+    function closeNavigation() {
+        setNavigationState(false);
+    }
+
     return (
         <header className="header">
             <Switch>
@@ -36,9 +45,16 @@ function Header() {
                             <span className="header__account-text">Аккаунт</span>
                         </button>
                     </Link>
-                    <button className="sandwich" ></button>
+                    <button
+                        className="sandwich"
+                        onClick={openNavigation}
+                    >
+                    </button>
                     <nav className="navigation">
-                        <Navigation />
+                        <Navigation
+                            isOpen={navigationState}
+                            onClose={closeNavigation}
+                        />
                     </nav>
                 </Route>
                 <Route path={["/signup", "/signin"]}>
