@@ -32,7 +32,7 @@ import Movies from "../Movies/Movies";
 
 
 function App() {
- 
+
   return (
     <div className="page">
       {/* <Header email={email} onSignOut={onSignOut} /> */}
@@ -49,11 +49,6 @@ function App() {
         </Route>
         <Route path="/movies">
           <Movies />
-          {/* <SearchForm />
-          <MoviesCardList 
-          onFindMovie={}
-          />
-          <Footer /> */}
         </Route>
         <Route path="/saved-movies">
           <SearchForm />
