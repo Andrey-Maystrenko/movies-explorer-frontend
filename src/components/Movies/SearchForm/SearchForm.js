@@ -5,15 +5,22 @@ import search from "../../../images/search.svg";
 
 function SearchForm({ onFindMovie }) {
     const [keyWord, setKeyWord] = React.useState('');
+    const [checked, setChecked] = React.useState(false);
+
+    console.log("switchStatus при инпуте", checked);
 
     function handleSubmit(e) {
-        onFindMovie(keyWord);
+        onFindMovie(keyWord, checked);
         e.preventDefault();
     }
 
     function handleSearchFormChange(e) {
         setKeyWord(e.target.value);
     }
+
+    // function handleSwitchChange(e){
+    //     setSwitchStatus(e.target.value);
+    // }
 
     return (
         <section className="search__area">
@@ -45,7 +52,10 @@ function SearchForm({ onFindMovie }) {
             <div className="search__separator"></div>
             <div className="switch-group">
                 <label className="switch">
-                    <input type="checkbox" />
+                    <input 
+                    type="checkbox"
+                    checked={checked}
+                    onChange={() => {setChecked(!checked)}} />
                     <span className="slider round"></span>
                 </label>
                 <p className="switch-name">Короткометражки</p>

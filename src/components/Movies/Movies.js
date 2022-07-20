@@ -6,17 +6,29 @@ import * as MoviesApi from "../../utils/MoviesApi";
 
 export default function Movies() {
     const [foundMovies, setFoundMovies] = React.useState([]);
-    async function findMovie(movie) {
+    async function findMovie(movie, chosen) {
         await MoviesApi
             .getInitialMovies()
             .then((moviesArray) => {
                 console.log(movie)
-                const movies = moviesArray.filter((element) => {
+                const selectedMovies = moviesArray.filter((element) => {
                     if (((element.nameRU !== null && element.nameRU.includes(movie)) ||
-                        (element.nameEN !== null && element.nameEN.includes(movie)))) return element;
+                        (element.nameEN !== null && element.nameEN.includes(movie))))
+                        return element;
                 })
-                setFoundMovies(movies);
+                if (!chosen) { setFoundMovies(selectedMovies) } else {
+                    const refinedMovies = selectedMovies.filter((element) => {
+                        if (element.duration <= 40) return element;
+                    });
+                    setFoundMovies(refinedMovies);
+                }
+                // const refinedMovies = selectedMovies.filter((element) => {
+                //     if (status === true && element.duration <= 40) {return element} else return element;
+                // })
+                // ;
+                // setFoundMovies(refinedMovies);
                 console.log("foundMovies", foundMovies);
+                console.log("switchStatus при сабмите", chosen);
             })
             .catch((err) => {
                 console.log(err); // выведем ошибку в консоль

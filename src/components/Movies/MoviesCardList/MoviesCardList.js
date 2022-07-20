@@ -11,7 +11,7 @@ function MoviesCardList({ movies }) {
             {movies.map((card) => {
                 return (
                     <MoviesCard
-                        cardType="movie__saved"
+                        cardType="movie__unsaved"
                         movieData={card}
                     //   onCardClick={onCardClick}
                     //   onCardLike={onCardLike}
