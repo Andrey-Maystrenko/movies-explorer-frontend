@@ -3,23 +3,26 @@ import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
 
-function MoviesCardList({ movies }) {
+function MoviesCardList({ movies, saveMovie, deleteMovie }) {
 
     return (
         <section className="movies">
             <div className="movies__table">
-            {movies.map((card) => {
-                return (
-                    <MoviesCard
-                        cardType="movie__unsaved"
-                        movieData={card}
-                    //   onCardClick={onCardClick}
-                    //   onCardLike={onCardLike}
-                    //   onCardDelete={onCardDelete}
-                    //   key={card._id}
-                    />
-                );
-            })}
+                {movies.map((card) => {
+                    return (
+                        <MoviesCard
+                            // cardType="movie__unsaved"
+                            key={card.id}
+                            movieData={card}
+                            saveMovie={saveMovie}
+                            deleteMovie={deleteMovie}
+
+                        //   onCardClick={onCardClick}
+                        //   onCardLike={onCardLike}
+                        //   onCardDelete={onCardDelete}
+                        />
+                    );
+                })}
                 {/* <MoviesCard
                     cardType="movie__saved"
                     movieData={movies} /> */}

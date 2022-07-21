@@ -1,5 +1,7 @@
 // export const BASE_URL = "https://auth.nomoreparties.co";
-export const BASE_URL = "https://api.diploma-koga-717.nomoredomains.xyz";
+// export const BASE_URL = "https://api.diploma-koga-717.nomoredomains.xyz";
+export const BASE_URL = "http://localhost:4001";
+export const IMG_BASE_URL = "https://api.nomoreparties.co";
 
 export const register = (email, password) => {
   return (
@@ -22,8 +24,8 @@ export const authorize = (email, password) => {
     },
     body: JSON.stringify({ email, password }),
   })
-  .then((res) => res.json())
-  .then((data) => data.token)
+    .then((res) => res.json())
+    .then((data) => data.token)
 };
 
 export const getContent = (token) => {
@@ -37,4 +39,36 @@ export const getContent = (token) => {
   })
     .then((res) => res.json())
     .then((data) => data);
+};
+
+export const postMovie = (movieData) => {
+  return fetch(`${BASE_URL}/movies`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      // authorization:
+    },
+    body: JSON.stringify({
+      country: movieData.country,
+      director: movieData.director,
+      duration: movieData.duration,
+      year: movieData.year,
+      description: movieData.description,
+      image: `${IMG_BASE_URL}${movieData.image.url}`,
+      trailerLink: movieData.trailerLink,
+      thumbnail: movieData.trailerLink,
+      movieId: movieData.id,
+      nameRU: movieData.nameRU,
+      nameEN: movieData.nameEN,
+    }),
+  })
+};
+
+export const deleteMovie = (movieId) => {
+  return fetch(`${BASE_URL}/movies/${movieId}`, {
+    method: "DELETE",
+    headers: {
+      // authorization:
+    },
+  })
 };

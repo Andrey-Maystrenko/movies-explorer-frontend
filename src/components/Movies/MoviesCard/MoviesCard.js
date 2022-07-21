@@ -1,12 +1,25 @@
 import React from "react";
 import "./MoviesCard.css";
-
+import { IMG_BASE_URL } from "../../../utils/MainApi";
 
 function MoviesCard({
-    cardType,
     movieData,
+    saveMovie,
+    deleteMovie
+    // cardType
 }) {
-    // console.log(`${BASE_URL}${movieData.image.url}`)
+    const [isSaved, setIsSaved] = React.useState(false);
+    function handleSaveClick() {
+        setIsSaved(!isSaved);
+        if (!isSaved) { saveMovie(movieData) } else { console.log('movieId', movieData._id); 
+         deleteMovie(movieData._id) };
+    }
+
+    // React.useEffect(() => {
+    //     setName(currentUser.name);
+    //     setDescription(currentUser.about);
+    //   }, [isSaved]);
+
     return (
         <div className="movie">
             <div className="movie__title-group">
@@ -21,10 +34,10 @@ function MoviesCard({
                     </p>
                 </div>
                 <button
-                    // className="movie__saved movie__unsaved movie__delete"
-                    className={cardType}
+                    className={`${isSaved ? "movie__saved" : "movie__unsaved"}`}
+                    // className={cardType}
                     type="button"
-                // onClick={handleLikeClick}
+                    onClick={handleSaveClick}
                 >
                 </button>
             </div>
@@ -32,7 +45,7 @@ function MoviesCard({
                 className="movie__image"
                 // src={data.link}
                 // src={movie}
-                src={`https://api.nomoreparties.co/${movieData.image.url}`}
+                src={`${IMG_BASE_URL}${movieData.image.url}`}
                 // alt={data.name}
                 // onClick={handleClick}
                 alt="кадр из фильма"
