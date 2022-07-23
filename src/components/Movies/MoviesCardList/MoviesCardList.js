@@ -3,8 +3,16 @@ import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
 
-function MoviesCardList({ movies, saveMovie, deleteMovie, toRenderFoundMovies, showMore }) {
-
+function MoviesCardList({
+    movies,
+    saveMovie,
+    deleteMovie,
+    toRenderFoundMovies,
+    showMore,
+    hideMore,
+    moreHidden
+}) {
+// console.log('hideMore', hideMore())
     return (
         <section className="movies">
             <div className="movies__table">
@@ -21,7 +29,9 @@ function MoviesCardList({ movies, saveMovie, deleteMovie, toRenderFoundMovies, s
 
             </div>
             <button
-                className="movies__more"
+                className={`${moreHidden ? "movies__more_hidden" : "movies__more"}`}
+                // className={`${isSaved ? "movie__saved" : "movie__unsaved"}`}
+                // className="movies__more"
                 onClick={showMore}
             >
                 <span className="movies__more-text">Ещё</span>
@@ -30,6 +40,8 @@ function MoviesCardList({ movies, saveMovie, deleteMovie, toRenderFoundMovies, s
 
     )
 }
+
+export default MoviesCardList;
 
 // function MoviesCardList({ movies, saveMovie, deleteMovie, toRenderFoundMovies }) {
 //     const [more, setMore] = React.useState(8);
@@ -66,4 +78,3 @@ function MoviesCardList({ movies, saveMovie, deleteMovie, toRenderFoundMovies, s
 //     )
 // }
 
-export default MoviesCardList;

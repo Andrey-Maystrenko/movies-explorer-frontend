@@ -5,7 +5,7 @@ import { IMG_BASE_URL } from "../../../utils/MainApi";
 function MoviesCard({
     movieData,
     saveMovie,
-    deleteMovie
+    deleteMovie,
     // cardType
 }) {
     const [isSaved, setIsSaved] = React.useState(false);

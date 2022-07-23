@@ -32,6 +32,10 @@
     color      : #FFFFFF;
 }
 
+.movies__more_hidden{
+    display: none;
+}
+
 @media screen and (max-width: 1279px) {
     .movies__table {
         max-width                        : 708px;

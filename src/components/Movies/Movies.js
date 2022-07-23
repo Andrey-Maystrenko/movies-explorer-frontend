@@ -10,11 +10,9 @@ export default function Movies() {
     console.log("foundMovies", foundMovies);
     const [savedMovies, setSavedMovies] = React.useState([]);
     // console.log('сохраненные фильмы от стейта', savedMovies);
-   ////////////////////////////////////////////
     const [more, setMore] = React.useState(12);
-    console.log('movies to render', toRenderFoundMovies());
-    /////////////////////////////////////////
-
+    // console.log('movies to render', toRenderFoundMovies());
+    const [moreHidden, setMoreHidden] = React.useState(true);
     async function findMovie(movie, chosen) {
         try {
             const moviesArray = await MoviesApi.getInitialMovies();
@@ -23,12 +21,17 @@ export default function Movies() {
             ((element.nameRU !== null && element.nameRU.includes(movie)) ||
                 (element.nameEN !== null && element.nameEN.includes(movie)))
             )
-            if (!chosen) { setFoundMovies(selectedMovies); setMore(12) } else {
+            if (!chosen) {
+                setFoundMovies(selectedMovies);
+                setMore(12);
+                setMoreHidden(false);
+            } else {
                 const refinedMovies = selectedMovies.filter((element) =>
                     element.duration <= 40
                 );
                 setFoundMovies(refinedMovies);
                 setMore(12);
+                setMoreHidden(false);
             }
         }
         catch (err) {
@@ -36,22 +39,20 @@ export default function Movies() {
         }
     }
     function toRenderFoundMovies() {
-        console.log('more', more)
+        // console.log('more', more)
         const moviesToRender = foundMovies.filter((movie, index) => index < more);
         return moviesToRender;
     }
 
-    // function toRenderFoundMovies(more) {
-    //     console.log('more', more)
-    //     const moviesToRender = foundMovies.filter((movie, index) => index < more);
-    //     return moviesToRender;
-    // }
-//////////////////////////////////////
     function showMore() {
+        hideMore();
         const increase = more + 3;
         setMore(increase);
     }
-////////////////////////////////////
+
+    function hideMore() {
+        if (foundMovies.length <= more) { setMoreHidden(true) }
+    }
 
     async function updateSavedMovies() {
         const updatedSavedMovies = await MainApi.getSavedMovies();
@@ -82,6 +83,8 @@ export default function Movies() {
                 deleteMovie={deleteMovie}
                 toRenderFoundMovies={toRenderFoundMovies}
                 showMore={showMore}
+                hideMore={hideMore}
+                moreHidden={moreHidden}
             />
             <Footer />
         </div>
