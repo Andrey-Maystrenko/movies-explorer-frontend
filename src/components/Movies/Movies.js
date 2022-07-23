@@ -7,9 +7,10 @@ import * as MainApi from "../../utils/MainApi";
 
 export default function Movies() {
     const [foundMovies, setFoundMovies] = React.useState([]);
-    // console.log("foundMovies", foundMovies);
+    console.log("foundMovies", foundMovies);
     const [savedMovies, setSavedMovies] = React.useState([]);
     // console.log('сохраненные фильмы от стейта', savedMovies);
+
 
     async function findMovie(movie, chosen) {
         try {
@@ -30,6 +31,12 @@ export default function Movies() {
             console.log(err); // выведем ошибку в консоль
         }
     }
+    function toRenderFoundMovies(more) {
+        console.log('more', more)
+        const moviesToRender = foundMovies.filter((movie, index) => index < more);
+        return moviesToRender;
+    }
+
 
     async function updateSavedMovies() {
         const updatedSavedMovies = await MainApi.getSavedMovies();
@@ -46,6 +53,24 @@ export default function Movies() {
         MainApi.deleteMovie(movieToDelete[0]._id);
         updateSavedMovies();
     }
+
+    return (
+
+        <div>
+            <SearchForm
+                onFindMovie={findMovie}
+            // findMovie(movie)=onFindMovie(keyWord)
+            />
+            <MoviesCardList
+                movies={foundMovies}
+                saveMovie={saveMovie}
+                deleteMovie={deleteMovie}
+                toRenderFoundMovies={toRenderFoundMovies}
+            />
+            <Footer />
+        </div>
+    )
+}
 
     // async function findMovie(movie, chosen) {
     //     await MoviesApi
@@ -70,20 +95,3 @@ export default function Movies() {
     //             console.log(err); // выведем ошибку в консоль
     //         });
     // }
-
-    return (
-
-        <div>
-            <SearchForm
-                onFindMovie={findMovie}
-            // findMovie(movie)=onFindMovie(keyWord)
-            />
-            <MoviesCardList
-                movies={foundMovies}
-                saveMovie={saveMovie}
-                deleteMovie={deleteMovie}
-            />
-            <Footer />
-        </div>
-    )
-}
