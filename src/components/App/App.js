@@ -16,7 +16,7 @@ import {
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import AboutProject from "../Main/AboutProject/AboutProject";
-import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
+// import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
 import SavedMovies from "../SavedMovies/MoviesCardList/MoviesCardListSaved";
 import AboutMe from "../Main/AboutMe/AboutMe";
 import Promo from "../Main/Promo/Promo";

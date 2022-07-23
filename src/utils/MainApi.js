@@ -11,8 +11,7 @@ export const getSavedMovies = () => {
     // Authorization: `Bearer ${token}`,
     },
   })
-    .then((res) => res.json())
-    .then((data) => console.log('сохраненные фильмы прямо из фетч',  data))
+    .then((res) => res.json());
 }
 
 export const postMovie = (movieData) => {
