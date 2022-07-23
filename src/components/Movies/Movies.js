@@ -10,7 +10,10 @@ export default function Movies() {
     console.log("foundMovies", foundMovies);
     const [savedMovies, setSavedMovies] = React.useState([]);
     // console.log('сохраненные фильмы от стейта', savedMovies);
-
+   ////////////////////////////////////////////
+    const [more, setMore] = React.useState(12);
+    console.log('movies to render', toRenderFoundMovies());
+    /////////////////////////////////////////
 
     async function findMovie(movie, chosen) {
         try {
@@ -20,23 +23,35 @@ export default function Movies() {
             ((element.nameRU !== null && element.nameRU.includes(movie)) ||
                 (element.nameEN !== null && element.nameEN.includes(movie)))
             )
-            if (!chosen) { setFoundMovies(selectedMovies) } else {
+            if (!chosen) { setFoundMovies(selectedMovies); setMore(12) } else {
                 const refinedMovies = selectedMovies.filter((element) =>
                     element.duration <= 40
                 );
                 setFoundMovies(refinedMovies);
+                setMore(12);
             }
         }
         catch (err) {
             console.log(err); // выведем ошибку в консоль
         }
     }
-    function toRenderFoundMovies(more) {
+    function toRenderFoundMovies() {
         console.log('more', more)
         const moviesToRender = foundMovies.filter((movie, index) => index < more);
         return moviesToRender;
     }
 
+    // function toRenderFoundMovies(more) {
+    //     console.log('more', more)
+    //     const moviesToRender = foundMovies.filter((movie, index) => index < more);
+    //     return moviesToRender;
+    // }
+//////////////////////////////////////
+    function showMore() {
+        const increase = more + 3;
+        setMore(increase);
+    }
+////////////////////////////////////
 
     async function updateSavedMovies() {
         const updatedSavedMovies = await MainApi.getSavedMovies();
@@ -66,6 +81,7 @@ export default function Movies() {
                 saveMovie={saveMovie}
                 deleteMovie={deleteMovie}
                 toRenderFoundMovies={toRenderFoundMovies}
+                showMore={showMore}
             />
             <Footer />
         </div>
