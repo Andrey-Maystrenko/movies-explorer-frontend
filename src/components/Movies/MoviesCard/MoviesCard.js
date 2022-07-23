@@ -11,14 +11,12 @@ function MoviesCard({
     const [isSaved, setIsSaved] = React.useState(false);
     function handleSaveClick() {
         setIsSaved(!isSaved);
-        if (!isSaved) { saveMovie(movieData) } else { console.log('movieId', movieData._id); 
-         deleteMovie(movieData._id) };
-    }
+        if (!isSaved) { saveMovie(movieData) } else {
+            // deleteMovie('62daf42aff988828f331f932')
+            deleteMovie(movieData.id)
 
-    // React.useEffect(() => {
-    //     setName(currentUser.name);
-    //     setDescription(currentUser.about);
-    //   }, [isSaved]);
+        };
+    }
 
     return (
         <div className="movie">
@@ -61,3 +59,8 @@ function MoviesCard({
 }
 
 export default MoviesCard;
+
+// React.useEffect(() => {
+    //     setName(currentUser.name);
+    //     setDescription(currentUser.about);
+    //   }, [isSaved]);

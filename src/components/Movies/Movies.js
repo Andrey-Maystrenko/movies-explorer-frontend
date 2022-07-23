@@ -8,11 +8,13 @@ import * as MainApi from "../../utils/MainApi";
 export default function Movies() {
     const [foundMovies, setFoundMovies] = React.useState([]);
     console.log("foundMovies", foundMovies);
+    const [savedMovies, setSavedMovies] = React.useState([]);
+    console.log('сохраненные фильмы от стейта', savedMovies);
 
     async function findMovie(movie, chosen) {
         try {
             const moviesArray = await MoviesApi.getInitialMovies();
-            console.log(movie)
+            // console.log(movie)
             const selectedMovies = moviesArray.filter((element) =>
             ((element.nameRU !== null && element.nameRU.includes(movie)) ||
                 (element.nameEN !== null && element.nameEN.includes(movie)))
@@ -22,7 +24,7 @@ export default function Movies() {
                     element.duration <= 40
                 );
                 setFoundMovies(refinedMovies);
-                console.log("switchStatus при сабмите", chosen);
+                // console.log("switchStatus при сабмите", chosen);
             }
         }
         catch (err) {
@@ -31,12 +33,37 @@ export default function Movies() {
     }
 
     function saveMovie(movieData) {
-        console.log(movieData);
         MainApi.postMovie(movieData);
+        // console.log('сохраненный фильм', movieData);
+        // const updatedSavedMovies = MainApi.getSavedMovies();
+        // console.log('updatedSavedMovies', updatedSavedMovies)
+        fetch(`http://localhost:4001/movies`, {
+            method: "GET",
+            // headers: {
+            // Authorization: `Bearer ${token}`,
+            // },
+        })
+            .then((res) => res.json())
+            .then((data) =>  setSavedMovies(data))
+        // setSavedMovies(updatedSavedMovies)
+        // console.log('сохраненные фильмы от фетч', updatedSavedMovies);
+       
     }
 
     function deleteMovie(cardId) {
-        MainApi.deleteMovie(cardId);
+        console.log(cardId);
+        const movieToDelete = savedMovies.filter((movie) => movie.movieId === cardId);
+        console.log(movieToDelete)
+        console.log(movieToDelete[0].nameEN)
+        MainApi.deleteMovie(movieToDelete[0]._id);
+        fetch(`http://localhost:4001/movies`, {
+            method: "GET",
+            // headers: {
+            // Authorization: `Bearer ${token}`,
+            // },
+        })
+            .then((res) => res.json())
+            .then((data) =>  setSavedMovies(data))
     }
 
     // async function findMovie(movie, chosen) {

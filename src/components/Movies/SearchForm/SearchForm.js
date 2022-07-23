@@ -7,7 +7,7 @@ function SearchForm({ onFindMovie }) {
     const [keyWord, setKeyWord] = React.useState('');
     const [checked, setChecked] = React.useState(false);
 
-    console.log("switchStatus при инпуте", checked);
+    // console.log("switchStatus при инпуте", checked);
 
     function handleSubmit(e) {
         onFindMovie(keyWord, checked);
