@@ -13,10 +13,7 @@ function MoviesCardList({
     more,
     searchPerformed
 }) {
-    // const [searchPerformed, setSearchPerformed] = React.useState(0);
     console.log('searchPerformed', searchPerformed)
-    // const counter = searchPerformed + 1;
-    // setSearchPerformed(counter)
     return (
         <section className="movies">
             <div className="movies__table">
@@ -30,7 +27,6 @@ function MoviesCardList({
                         />
                     );
                 })}
-
             </div>
             <div className={`${foundMovies.length === 0 && searchPerformed ? "notfoundmessage" : "notfoundmessage_hidden"}`}>Ничего не найдено</div>
             <button
@@ -40,7 +36,6 @@ function MoviesCardList({
                 <span className="movies__more-text">Ещё</span>
             </button>
         </section>
-
     )
 }
 

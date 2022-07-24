@@ -17,21 +17,27 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import AboutProject from "../Main/AboutProject/AboutProject";
 // import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
-import SavedMovies from "../SavedMovies/MoviesCardList/MoviesCardListSaved";
+// import SavedMovies from "../SavedMovies/MoviesCardList/MoviesCardListSaved";
 import AboutMe from "../Main/AboutMe/AboutMe";
 import Promo from "../Main/Promo/Promo";
 import NavTab from "../Main/NavTab/NavTab";
 import Techs from "../Main/Techs/Techs";
 import Portfolio from "../Main/Portfolio/Portfolio";
 import Profile from "../Profile/Profile"
-import SearchForm from "../Movies/SearchForm/SearchForm";
+// import SearchForm from "../Movies/SearchForm/SearchForm";
 import NotFound from "../NotFound/NotFound";
 import Movies from "../Movies/Movies";
+import SavedMovies from "../SavedMovies/SavedMovies"
 // import ProtectedRoute from "./ProtectedRoute";
 // import * as MainApi from "../utils/MainApi";
 
 
 function App() {
+  const [savedMovies, setsavedMovies] = React.useState([]);
+  
+  const allSavedMovies = (array) => {
+    setsavedMovies(array)
+  }
 
   return (
     <div className="page">
@@ -48,12 +54,17 @@ function App() {
           <Footer />
         </Route>
         <Route path="/movies">
-          <Movies />
+          <Movies 
+          presavedMovies={allSavedMovies}
+          />
         </Route>
         <Route path="/saved-movies">
-          <SearchForm />
+          <SavedMovies 
+          savedMovies={savedMovies}
+          />
+          {/* <SearchForm />
           <SavedMovies />
-          <Footer />
+          <Footer /> */}
         </Route>
         <Route path="/profile">
           <Profile />

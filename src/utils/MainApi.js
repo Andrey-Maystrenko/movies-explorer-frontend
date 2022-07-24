@@ -4,7 +4,7 @@ export const BASE_URL = "http://localhost:4001";
 export const IMG_BASE_URL = "https://api.nomoreparties.co";
 
 export const getSavedMovies = () => {
-  return fetch(`${BASE_URL}/movies`, {
+  return fetch(`${BASE_URL}/movies` , {
     method: "GET",
     headers: {
       "Content-Type": "application/json", 
@@ -13,6 +13,18 @@ export const getSavedMovies = () => {
   })
     .then((res) => res.json());
 }
+
+export const getSavedMovies2 = () => {
+  return fetch(`${BASE_URL}/saved-movies` , {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json", 
+    // Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => res.json());
+}
+
 
 export const postMovie = (movieData) => {
   return fetch(`${BASE_URL}/movies`, {

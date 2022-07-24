@@ -5,16 +5,20 @@ import Footer from '../Footer/Footer';
 import * as MoviesApi from "../../utils/MoviesApi";
 import * as MainApi from "../../utils/MainApi";
 
-export default function Movies() {
+export default function Movies({presavedMovies}) {
     const [more, setMore] = React.useState(12);
     // const [moreHidden, setMoreHidden] = React.useState(true);
     const [foundMovies, setFoundMovies] = React.useState([]);
     console.log("foundMovies", foundMovies);
     const [savedMovies, setSavedMovies] = React.useState([]);
-    // console.log('сохраненные фильмы от стейта', savedMovies);
+    console.log('сохраненные фильмы от стейта', savedMovies);
     const [searchPerformed, setSearchPerformed] = React.useState(false);
     // console.log('movies to render', toRenderFoundMovies());
-   
+
+    const liftSavedMovies = (array) => {
+        presavedMovies(array)
+    }
+    liftSavedMovies(savedMovies);
 
     async function findMovie(movie, chosen) {
         try {
@@ -42,7 +46,6 @@ export default function Movies() {
         }
     }
     function toRenderFoundMovies() {
-        // console.log('more', more)
         const moviesToRender = foundMovies.filter((movie, index) => index < more);
         return moviesToRender;
     }
@@ -51,16 +54,6 @@ export default function Movies() {
         const increase = more + 3;
         setMore(increase);
     }
-
-    // React.useEffect(() => {
-    //     if (foundMovies.length <= more) { setMoreHidden(true) }
-    //     setMoreHidden(false);
-    //   }, [foundMovies]);
-
-    // function hideMore() {
-    //     if (foundMovies.length <= more) { setMoreHidden(true) }
-    //     setMoreHidden(false);
-    // }
 
     async function updateSavedMovies() {
         const updatedSavedMovies = await MainApi.getSavedMovies();
@@ -83,7 +76,6 @@ export default function Movies() {
         <div>
             <SearchForm
                 onFindMovie={findMovie}
-            // findMovie(movie)=onFindMovie(keyWord)
             />
             <MoviesCardList
                 movies={foundMovies}
@@ -91,8 +83,6 @@ export default function Movies() {
                 deleteMovie={deleteMovie}
                 toRenderFoundMovies={toRenderFoundMovies}
                 showMore={showMore}
-                // hideMore={hideMore}
-                // moreHidden={moreHidden}
                 foundMovies={foundMovies}
                 more={more}
                 searchPerformed={searchPerformed}
@@ -124,22 +114,4 @@ export default function Movies() {
     //         .catch((err) => {
     //             console.log(err); // выведем ошибку в консоль
     //         });
-    // }
-
-    // tokenCheck();
-    // if (loggedIn) {
-    //   api
-    //     .getUserInfo()
-    //     .then((res) => setCurrentUser(res))
-    //     .catch((err) => {
-    //       console.log(err); // выведем ошибку в консоль
-    //     });
-    //   api
-    //     .getInitialCards()
-    //     .then((values) => {
-    //       setCards(values);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err); // выведем ошибку в консоль
-    //     });
     // }
