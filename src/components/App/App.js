@@ -33,11 +33,11 @@ import SavedMovies from "../SavedMovies/SavedMovies"
 
 
 function App() {
-  const [savedMovies, setsavedMovies] = React.useState([]);
+  // const [savedAllMovies, setSavedAllMovies] = React.useState([]);
   
-  const allSavedMovies = (array) => {
-    setsavedMovies(array)
-  }
+  // const allSavedMovies = (array) => {
+  //   setSavedAllMovies(array)
+  // }
 
   return (
     <div className="page">
@@ -55,12 +55,12 @@ function App() {
         </Route>
         <Route path="/movies">
           <Movies 
-          presavedMovies={allSavedMovies}
+          // presavedMovies={allSavedMovies}
           />
         </Route>
         <Route path="/saved-movies">
           <SavedMovies 
-          savedMovies={savedMovies}
+          // savedMovies={savedAllMovies}
           />
           {/* <SearchForm />
           <SavedMovies />

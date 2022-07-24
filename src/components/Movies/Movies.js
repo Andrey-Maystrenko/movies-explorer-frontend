@@ -5,7 +5,9 @@ import Footer from '../Footer/Footer';
 import * as MoviesApi from "../../utils/MoviesApi";
 import * as MainApi from "../../utils/MainApi";
 
-export default function Movies({presavedMovies}) {
+export default function Movies(
+    // {presavedMovies}
+    ) {
     const [more, setMore] = React.useState(12);
     // const [moreHidden, setMoreHidden] = React.useState(true);
     const [foundMovies, setFoundMovies] = React.useState([]);
@@ -15,10 +17,11 @@ export default function Movies({presavedMovies}) {
     const [searchPerformed, setSearchPerformed] = React.useState(false);
     // console.log('movies to render', toRenderFoundMovies());
 
-    const liftSavedMovies = (array) => {
-        presavedMovies(array)
-    }
-    liftSavedMovies(savedMovies);
+    // const liftSavedMovies = (array) => {
+    //     // updateSavedMovies();
+    //     presavedMovies(array)
+    // }
+    // liftSavedMovies(savedMovies);
 
     async function findMovie(movie, chosen) {
         try {
@@ -57,6 +60,7 @@ export default function Movies({presavedMovies}) {
 
     async function updateSavedMovies() {
         const updatedSavedMovies = await MainApi.getSavedMovies();
+        // console.log('updatedSavedMovies', updatedSavedMovies)
         setSavedMovies(updatedSavedMovies);
     }
 

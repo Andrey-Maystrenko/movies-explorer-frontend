@@ -21,7 +21,7 @@ function SavedMoviesCardList({
                 {initialMovies.map((card) => {
                     return (
                         <SavedMoviesCard
-                            key={card.id}
+                            key={card._id}
                             movieData={card}
                             saveMovie={saveMovie}
                             deleteMovie={deleteMovie}

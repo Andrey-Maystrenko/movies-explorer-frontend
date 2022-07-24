@@ -14,8 +14,9 @@ export const getSavedMovies = () => {
     .then((res) => res.json());
 }
 
-export const getSavedMovies2 = () => {
+export const getInitialSavedMovies = () => {
   return fetch(`${BASE_URL}/saved-movies` , {
+    // mode: "no-cors",
     method: "GET",
     headers: {
       "Content-Type": "application/json", 

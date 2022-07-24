@@ -1,26 +1,41 @@
 // const savedMovies = MainApi.getSavedMovies()
-import React from 'react'
+import React, { useEffect } from 'react'
 import SearchForm from '../Movies/SearchForm/SearchForm';
 import SavedMoviesCardList from './SavedMoviesCardList/SavedMoviesCardList';
 import Footer from '../Footer/Footer';
-import * as MoviesApi from "../../utils/MoviesApi";
 import * as MainApi from "../../utils/MainApi";
 
-export default function SavedMovies(presavedMovies) {
-    console.log('presavedMovies', presavedMovies)
+export default function SavedMovies(
+    // presavedMovies
+    ) {
+    // console.log('presavedMovies', presavedMovies)
     const [more, setMore] = React.useState(12);
     // const [allSavedMovies, setAllSavedMovies] = React.useState([]);
     const [foundMovies, setFoundMovies] = React.useState([]);
     console.log("foundMovies", foundMovies);
     const [savedMovies, setSavedMovies] = React.useState([]);
     // console.log('сохраненные фильмы от стейта', savedMovies);
+    
     const [searchPerformed, setSearchPerformed] = React.useState(false);
     // console.log('movies to render', toRenderFoundMovies());
+    
+    const [allSavedMovies, setAllSavedMovies] = React.useState([]);
+    
+    async function initialMovies() {
+        setAllSavedMovies(await MainApi.getSavedMovies());
+    }
+    React.useEffect(() => {
+        console.log("сработал юз эффект")
+        initialMovies()
+        // setAllSavedMovies( MainApi.getInitialSavedMovies());
+      }, []);
+
+    console.log('allSavedMovies', allSavedMovies);
 
     // async function initialMovies() {
-    //     setAllSavedMovies(await MainApi.getSavedMovies2());
+    //     const initialMovies = (await MainApi.getSavedMovies2());
+    //     return initialMovies;
     // }
-    // initialMovies()
 
     async function findMovie(movie, chosen) {
         try {
@@ -62,10 +77,10 @@ export default function SavedMovies(presavedMovies) {
         setSavedMovies(updatedSavedMovies);
     }
 
-    function saveMovie(movieData) {
-        MainApi.postMovie(movieData);
-        updateSavedMovies();
-    }
+    // function saveMovie(movieData) {
+    //     MainApi.postMovie(movieData);
+    //     updateSavedMovies();
+    // }
 
     function deleteMovie(cardId) {
         const movieToDelete = savedMovies.filter((movie) => movie.movieId === cardId);
@@ -80,8 +95,9 @@ export default function SavedMovies(presavedMovies) {
                 onFindMovie={findMovie}
             />
             <SavedMoviesCardList
-                initialMovies={presavedMovies.savedMovies}
-                saveMovie={saveMovie}
+                // initialMovies={presavedMovies.savedMovies}
+                initialMovies={allSavedMovies}
+                // saveMovie={saveMovie}
                 deleteMovie={deleteMovie}
                 toRenderFoundMovies={toRenderFoundMovies}
                 showMore={showMore}
