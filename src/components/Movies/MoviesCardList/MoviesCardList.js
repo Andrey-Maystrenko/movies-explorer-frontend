@@ -9,10 +9,14 @@ function MoviesCardList({
     deleteMovie,
     toRenderFoundMovies,
     showMore,
-    hideMore,
-    moreHidden
+    foundMovies,
+    more,
+    searchPerformed
 }) {
-// console.log('hideMore', hideMore())
+    // const [searchPerformed, setSearchPerformed] = React.useState(0);
+    console.log('searchPerformed', searchPerformed)
+    // const counter = searchPerformed + 1;
+    // setSearchPerformed(counter)
     return (
         <section className="movies">
             <div className="movies__table">
@@ -28,10 +32,9 @@ function MoviesCardList({
                 })}
 
             </div>
+            <div className={`${foundMovies.length === 0 && searchPerformed ? "notfoundmessage" : "notfoundmessage_hidden"}`}>Ничего не найдено</div>
             <button
-                className={`${moreHidden ? "movies__more_hidden" : "movies__more"}`}
-                // className={`${isSaved ? "movie__saved" : "movie__unsaved"}`}
-                // className="movies__more"
+                className={`${foundMovies.length <= more ? "movies__more_hidden" : "movies__more"}`}
                 onClick={showMore}
             >
                 <span className="movies__more-text">Ещё</span>

@@ -32,7 +32,19 @@
     color      : #FFFFFF;
 }
 
-.movies__more_hidden{
+.movies__more_hidden {
+    display: none;
+}
+
+.notfoundmessage {
+    font-style : normal;
+    font-weight: 400;
+    font-size  : 30px;
+    margin     : auto;
+    text-align : center;
+}
+
+.notfoundmessage_hidden {
     display: none;
 }
 
