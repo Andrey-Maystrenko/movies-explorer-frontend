@@ -13,7 +13,7 @@ export default function SavedMovies(
     // const [allSavedMovies, setAllSavedMovies] = React.useState([]);
     const [foundMovies, setFoundMovies] = React.useState([]);
     console.log("foundMovies", foundMovies);
-    const [savedMovies, setSavedMovies] = React.useState([]);
+    // const [savedMovies, setSavedMovies] = React.useState([]);
     // console.log('сохраненные фильмы от стейта', savedMovies);
 
     const [searchPerformed, setSearchPerformed] = React.useState(false);
@@ -23,11 +23,11 @@ export default function SavedMovies(
 
     const [moviesToRender, setMoviesToRender] = React.useState([]);
 
-    async function initialMovies() {
+    async function getInitialMovies() {
         setAllSavedMovies(await MainApi.getSavedMovies());
     }
     React.useEffect(() => {
-        initialMovies()
+        getInitialMovies()
         // setAllSavedMovies( MainApi.getInitialSavedMovies());
     }, []);
 
@@ -78,20 +78,25 @@ export default function SavedMovies(
         setMore(increase);
     }
 
-    async function updateSavedMovies() {
-        const updatedSavedMovies = await MainApi.getSavedMovies();
-        setSavedMovies(updatedSavedMovies);
-    }
+    // async function updateSavedMovies() {
+    //     const updatedSavedMovies = await MainApi.getSavedMovies();
+    //     setSavedMovies(updatedSavedMovies);
+    // }
 
     // function saveMovie(movieData) {
     //     MainApi.postMovie(movieData);
     //     updateSavedMovies();
     // }
 
-    function deleteMovie(cardId) {
-        const movieToDelete = savedMovies.filter((movie) => movie.movieId === cardId);
-        MainApi.deleteMovie(movieToDelete[0]._id);
-        updateSavedMovies();
+    async function deleteMovie(cardId) {
+        const movieToDelete = moviesToRender.filter((movie) => movie._id === cardId);
+        await MainApi.deleteMovie(movieToDelete[0]._id);
+        // getInitialMovies()
+        setSearchPerformed(true)
+        const restedMovies = moviesToRender.filter((movie) => movie._id !== cardId);
+        setFoundMovies(restedMovies);
+        console.log('deleted', movieToDelete)
+        // updateSavedMovies();
     }
 
     return (
@@ -101,11 +106,7 @@ export default function SavedMovies(
                 onFindMovie={findMovie}
             />
             <SavedMoviesCardList
-                // initialMovies={presavedMovies.savedMovies}
-                // initialMovies={allSavedMovies}
-                // saveMovie={saveMovie}
                 deleteMovie={deleteMovie}
-                // toRenderFoundMovies={toRenderFoundMovies}
                 moviesToRender={moviesToRender}
                 showMore={showMore}
                 foundMovies={foundMovies}

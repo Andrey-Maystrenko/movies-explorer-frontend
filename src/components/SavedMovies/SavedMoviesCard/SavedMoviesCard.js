@@ -7,7 +7,7 @@ function SavedMoviesCard({
 }) {
 
     function handleDeleteClick() {
-        deleteMovie(movieData.id)
+        deleteMovie(movieData._id)
     }
 
     return (
