@@ -1,22 +1,13 @@
 import React from "react";
 import "./SavedMoviesCard.css";
-// import { IMG_BASE_URL } from "../../../utils/MainApi";
-// const IMG_BASE_URL = "http://localhost:4001";
 
 function SavedMoviesCard({
     movieData,
-    saveMovie,
     deleteMovie,
-    // cardType
 }) {
-    const [isSaved, setIsSaved] = React.useState(false);
-    function handleSaveClick() {
-        setIsSaved(!isSaved);
-        if (!isSaved) { saveMovie(movieData) } else {
-            // deleteMovie('62daf42aff988828f331f932')
-            deleteMovie(movieData.id)
 
-        };
+    function handleDeleteClick() {
+        deleteMovie(movieData.id)
     }
 
     return (
@@ -33,21 +24,18 @@ function SavedMoviesCard({
                     </p>
                 </div>
                 <button
-                    className={`${isSaved ? "movie__saved" : "movie__unsaved"}`}
+                    className="movie__delete"
                     // className={cardType}
                     type="button"
-                    onClick={handleSaveClick}
+                    onClick={handleDeleteClick}
                 >
                 </button>
             </div>
             <img
                 className="movie__image"
-                // src={data.link}
-                // src={movie}
                 src={`${movieData.image}`}
-                // alt={data.name}
+                alt={movieData.nameRU}
                 // onClick={handleClick}
-                alt="кадр из фильма"
             />
             {/* <button
                 // className="element__trash element__trash_invisible"

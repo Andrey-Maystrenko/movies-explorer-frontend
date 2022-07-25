@@ -7,7 +7,7 @@ import * as MainApi from "../../utils/MainApi";
 
 export default function SavedMovies(
     // presavedMovies
-    ) {
+) {
     // console.log('presavedMovies', presavedMovies)
     const [more, setMore] = React.useState(12);
     // const [allSavedMovies, setAllSavedMovies] = React.useState([]);
@@ -15,21 +15,21 @@ export default function SavedMovies(
     console.log("foundMovies", foundMovies);
     const [savedMovies, setSavedMovies] = React.useState([]);
     // console.log('сохраненные фильмы от стейта', savedMovies);
-    
+
     const [searchPerformed, setSearchPerformed] = React.useState(false);
     // console.log('movies to render', toRenderFoundMovies());
-    
+
     const [allSavedMovies, setAllSavedMovies] = React.useState([]);
 
     const [moviesToRender, setMoviesToRender] = React.useState([]);
-    
+
     async function initialMovies() {
         setAllSavedMovies(await MainApi.getSavedMovies());
     }
     React.useEffect(() => {
         initialMovies()
         // setAllSavedMovies( MainApi.getInitialSavedMovies());
-      }, []);
+    }, []);
 
     console.log('allSavedMovies', allSavedMovies);
 
@@ -64,12 +64,14 @@ export default function SavedMovies(
     // }
 
     React.useEffect(() => {
-        if (searchPerformed) {setMoviesToRender(
-            foundMovies.filter((movie, index) => index < more))
+        if (searchPerformed) {
+            setMoviesToRender(
+                foundMovies.filter((movie, index) => index < more))
         } else {
-            setMoviesToRender(allSavedMovies)
+            setMoviesToRender(
+                allSavedMovies.filter((movie, index) => index < more))
         }
-      }, [searchPerformed, allSavedMovies, foundMovies, more]);
+    }, [searchPerformed, allSavedMovies, foundMovies, more]);
 
     function showMore() {
         const increase = more + 3;
@@ -107,6 +109,7 @@ export default function SavedMovies(
                 moviesToRender={moviesToRender}
                 showMore={showMore}
                 foundMovies={foundMovies}
+                allSavedMovies={allSavedMovies}
                 more={more}
                 searchPerformed={searchPerformed}
             />
