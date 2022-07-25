@@ -20,28 +20,24 @@ export default function SavedMovies(
     // console.log('movies to render', toRenderFoundMovies());
     
     const [allSavedMovies, setAllSavedMovies] = React.useState([]);
+
+    const [moviesToRender, setMoviesToRender] = React.useState([]);
     
     async function initialMovies() {
         setAllSavedMovies(await MainApi.getSavedMovies());
     }
     React.useEffect(() => {
-        console.log("сработал юз эффект")
         initialMovies()
         // setAllSavedMovies( MainApi.getInitialSavedMovies());
       }, []);
 
     console.log('allSavedMovies', allSavedMovies);
 
-    // async function initialMovies() {
-    //     const initialMovies = (await MainApi.getSavedMovies2());
-    //     return initialMovies;
-    // }
-
     async function findMovie(movie, chosen) {
         try {
             // const moviesArray = await MainApi.getSavedMovies();
             // console.log(movie)
-            const selectedMovies = foundMovies.filter((element) =>
+            const selectedMovies = allSavedMovies.filter((element) =>
             ((element.nameRU !== null && element.nameRU.includes(movie)) ||
                 (element.nameEN !== null && element.nameEN.includes(movie)))
             )
@@ -62,10 +58,18 @@ export default function SavedMovies(
             console.log(err); // выведем ошибку в консоль
         }
     }
-    function toRenderFoundMovies() {
-        const moviesToRender = foundMovies.filter((movie, index) => index < more);
-        return moviesToRender;
-    }
+    // function toRenderFoundMovies() {
+    //     const moviesToRender = foundMovies.filter((movie, index) => index < more);
+    //     return moviesToRender;
+    // }
+
+    React.useEffect(() => {
+        if (searchPerformed) {setMoviesToRender(
+            foundMovies.filter((movie, index) => index < more))
+        } else {
+            setMoviesToRender(allSavedMovies)
+        }
+      }, [searchPerformed, allSavedMovies, foundMovies, more]);
 
     function showMore() {
         const increase = more + 3;
@@ -96,10 +100,11 @@ export default function SavedMovies(
             />
             <SavedMoviesCardList
                 // initialMovies={presavedMovies.savedMovies}
-                initialMovies={allSavedMovies}
+                // initialMovies={allSavedMovies}
                 // saveMovie={saveMovie}
                 deleteMovie={deleteMovie}
-                toRenderFoundMovies={toRenderFoundMovies}
+                // toRenderFoundMovies={toRenderFoundMovies}
+                moviesToRender={moviesToRender}
                 showMore={showMore}
                 foundMovies={foundMovies}
                 more={more}

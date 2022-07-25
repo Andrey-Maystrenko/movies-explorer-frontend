@@ -5,12 +5,12 @@ import SavedMoviesCard from "../SavedMoviesCard/SavedMoviesCard";
 
 
 function SavedMoviesCardList({
-    initialMovies,
+    // initialMovies,
+    moviesToRender,
     saveMovie,
     deleteMovie,
-    toRenderFoundMovies,
+    // toRenderFoundMovies,
     showMore,
-    foundMovies,
     more,
     searchPerformed
 }) {
@@ -18,7 +18,7 @@ function SavedMoviesCardList({
     return (
         <section className="movies">
             <div className="movies__table">
-                {initialMovies.map((card) => {
+                {moviesToRender.map((card) => {
                     return (
                         <SavedMoviesCard
                             key={card._id}
@@ -39,9 +39,9 @@ function SavedMoviesCardList({
                     );
                 })} */}
             </div>
-            <div className={`${foundMovies.length === 0 && searchPerformed ? "notfoundmessage" : "notfoundmessage_hidden"}`}>Ничего не найдено</div>
+            <div className={`${moviesToRender.length === 0 && searchPerformed ? "notfoundmessage" : "notfoundmessage_hidden"}`}>Ничего не найдено</div>
             <button
-                className={`${foundMovies.length <= more ? "movies__more_hidden" : "movies__more"}`}
+                className={`${moviesToRender.length <= more ? "movies__more_hidden" : "movies__more"}`}
                 onClick={showMore}
             >
                 <span className="movies__more-text">Ещё</span>
