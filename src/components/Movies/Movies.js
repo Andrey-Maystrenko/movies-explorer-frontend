@@ -2,12 +2,13 @@ import React from 'react'
 import SearchForm from './SearchForm/SearchForm';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
+import Preloader from '../../vendor/preloader/Preloader';
 import * as MoviesApi from "../../utils/MoviesApi";
 import * as MainApi from "../../utils/MainApi";
 
 export default function Movies(
     // {presavedMovies}
-    ) {
+) {
     const [more, setMore] = React.useState(12);
     // const [moreHidden, setMoreHidden] = React.useState(true);
     const [foundMovies, setFoundMovies] = React.useState([]);
@@ -17,16 +18,10 @@ export default function Movies(
     const [searchPerformed, setSearchPerformed] = React.useState(false);
     // console.log('movies to render', toRenderFoundMovies());
 
-    // const liftSavedMovies = (array) => {
-    //     // updateSavedMovies();
-    //     presavedMovies(array)
-    // }
-    // liftSavedMovies(savedMovies);
-
-    async function findMovie(movie, chosen) {
+      async function findMovie(movie, chosen) {
         try {
-            const moviesArray = await MoviesApi.getInitialMovies();
-            // console.log(movie)
+            <Preloader />
+            const moviesArray = await  MoviesApi.getInitialMovies();
             const selectedMovies = moviesArray.filter((element) =>
             ((element.nameRU !== null && element.nameRU.includes(movie)) ||
                 (element.nameEN !== null && element.nameEN.includes(movie)))
@@ -76,11 +71,11 @@ export default function Movies(
     }
 
     return (
-
         <div>
             <SearchForm
                 onFindMovie={findMovie}
             />
+            {/* <Preloader /> */}
             <MoviesCardList
                 movies={foundMovies}
                 saveMovie={saveMovie}

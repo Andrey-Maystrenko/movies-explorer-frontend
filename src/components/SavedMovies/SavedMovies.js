@@ -1,20 +1,16 @@
-// const savedMovies = MainApi.getSavedMovies()
-import React, { useEffect } from 'react'
+import React from 'react'
 import SearchForm from '../Movies/SearchForm/SearchForm';
 import SavedMoviesCardList from './SavedMoviesCardList/SavedMoviesCardList';
 import Footer from '../Footer/Footer';
 import * as MainApi from "../../utils/MainApi";
 
 export default function SavedMovies(
-    // presavedMovies
 ) {
-    // console.log('presavedMovies', presavedMovies)
     const [more, setMore] = React.useState(12);
     // const [allSavedMovies, setAllSavedMovies] = React.useState([]);
+
     const [foundMovies, setFoundMovies] = React.useState([]);
     console.log("foundMovies", foundMovies);
-    // const [savedMovies, setSavedMovies] = React.useState([]);
-    // console.log('сохраненные фильмы от стейта', savedMovies);
 
     const [searchPerformed, setSearchPerformed] = React.useState(false);
     // console.log('movies to render', toRenderFoundMovies());
@@ -26,17 +22,15 @@ export default function SavedMovies(
     async function getInitialMovies() {
         setAllSavedMovies(await MainApi.getSavedMovies());
     }
+
     React.useEffect(() => {
         getInitialMovies()
-        // setAllSavedMovies( MainApi.getInitialSavedMovies());
     }, []);
 
     console.log('allSavedMovies', allSavedMovies);
 
     async function findMovie(movie, chosen) {
         try {
-            // const moviesArray = await MainApi.getSavedMovies();
-            // console.log(movie)
             const selectedMovies = allSavedMovies.filter((element) =>
             ((element.nameRU !== null && element.nameRU.includes(movie)) ||
                 (element.nameEN !== null && element.nameEN.includes(movie)))
@@ -58,10 +52,6 @@ export default function SavedMovies(
             console.log(err); // выведем ошибку в консоль
         }
     }
-    // function toRenderFoundMovies() {
-    //     const moviesToRender = foundMovies.filter((movie, index) => index < more);
-    //     return moviesToRender;
-    // }
 
     React.useEffect(() => {
         if (searchPerformed) {
@@ -78,29 +68,16 @@ export default function SavedMovies(
         setMore(increase);
     }
 
-    // async function updateSavedMovies() {
-    //     const updatedSavedMovies = await MainApi.getSavedMovies();
-    //     setSavedMovies(updatedSavedMovies);
-    // }
-
-    // function saveMovie(movieData) {
-    //     MainApi.postMovie(movieData);
-    //     updateSavedMovies();
-    // }
-
     async function deleteMovie(cardId) {
         const movieToDelete = moviesToRender.filter((movie) => movie._id === cardId);
         await MainApi.deleteMovie(movieToDelete[0]._id);
-        // getInitialMovies()
         setSearchPerformed(true)
         const restedMovies = moviesToRender.filter((movie) => movie._id !== cardId);
         setFoundMovies(restedMovies);
         console.log('deleted', movieToDelete)
-        // updateSavedMovies();
     }
 
     return (
-
         <div>
             <SearchForm
                 onFindMovie={findMovie}

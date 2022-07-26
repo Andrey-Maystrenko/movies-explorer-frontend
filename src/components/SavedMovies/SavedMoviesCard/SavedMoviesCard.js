@@ -25,7 +25,6 @@ function SavedMoviesCard({
                 </div>
                 <button
                     className="movie__delete"
-                    // className={cardType}
                     type="button"
                     onClick={handleDeleteClick}
                 >
@@ -35,21 +34,10 @@ function SavedMoviesCard({
                 className="movie__image"
                 src={`${movieData.image}`}
                 alt={movieData.nameRU}
-                // onClick={handleClick}
+            // onClick={handleClick}
             />
-            {/* <button
-                // className="element__trash element__trash_invisible"
-                className={cardDeleteButtonClassName}
-                type="button"
-                onClick={handleDeleteClick}
-            ></button> */}
         </div>
     )
 }
 
 export default SavedMoviesCard;
-
-// React.useEffect(() => {
-    //     setName(currentUser.name);
-    //     setDescription(currentUser.about);
-    //   }, [isSaved]);

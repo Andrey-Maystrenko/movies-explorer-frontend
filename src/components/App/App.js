@@ -1,18 +1,18 @@
 import React from "react";
-import "./App.css";
-import "../../index.css";
-import Preloader from "../../vendor/preloader/Preloader";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 // import api from "../utils/api";
-// import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import {
   Route,
   Switch,
-  // Redirect,
+  Redirect,
   withRouter,
-  // useHistory,
+  useHistory,
 } from "react-router-dom";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import "./App.css";
+import "../../index.css";
+// import Preloader from "../../vendor/preloader/Preloader";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import AboutProject from "../Main/AboutProject/AboutProject";
@@ -29,65 +29,109 @@ import NotFound from "../NotFound/NotFound";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies"
 // import ProtectedRoute from "./ProtectedRoute";
-// import * as MainApi from "../utils/MainApi";
+import * as MainApi from "../../utils/MainApi";
 
 
 function App() {
-  // const [savedAllMovies, setSavedAllMovies] = React.useState([]);
-  
-  // const allSavedMovies = (array) => {
-  //   setSavedAllMovies(array)
-  // }
+  const [currentUser, setCurrentUser] = React.useState();
+  const history = useHistory();
+  // const [email, setEmail] = React.useState();
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const JWT = localStorage.getItem("jwt");
+
+  // React.useEffect(() => {
+  //   if (loggedIn) {
+  //     history.push("/");
+  //   }
+  // }, [loggedIn, history]);
+
+  React.useEffect(() => {
+    // tokenCheck();
+    if (loggedIn) {
+      MainApi
+        .getContent(JWT)
+        .then((res) => setCurrentUser(res))
+        .catch((err) => {
+          console.log(err); // выведем ошибку в консоль
+        });
+    }
+  }, [loggedIn]);
+
+  function handleRegister(name, email, password) {
+    MainApi
+      .register(name, email, password)
+      .then(() => {
+        // setLoggedIn(true);
+        // history.push("/signin");
+        history.push("/movies");
+        // setIsSuccessfulRegister(true);
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+        // return setIsFailuredRegister(true);
+      });
+  }
+
+  function handleLogin(email, password) {
+    return MainApi
+      .authorize(email, password)
+      .then((token) => {
+        if (token) {
+          localStorage.setItem("jwt", token);
+          // setEmail(email);
+          setLoggedIn(true);
+          history.push("/");
+        }
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+        // return setIsFailuredRegister(true);
+      });
+  }
+
 
   return (
-    <div className="page">
-      {/* <Header email={email} onSignOut={onSignOut} /> */}
-      <Header />
-      <Switch>
-        <Route exact path="/">
-          <Promo />
-          <NavTab />
-          <AboutProject />
-          <Techs />
-          <AboutMe />
-          <Portfolio />
-          <Footer />
-        </Route>
-        <Route path="/movies">
-          <Movies 
-          // presavedMovies={allSavedMovies}
-          />
-        </Route>
-        <Route path="/saved-movies">
-          <SavedMovies 
-          // savedMovies={savedAllMovies}
-          />
-          {/* <SearchForm />
-          <SavedMovies />
-          <Footer /> */}
-        </Route>
-        <Route path="/profile">
-          <Profile />
-        </Route>
-        <Route path="/signin">
-          {/* <Login handleLogin={handleLogin} /> */}
-          <Login />
-        </Route>
-        <Route path="/signup">
-          {/* <Register handleRegister={handleRegister} /> */}
-          <Register />
-        </Route>
-        <Route path="/notfound">
-          <NotFound />
-        </Route>
-      </Switch>
-      <Preloader />
-      {/* <Switch>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="page">
+        {/* <Header email={email} onSignOut={onSignOut} /> */}
+        <Header />
+        <Switch>
+          <Route exact path="/">
+            <Promo />
+            <NavTab />
+            <AboutProject />
+            <Techs />
+            <AboutMe />
+            <Portfolio />
+            <Footer />
+          </Route>
+          <Route path="/movies">
+            <Movies
+            />
+          </Route>
+          <Route path="/saved-movies">
+            <SavedMovies />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/signin">
+            {/* <Login handleLogin={handleLogin} /> */}
+            <Login />
+          </Route>
+          <Route path="/signup">
+            <Register handleRegister={handleRegister} />
+          </Route>
+          <Route path="/notfound">
+            <NotFound />
+          </Route>
+        </Switch>
+        {/* <Switch>
           <Route>
             {loggedIn ? <Redirect to="/main" /> : <Redirect to="/signup" />}
           </Route>
         </Switch> */}
-      {/* <EditProfilePopup
+        {/* <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
@@ -118,7 +162,8 @@ function App() {
           failureMessge="Что-то пошло не так! Попробуйте еще раз."
 
           /> */}
-    </div>
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 export default withRouter(App);

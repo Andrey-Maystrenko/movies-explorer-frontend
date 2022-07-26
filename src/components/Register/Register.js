@@ -1,13 +1,37 @@
 import React from "react";
 import "./Register.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function Register() {
+function Register(
+    { handleRegister }
+) {
+    const [name, setName] = React.useState("Виталий");
+    const [email, setEmail] = React.useState("test@test.ru");
+    const [password, setPassword] = React.useState("test");
+
+    function handleNameChange(e) {
+        setName(e.target.value)
+    }
+
+    function handleEmailChange(e) {
+        setEmail(e.target.value)
+    }
+    function handlePasswordChange(e) {
+        setPassword(e.target.value)
+    }
+
+    function onRegister(e) {
+        e.preventDefault();
+        handleRegister(name, email, password)
+    }
     return (
         <div className="register__window">
             <section className="register__content">
                 <h3 className="register__title">Добро пожаловать!</h3>
-                <form className="form">
+                <form
+                    className="form"
+                    onSubmit={onRegister}
+                >
                     <span className="register__userdata register__username-position">Имя</span>
                     <input
                         className="form__input_register register__userdata-value"
@@ -15,24 +39,24 @@ function Register() {
                         name="register__username"
                         minLength="2"
                         maxLength="30"
-                    // required
-                    // onChange={handleEmailChange}
+                        required
+                        onChange={handleNameChange}
                     />
                     <span className="register__userdata register__useremail-position">E-mail</span>
                     <input
                         className="form__input_register register__userdata-value"
                         type="email"
                         name="register__useremail"
-                    // required
-                    // onChange={handlePasswordChange}
+                        required
+                        onChange={handleEmailChange}
                     />
                     <span className="register__userdata register__password-position">Пароль</span>
                     <input
                         className="form__input_register register__userdata-value"
                         type="password"
                         name="register__password"
-                    // required
-                    // onChange={handlePasswordChange}
+                        required
+                        onChange={handlePasswordChange}
                     />
                     <span className="register__error" id="register__error">Что-то пошло не так...</span>
                     <button
