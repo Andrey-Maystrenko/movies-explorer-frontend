@@ -3,36 +3,38 @@
 export const BASE_URL = "http://localhost:4001";
 export const IMG_BASE_URL = "https://api.nomoreparties.co";
 
-export const getSavedMovies = () => {
-  return fetch(`${BASE_URL}/movies` , {
+export const getSavedMovies = (token) => {
+  return fetch(`${BASE_URL}/movies`, {
     method: "GET",
     headers: {
-      "Content-Type": "application/json", 
-    // Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+      // Authorization: token,
     },
   })
     .then((res) => res.json());
 }
 
-export const getInitialSavedMovies = () => {
-  return fetch(`${BASE_URL}/saved-movies` , {
-    // mode: "no-cors",
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json", 
-    // Authorization: `Bearer ${token}`,
-    },
-  })
-    .then((res) => res.json());
-}
+// export const getInitialSavedMovies = (token) => {
+//   return fetch(`${BASE_URL}/saved-movies`, {
+//     // mode: "no-cors",
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${token}`,
+//     },
+//   })
+//     .then((res) => res.json());
+// }
 
 
-export const postMovie = (movieData) => {
+export const postMovie = (movieData, token) => {
+  console.log(token)
   return fetch(`${BASE_URL}/movies`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      // authorization:
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       country: movieData.country,
@@ -50,13 +52,13 @@ export const postMovie = (movieData) => {
   })
 };
 
-export const deleteMovie = (movieId) => {
+export const deleteMovie = (movieId, token) => {
   return fetch(`${BASE_URL}/movies/${movieId}`, {
     method: "DELETE",
-    // headers: {
-    //   // authorization:
-    // },
-  })
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+  }})
 };
 
 // export const getMovieById = (movieId) => {
@@ -79,7 +81,7 @@ export const register = (name, email, password) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({name, email, password }),
+      body: JSON.stringify({ name, email, password }),
     })
   );
 };

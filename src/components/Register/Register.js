@@ -3,7 +3,8 @@ import "./Register.css";
 import { Link } from "react-router-dom";
 
 function Register(
-    { handleRegister }
+    { handleRegister },
+    isFailuredRegister
 ) {
     const [name, setName] = React.useState("Виталий");
     const [email, setEmail] = React.useState("test@test.ru");
@@ -58,7 +59,14 @@ function Register(
                         required
                         onChange={handlePasswordChange}
                     />
-                    <span className="register__error" id="register__error">Что-то пошло не так...</span>
+                    <span
+                        // className={`${isFailuredRegister} ?
+                        //  "register__error" : "register__error_hidden"`}
+                        // id="register__error"
+                        className="register__error"
+                    >
+                        Что-то пошло не так...
+                    </span>
                     <button
                         className="register__save-button"
                         type="submit"

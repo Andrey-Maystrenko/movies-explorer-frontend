@@ -93,6 +93,10 @@
     left       : 0;
 }
 
+.register__error_hidden {
+  display: none;
+}
+
 
 .register__save-button {
     width        : 396px;

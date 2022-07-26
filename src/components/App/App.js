@@ -28,7 +28,7 @@ import Profile from "../Profile/Profile"
 import NotFound from "../NotFound/NotFound";
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies"
-// import ProtectedRoute from "./ProtectedRoute";
+import ProtectedRoute from "../ProtectedRoute";
 import * as MainApi from "../../utils/MainApi";
 
 
@@ -36,8 +36,10 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState();
   const history = useHistory();
   // const [email, setEmail] = React.useState();
+  const [isFailuredRegister, setIsFailuredRegister] = React.useState();
   const [loggedIn, setLoggedIn] = React.useState(false);
   const JWT = localStorage.getItem("jwt");
+  console.log('JWT', JWT)
 
   // React.useEffect(() => {
   //   if (loggedIn) {
@@ -57,6 +59,9 @@ function App() {
     }
   }, [loggedIn]);
 
+  console.log(currentUser)
+  console.log('loggedIn', loggedIn)
+
   function handleRegister(name, email, password) {
     MainApi
       .register(name, email, password)
@@ -68,7 +73,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
-        // return setIsFailuredRegister(true);
+        return setIsFailuredRegister(true);
       });
   }
 
@@ -81,6 +86,8 @@ function App() {
           // setEmail(email);
           setLoggedIn(true);
           history.push("/");
+          // history.push("/movies");
+
         }
       })
       .catch((err) => {
@@ -106,21 +113,28 @@ function App() {
             <Footer />
           </Route>
           <Route path="/movies">
-            <Movies
+            <Movies 
+            JWT={JWT}
             />
+            {/* <ProtectedRoute  */}
           </Route>
           <Route path="/saved-movies">
-            <SavedMovies />
+            <SavedMovies 
+            JWT={JWT}
+            />
           </Route>
           <Route path="/profile">
             <Profile />
           </Route>
           <Route path="/signin">
-            {/* <Login handleLogin={handleLogin} /> */}
-            <Login />
+            <Login
+              handleLogin={handleLogin}
+            />
           </Route>
           <Route path="/signup">
-            <Register handleRegister={handleRegister} />
+            <Register
+              handleRegister={handleRegister}
+              isFailuredRegister={isFailuredRegister} />
           </Route>
           <Route path="/notfound">
             <NotFound />

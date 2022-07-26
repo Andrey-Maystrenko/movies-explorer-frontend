@@ -5,9 +5,10 @@ import Footer from '../Footer/Footer';
 import Preloader from '../../vendor/preloader/Preloader';
 import * as MoviesApi from "../../utils/MoviesApi";
 import * as MainApi from "../../utils/MainApi";
+// const JWT = localStorage.getItem("jwt");
 
 export default function Movies(
-    // {presavedMovies}
+    {JWT}
 ) {
     const [more, setMore] = React.useState(12);
     // const [moreHidden, setMoreHidden] = React.useState(true);
@@ -54,19 +55,19 @@ export default function Movies(
     }
 
     async function updateSavedMovies() {
-        const updatedSavedMovies = await MainApi.getSavedMovies();
+        const updatedSavedMovies = await MainApi.getSavedMovies(JWT);
         // console.log('updatedSavedMovies', updatedSavedMovies)
         setSavedMovies(updatedSavedMovies);
     }
 
     function saveMovie(movieData) {
-        MainApi.postMovie(movieData);
+        MainApi.postMovie(movieData, JWT);
         updateSavedMovies();
     }
 
     function deleteMovie(cardId) {
         const movieToDelete = savedMovies.filter((movie) => movie.movieId === cardId);
-        MainApi.deleteMovie(movieToDelete[0]._id);
+        MainApi.deleteMovie(movieToDelete[0]._id, JWT);
         updateSavedMovies();
     }
 

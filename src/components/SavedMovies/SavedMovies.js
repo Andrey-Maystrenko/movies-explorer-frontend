@@ -5,6 +5,7 @@ import Footer from '../Footer/Footer';
 import * as MainApi from "../../utils/MainApi";
 
 export default function SavedMovies(
+    {JWT}
 ) {
     const [more, setMore] = React.useState(12);
     // const [allSavedMovies, setAllSavedMovies] = React.useState([]);
@@ -20,7 +21,7 @@ export default function SavedMovies(
     const [moviesToRender, setMoviesToRender] = React.useState([]);
 
     async function getInitialMovies() {
-        setAllSavedMovies(await MainApi.getSavedMovies());
+        setAllSavedMovies(await MainApi.getSavedMovies(JWT));
     }
 
     React.useEffect(() => {
@@ -68,10 +69,10 @@ export default function SavedMovies(
         setMore(increase);
     }
 
-    async function deleteMovie(cardId) {
+    async function deleteMovie(cardId, JWT) {
         const movieToDelete = moviesToRender.filter((movie) => movie._id === cardId);
-        await MainApi.deleteMovie(movieToDelete[0]._id);
-        setSearchPerformed(true)
+        await MainApi.deleteMovie(movieToDelete[0]._id, JWT);
+        // setSearchPerformed(true)
         const restedMovies = moviesToRender.filter((movie) => movie._id !== cardId);
         setFoundMovies(restedMovies);
         console.log('deleted', movieToDelete)
