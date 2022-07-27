@@ -69,10 +69,10 @@ export default function SavedMovies(
         setMore(increase);
     }
 
-    async function deleteMovie(cardId, JWT) {
+    async function deleteMovie(cardId) {
         const movieToDelete = moviesToRender.filter((movie) => movie._id === cardId);
         await MainApi.deleteMovie(movieToDelete[0]._id, JWT);
-        // setSearchPerformed(true)
+        setSearchPerformed(true)
         const restedMovies = moviesToRender.filter((movie) => movie._id !== cardId);
         setFoundMovies(restedMovies);
         console.log('deleted', movieToDelete)

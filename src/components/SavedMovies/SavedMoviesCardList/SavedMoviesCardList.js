@@ -36,7 +36,7 @@ function SavedMoviesCardList({
             </div>
             <button
                 className={`${foundMovies.length ||
-                    allSavedMovies.length <= more  ? "movies__more_hidden" : "movies__more"}`}
+                    allSavedMovies.length <= more || moviesToRender.length === 0 ? "movies__more_hidden" : "movies__more"}`}
                 onClick={showMore}
             >
                 <span className="movies__more-text">Ещё</span>
