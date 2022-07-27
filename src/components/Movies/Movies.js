@@ -18,11 +18,14 @@ export default function Movies(
     console.log('сохраненные фильмы от стейта', savedMovies);
     const [searchPerformed, setSearchPerformed] = React.useState(false);
     // console.log('movies to render', toRenderFoundMovies());
+    const [isLoading, setIsLoading] = React.useState(false);
+     console.log('isLoading', isLoading);
 
       async function findMovie(movie, chosen) {
         try {
-            <Preloader />
+            setIsLoading(true);
             const moviesArray = await  MoviesApi.getInitialMovies();
+            setIsLoading(false);
             const selectedMovies = moviesArray.filter((element) =>
             ((element.nameRU !== null && element.nameRU.includes(movie)) ||
                 (element.nameEN !== null && element.nameEN.includes(movie)))
@@ -41,6 +44,7 @@ export default function Movies(
             }
         }
         catch (err) {
+            setIsLoading(false);
             console.log(err); // выведем ошибку в консоль
         }
     }
@@ -76,7 +80,9 @@ export default function Movies(
             <SearchForm
                 onFindMovie={findMovie}
             />
-            {/* <Preloader /> */}
+            <Preloader
+            isLoading={isLoading}
+            />
             <MoviesCardList
                 movies={foundMovies}
                 saveMovie={saveMovie}

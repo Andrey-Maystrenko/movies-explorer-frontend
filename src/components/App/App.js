@@ -41,6 +41,11 @@ function App() {
   const JWT = localStorage.getItem("jwt");
   console.log('JWT', JWT)
 
+React.useEffect(() => {
+    tokenCheck();
+  }, []);
+
+
   // React.useEffect(() => {
   //   if (loggedIn) {
   //     history.push("/");
@@ -48,7 +53,7 @@ function App() {
   // }, [loggedIn, history]);
 
   React.useEffect(() => {
-    // tokenCheck();
+    tokenCheck();
     if (loggedIn) {
       MainApi
         .getContent(JWT)
@@ -61,6 +66,23 @@ function App() {
 
   console.log(currentUser)
   console.log('loggedIn', loggedIn)
+
+  function tokenCheck() {
+    let jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      MainApi
+        .getContent(jwt)
+        .then((res) => {
+          // setEmail(res.email);
+          setCurrentUser(res);
+          setLoggedIn(true);
+        })
+        .catch((err) => {
+          console.log(err); // выведем ошибку в консоль
+        });
+    }
+  }
+
 
   function handleRegister(name, email, password) {
     MainApi
@@ -120,22 +142,32 @@ function App() {
             <Portfolio />
             <Footer />
           </Route>
-          <ProtectedRoute
+          <Route path="/movies">
+            <Movies
+              JWT={JWT}
+            />
+          </Route>
+          {/* <ProtectedRoute
             path="/movies"
             component={Movies}
             JWT={JWT}
-            loggedIn={!loggedIn}
-          />
-          <ProtectedRoute
+            loggedIn={loggedIn}
+          /> */}
+           <Route path="/saved-movies">
+            <SavedMovies
+              JWT={JWT}
+            />
+          </Route>
+          {/* <ProtectedRoute
             path="/saved-movies"
             component={SavedMovies}
             JWT={JWT}
-            loggedIn={!loggedIn}
-          />
+            loggedIn={loggedIn}
+          /> */}
           <Route path="/profile">
             <Profile
               handlePatchUserData={handlePatchUserData}
-              currentUser={currentUser}
+              // currentUser={currentUser}
             />
           </Route>
           {/* <ProtectedRoute

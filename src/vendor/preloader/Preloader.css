@@ -42,23 +42,21 @@
     }
 }
 
-.preloader_hidden{
+.preloader_hidden {
     display: none;
 }
 
-.preloader_visible{
-    display: flex;
+.preloader_visible {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    z-index        : 10;
+    margin         : 0 auto;
 }
 
 .preloader {
-    /* display           : flex; */
-    align-items       : center;
-    justify-content   : center;
-    /* width          : 100%; */
-    /* height         : 100%; */
-    z-index           : 10;
-    /* padding        : 20px; */
-    margin            : 0 auto;
+    /* z-index           : 10;
+    margin            : 0 auto; */
 }
 
 .preloader__container {

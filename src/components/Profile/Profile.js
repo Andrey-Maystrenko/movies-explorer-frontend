@@ -1,10 +1,12 @@
 import React from "react";
 import "./Profile.css";
-// import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Profile(
-    {handlePatchUserData}, currentUser) {
-    // const currentUser = React.useContext(CurrentUserContext);
+    {handlePatchUserData}, 
+    // currentUser
+    ) {
+    const currentUser = React.useContext(CurrentUserContext);
     console.log('currentUser', currentUser)
     const [name, setName] = React.useState(currentUser.name);
     const [email, setEmail] = React.useState(currentUser.email);
