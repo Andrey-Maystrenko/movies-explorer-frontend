@@ -54,11 +54,6 @@
     margin         : 0 auto;
 }
 
-.preloader {
-    /* z-index           : 10;
-    margin            : 0 auto; */
-}
-
 .preloader__container {
     width   : 100px;
     height  : 100px;

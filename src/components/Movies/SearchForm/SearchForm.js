@@ -4,8 +4,15 @@ import loop from "../../../images/loop.svg";
 import search from "../../../images/search.svg";
 
 function SearchForm({ onFindMovie }) {
-    const [keyWord, setKeyWord] = React.useState('');
+    const [keyWord, setKeyWord] = React.useState("");
     const [checked, setChecked] = React.useState(false);
+
+    React.useEffect(() => {
+        const checkedStatus = JSON.parse(localStorage.getItem("shorty"));
+        setChecked(checkedStatus)
+        const movie = localStorage.getItem("keyword");
+        setKeyWord(movie);
+    }, []);
 
     // console.log("switchStatus при инпуте", checked);
 

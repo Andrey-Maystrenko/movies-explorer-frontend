@@ -8,7 +8,7 @@ import * as MainApi from "../../utils/MainApi";
 // const JWT = localStorage.getItem("jwt");
 
 export default function Movies(
-    {JWT}
+    { JWT }
 ) {
     const [more, setMore] = React.useState(12);
     // const [moreHidden, setMoreHidden] = React.useState(true);
@@ -19,12 +19,18 @@ export default function Movies(
     const [searchPerformed, setSearchPerformed] = React.useState(false);
     // console.log('movies to render', toRenderFoundMovies());
     const [isLoading, setIsLoading] = React.useState(false);
-     console.log('isLoading', isLoading);
+    console.log('isLoading', isLoading);
 
-      async function findMovie(movie, chosen) {
+    
+    React.useEffect(() => {
+        const storedMovies = JSON.parse(localStorage.getItem("foundMovies"));
+        setFoundMovies(storedMovies)}
+    , []);
+
+    async function findMovie(movie, chosen) {
         try {
             setIsLoading(true);
-            const moviesArray = await  MoviesApi.getInitialMovies();
+            const moviesArray = await MoviesApi.getInitialMovies();
             setIsLoading(false);
             const selectedMovies = moviesArray.filter((element) =>
             ((element.nameRU !== null && element.nameRU.includes(movie)) ||
@@ -32,6 +38,7 @@ export default function Movies(
             )
             if (!chosen) {
                 setFoundMovies(selectedMovies);
+                localStorage.setItem("foundMovies", JSON.stringify(selectedMovies));
                 setMore(12);
                 setSearchPerformed(true)
             } else {
@@ -39,9 +46,12 @@ export default function Movies(
                     element.duration <= 40
                 );
                 setFoundMovies(refinedMovies);
+                localStorage.setItem("foundMovies", JSON.stringify(refinedMovies));
                 setMore(12);
                 setSearchPerformed(true)
             }
+            localStorage.setItem("shorty", (chosen));
+            localStorage.setItem("keyword", (movie));
         }
         catch (err) {
             setIsLoading(false);
@@ -81,7 +91,7 @@ export default function Movies(
                 onFindMovie={findMovie}
             />
             <Preloader
-            isLoading={isLoading}
+                isLoading={isLoading}
             />
             <MoviesCardList
                 movies={foundMovies}
