@@ -40,7 +40,7 @@ function Header() {
                     <Link className="header__link header__link_saved-movies header__link_hidden" to="/saved-movies">
                         Сохраненные фильмы
                     </Link>
-                    <Link to="/signin">
+                    <Link to="/profile">
                         <button className="header__account header__account_hidden" type="button">
                             <span className="header__account-text">Аккаунт</span>
                         </button>

@@ -1,31 +1,55 @@
 import React from "react";
 import "./Profile.css";
+// import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function Profile() {
+function Profile(
+    {handlePatchUserData}, currentUser) {
+    // const currentUser = React.useContext(CurrentUserContext);
+    console.log('currentUser', currentUser)
+    const [name, setName] = React.useState(currentUser.name);
+    const [email, setEmail] = React.useState(currentUser.email);
+
+    function handleNameChange(e) {
+        setName(e.target.value)
+    }
+
+    function handleEmailChange(e) {
+        setEmail(e.target.value)
+    }
+
+    function onPatchUserData(e) {
+        e.preventDefault();
+        handlePatchUserData(name, email)
+    }
     return (
         <div className="profile__window">
             <section className="profile__content">
-                <h3 className="profile__title">Привет, Андрей!</h3>
-                <form className="form">
+                <h3 className="profile__title">Привет, {name}!</h3>
+                <form
+                    className="form"
+                    onSubmit={onPatchUserData}
+                >
                     <span className="profile__userdata profile__username-position">Имя</span>
                     <input
                         className="form__input profile__userdata"
                         type="text"
-                        placeholder="Андрей"
+                        placeholder={name}
                         name="profile__username"
                         minLength="2"
                         maxLength="30"
-                        // required
-                        // onChange={handleEmailChange}
+                        required
+                        onChange={handleNameChange}
+                        value={name}
                     />
                     <span className="profile__userdata profile__useremail-position">E-mail</span>
                     <input
                         className="form__input profile__userdata"
                         type="email"
-                        placeholder="pochta@yandex.ru"
+                        placeholder={email}
                         name="profile__useremail"
-                        // required
-                        // onChange={handlePasswordChange}
+                        required
+                        onChange={handleEmailChange}
+                        value={email}
                     />
                     {/* <span className="popup__error" id="element__name"></span> */}
                     <button

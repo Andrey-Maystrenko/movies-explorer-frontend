@@ -57,7 +57,7 @@ function App() {
           console.log(err); // выведем ошибку в консоль
         });
     }
-  }, [loggedIn]);
+  }, [loggedIn, JWT]);
 
   console.log(currentUser)
   console.log('loggedIn', loggedIn)
@@ -95,6 +95,16 @@ function App() {
         // return setIsFailuredRegister(true);
       });
   }
+
+  function handlePatchUserData(name, email) {
+    return MainApi
+      .patchUserData(name, email, JWT)
+      .then((updatedUser) => {
+        console.log('updatedUser', updatedUser)
+        setCurrentUser(updatedUser)})
+      .catch((err) => console.log(err))
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -122,16 +132,20 @@ function App() {
             JWT={JWT}
             loggedIn={!loggedIn}
           />
-          {/* <Route path="/profile">
-            <Profile />
-          </Route> */}
-          <ProtectedRoute
-            exact path="/profile"
+          <Route path="/profile">
+            <Profile
+              handlePatchUserData={handlePatchUserData}
+              currentUser={currentUser}
+            />
+          </Route>
+          {/* <ProtectedRoute
+            path="/profile"
             component={Profile}
+            handlePatchUserData={handlePatchUserData}
             // JWT={JWT}
-            loggedIn={!loggedIn}
-            currentUser={currentUser}
-          />
+            loggedIn={loggedIn}
+            // currentUser={currentUser}
+          /> */}
           <Route path="/signin">
             <Login
               handleLogin={handleLogin}

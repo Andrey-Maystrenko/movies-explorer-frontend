@@ -58,7 +58,8 @@ export const deleteMovie = (movieId, token) => {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
-  }})
+    }
+  })
 };
 
 // export const getMovieById = (movieId) => {
@@ -107,6 +108,20 @@ export const getContent = (token) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
+  })
+    .then((res) => res.json())
+    .then((data) => data);
+};
+
+export const patchUserData = (name, email, token) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, email })
   })
     .then((res) => res.json())
     .then((data) => data);
