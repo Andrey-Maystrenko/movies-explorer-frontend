@@ -66,7 +66,7 @@ function App() {
     MainApi
       .register(name, email, password)
       .then(() => {
-        // setLoggedIn(true);
+        setLoggedIn(true);
         // history.push("/signin");
         history.push("/movies");
         // setIsSuccessfulRegister(true);
@@ -95,8 +95,6 @@ function App() {
         // return setIsFailuredRegister(true);
       });
   }
-
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -112,20 +110,28 @@ function App() {
             <Portfolio />
             <Footer />
           </Route>
-          <Route path="/movies">
-            <Movies 
+          <ProtectedRoute
+            path="/movies"
+            component={Movies}
             JWT={JWT}
-            />
-            {/* <ProtectedRoute  */}
-          </Route>
-          <Route path="/saved-movies">
-            <SavedMovies 
+            loggedIn={!loggedIn}
+          />
+          <ProtectedRoute
+            path="/saved-movies"
+            component={SavedMovies}
             JWT={JWT}
-            />
-          </Route>
-          <Route path="/profile">
+            loggedIn={!loggedIn}
+          />
+          {/* <Route path="/profile">
             <Profile />
-          </Route>
+          </Route> */}
+          <ProtectedRoute
+            exact path="/profile"
+            component={Profile}
+            // JWT={JWT}
+            loggedIn={!loggedIn}
+            currentUser={currentUser}
+          />
           <Route path="/signin">
             <Login
               handleLogin={handleLogin}
@@ -139,6 +145,7 @@ function App() {
           <Route path="/notfound">
             <NotFound />
           </Route>
+
         </Switch>
         {/* <Switch>
           <Route>
