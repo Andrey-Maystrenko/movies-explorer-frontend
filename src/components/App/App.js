@@ -33,17 +33,18 @@ import * as MainApi from "../../utils/MainApi";
 
 
 function App() {
-  const [currentUser, setCurrentUser] = React.useState();
+  // const [isLoading, setIsLoading] = React.useState(true);
+  const [currentUser, setCurrentUser] = React.useState({});
   const history = useHistory();
   // const [email, setEmail] = React.useState();
   const [isFailuredRegister, setIsFailuredRegister] = React.useState();
-  const [loggedIn, setLoggedIn] = React.useState(false);
   const JWT = localStorage.getItem("jwt");
+  const [loggedIn, setLoggedIn] = React.useState(Boolean(JWT));
   console.log('JWT', JWT)
 
-React.useEffect(() => {
-    tokenCheck();
-  }, []);
+  // React.useEffect(() => {
+  //   tokenCheck();
+  // }, []);
 
 
   // React.useEffect(() => {
@@ -53,35 +54,42 @@ React.useEffect(() => {
   // }, [loggedIn, history]);
 
   React.useEffect(() => {
-    tokenCheck();
+    console.log('useffect started');
+    // tokenCheck();
     if (loggedIn) {
       MainApi
         .getContent(JWT)
-        .then((res) => setCurrentUser(res))
+        .then((res) => {
+          console.log('res', res)
+          setCurrentUser(res)})
         .catch((err) => {
           console.log(err); // выведем ошибку в консоль
-        });
+          setLoggedIn(false);
+          setCurrentUser({});
+          // history.push('/signin');
+        })
+      // .finally(() => setIsLoading(false))
     }
-  }, [loggedIn, JWT]);
+  }, [loggedIn]);
 
   console.log(currentUser)
   console.log('loggedIn', loggedIn)
 
-  function tokenCheck() {
-    let jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      MainApi
-        .getContent(jwt)
-        .then((res) => {
-          // setEmail(res.email);
-          setCurrentUser(res);
-          setLoggedIn(true);
-        })
-        .catch((err) => {
-          console.log(err); // выведем ошибку в консоль
-        });
-    }
-  }
+  // function tokenCheck() {
+  //   let jwt = localStorage.getItem("jwt");
+  //   if (jwt) {
+  //     MainApi
+  //       .getContent(jwt)
+  //       .then((res) => {
+  //         // setEmail(res.email);
+  //         // setCurrentUser(res);
+  //         setLoggedIn(true);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err); // выведем ошибку в консоль
+  //       });
+  //   }
+  // }
 
 
   function handleRegister(name, email, password) {
@@ -123,9 +131,17 @@ React.useEffect(() => {
       .patchUserData(name, email, JWT)
       .then((updatedUser) => {
         console.log('updatedUser', updatedUser)
-        setCurrentUser(updatedUser)})
+        setCurrentUser(updatedUser)
+      })
       .catch((err) => console.log(err))
   }
+
+  function onSignOut() {
+    localStorage.removeItem("jwt");
+    setLoggedIn(false);
+  }
+  // if (isLoading) return null
+  console.log('render');
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -142,18 +158,18 @@ React.useEffect(() => {
             <Portfolio />
             <Footer />
           </Route>
-          <Route path="/movies">
+          {/* <Route path="/movies">
             <Movies
               JWT={JWT}
             />
-          </Route>
-          {/* <ProtectedRoute
+          </Route> */}
+          <ProtectedRoute
             path="/movies"
             component={Movies}
-            JWT={JWT}
+            // JWT={JWT}
             loggedIn={loggedIn}
-          /> */}
-           <Route path="/saved-movies">
+          />
+          <Route path="/saved-movies">
             <SavedMovies
               JWT={JWT}
             />
@@ -167,7 +183,9 @@ React.useEffect(() => {
           <Route path="/profile">
             <Profile
               handlePatchUserData={handlePatchUserData}
-              // currentUser={currentUser}
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              onSignOut={onSignOut}
             />
           </Route>
           {/* <ProtectedRoute

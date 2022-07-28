@@ -3,6 +3,14 @@
 export const BASE_URL = "http://localhost:4001";
 export const IMG_BASE_URL = "https://api.nomoreparties.co";
 
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  }
+  // если ошибка, отклоняем промис
+  return Promise.reject(`Ошибка: ${res.status}`);
+} 
+
 export const getSavedMovies = (token) => {
   return fetch(`${BASE_URL}/movies`, {
     method: "GET",
@@ -109,8 +117,12 @@ export const getContent = (token) => {
       Authorization: `Bearer ${token}`,
     },
   })
-    .then((res) => res.json())
-    .then((data) => data);
+    // .then((res) => res.json())
+    .then(checkResponse)
+    .then((data) => data)
+
+
+
 };
 
 export const patchUserData = (name, email, token) => {

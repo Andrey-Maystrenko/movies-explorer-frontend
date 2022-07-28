@@ -8,8 +8,9 @@ import * as MainApi from "../../utils/MainApi";
 // const JWT = localStorage.getItem("jwt");
 
 export default function Movies(
-    { JWT }
+    // { JWT }
 ) {
+    const JWT = localStorage.getItem("jwt");
     const [more, setMore] = React.useState(12);
     // const [moreHidden, setMoreHidden] = React.useState(true);
     const [foundMovies, setFoundMovies] = React.useState([]);
@@ -24,7 +25,9 @@ export default function Movies(
     
     React.useEffect(() => {
         const storedMovies = JSON.parse(localStorage.getItem("foundMovies"));
-        setFoundMovies(storedMovies)}
+        if (storedMovies) {setFoundMovies(storedMovies)} else {setFoundMovies([])}
+        console.log('storedMoviesst', storedMovies)
+        }
     , []);
 
     async function findMovie(movie, chosen) {

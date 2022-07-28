@@ -1,22 +1,26 @@
 import React from "react";
 import "./Profile.css";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+// import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Profile(
-    {handlePatchUserData}, 
-    // currentUser
-    ) {
-    const currentUser = React.useContext(CurrentUserContext);
+    { handlePatchUserData, currentUser, setCurrentUser, onSignOut },
+    
+) {
+    const {name, email} = currentUser;
+    // const currentUser = React.useContext(CurrentUserContext);
+
     console.log('currentUser', currentUser)
-    const [name, setName] = React.useState(currentUser.name);
-    const [email, setEmail] = React.useState(currentUser.email);
+
+    // if (!currentUser) return null;
 
     function handleNameChange(e) {
-        setName(e.target.value)
+        setCurrentUser({...currentUser, name:e.target.value})
+        // setName(e.target.value)
     }
 
     function handleEmailChange(e) {
-        setEmail(e.target.value)
+        setCurrentUser({...currentUser, email:e.target.value})
+        // setEmail(e.target.value)
     }
 
     function onPatchUserData(e) {
@@ -62,7 +66,11 @@ function Profile(
                             Редактировать
                         </span>
                     </button>
-                    <a className="profile__save-button-text profile__save-button-text_red" href="/#">Выйти из аккаунта</a>
+                    <a 
+                    className="profile__save-button-text profile__save-button-text_red" 
+                    href="/#"
+                    onClick={onSignOut}
+                    >Выйти из аккаунта</a>
                 </form>
             </section>
         </div>
