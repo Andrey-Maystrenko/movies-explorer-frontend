@@ -5,8 +5,10 @@ import Footer from '../Footer/Footer';
 import * as MainApi from "../../utils/MainApi";
 
 export default function SavedMovies(
-    {JWT}
+    // {JWT}
 ) {
+    const JWT = localStorage.getItem("jwt");
+
     const [more, setMore] = React.useState(12);
     // const [allSavedMovies, setAllSavedMovies] = React.useState([]);
 

@@ -5,11 +5,8 @@ import Footer from '../Footer/Footer';
 import Preloader from '../../vendor/preloader/Preloader';
 import * as MoviesApi from "../../utils/MoviesApi";
 import * as MainApi from "../../utils/MainApi";
-// const JWT = localStorage.getItem("jwt");
 
-export default function Movies(
-    // { JWT }
-) {
+export default function Movies() {
     const JWT = localStorage.getItem("jwt");
     const [more, setMore] = React.useState(12);
     // const [moreHidden, setMoreHidden] = React.useState(true);
