@@ -25,7 +25,6 @@ import SavedMovies from "../SavedMovies/SavedMovies"
 import ProtectedRoute from "../ProtectedRoute";
 import * as MainApi from "../../utils/MainApi";
 
-
 function App() {
   const [currentUser, setCurrentUser] = React.useState({});
 
@@ -37,6 +36,10 @@ function App() {
 
   const [loggedIn, setLoggedIn] = React.useState(Boolean(JWT));
   console.log('JWT', JWT)
+
+  const [dataOfMovie, setDataOfMovie] = React.useState([]);
+
+  const [isSaved, setIsSaved] = React.useState(false);
 
   React.useEffect(() => {
     console.log('useffect started');
@@ -73,7 +76,25 @@ function App() {
   //       });
   //   }
   // }
+  const [totalSavedMovies, setTotalSavedMovies] = React.useState([]);
 
+  function getAllSavedMovies(allSavedMovies) { setTotalSavedMovies(allSavedMovies) }
+
+  console.log('totalSavedMovies', totalSavedMovies)
+  
+
+  React.useEffect((allSavedMovies) => {
+    getAllSavedMovies(allSavedMovies)
+  }, [])
+  // console.log('dataOfMovie', dataOfMovie)
+
+  console.log('что пришло в из saved-movies', getAllSavedMovies)
+
+  // React.useEffect(() => {
+  //   allSavedMovies.forEach((element) => {
+  //     if (element.movieId === dataOfMovie.id) { setIsSaved(true) }
+  //   })
+  // }, [])
 
   function handleRegister(name, email, password) {
     MainApi
@@ -137,11 +158,15 @@ function App() {
             path="/movies"
             component={Movies}
             loggedIn={loggedIn}
+          // dataOfMovie={setDataOfMovie(dataOfMovie)}
+          // isSaved={isSaved}
           />
           <ProtectedRoute
             path="/saved-movies"
             component={SavedMovies}
             loggedIn={loggedIn}
+            getAllSavedMovies={getAllSavedMovies}
+          //getAllSavedMovies(allSavedMovies) = getAllSavedMovies
           />
           <ProtectedRoute
             path="/profile"
@@ -159,7 +184,7 @@ function App() {
           <Route path="/signup">
             <Register
               handleRegister={handleRegister}
-              // isFailuredRegister={isFailuredRegister}
+            // isFailuredRegister={isFailuredRegister}
             />
           </Route>
           <Route path="/notfound">

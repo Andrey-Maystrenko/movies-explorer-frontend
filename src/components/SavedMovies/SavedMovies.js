@@ -4,33 +4,48 @@ import SavedMoviesCardList from './SavedMoviesCardList/SavedMoviesCardList';
 import Footer from '../Footer/Footer';
 import * as MainApi from "../../utils/MainApi";
 
-export default function SavedMovies(
-    // {JWT}
-) {
+export default function SavedMovies({ getAllSavedMovies }) {
     const JWT = localStorage.getItem("jwt");
 
     const [more, setMore] = React.useState(12);
-    // const [allSavedMovies, setAllSavedMovies] = React.useState([]);
 
     const [foundMovies, setFoundMovies] = React.useState([]);
-    console.log("foundMovies", foundMovies);
+    // console.log("foundMovies", foundMovies);
 
     const [searchPerformed, setSearchPerformed] = React.useState(false);
     // console.log('movies to render', toRenderFoundMovies());
 
     const [allSavedMovies, setAllSavedMovies] = React.useState([]);
+    // console.log('allSavedMovies', allSavedMovies)
 
     const [moviesToRender, setMoviesToRender] = React.useState([]);
 
+    localStorage.setItem('isSavedArray', JSON.stringify(allSavedMovies));
+
+    //////////////////
+    // function transmitAllSavedMovies() {
+    //     getAllSavedMovies(allSavedMovies);
+    // }
+    /////////////////////
+    React.useEffect(() => {
+        ///////////////////
+        // transmitAllSavedMovies();
+        //////////////////
+    }, [allSavedMovies]);
+
     async function getInitialMovies() {
-        setAllSavedMovies(await MainApi.getSavedMovies(JWT));
+        const savedMovies = await MainApi.getSavedMovies(JWT)
+        setAllSavedMovies(savedMovies);
     }
 
     React.useEffect(() => {
-        getInitialMovies()
+        getInitialMovies();
     }, []);
 
+
     console.log('allSavedMovies', allSavedMovies);
+
+
 
     async function findMovie(movie, chosen) {
         try {

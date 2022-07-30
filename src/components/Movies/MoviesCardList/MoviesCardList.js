@@ -2,7 +2,6 @@ import React from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-
 function MoviesCardList({
     movies,
     saveMovie,
@@ -11,19 +10,35 @@ function MoviesCardList({
     showMore,
     foundMovies,
     more,
-    searchPerformed
+    searchPerformed,
+    dataOfMovie,
+    isSaved
 }) {
+
+    const [movieData, setMovieData] = React.useState([]);
+
+    //  React.useEffect(() => {
+    //     transmitMovieData()
+    // }, []);
+
+    function transmitMovieData() {
+        dataOfMovie(movieData)
+    }
+
+
     console.log('searchPerformed', searchPerformed)
     return (
         <section className="movies">
             <div className="movies__table">
                 {toRenderFoundMovies().map((card) => {
+                    // setMovieData(card);
                     return (
                         <MoviesCard
                             key={card.id}
                             movieData={card}
                             saveMovie={saveMovie}
                             deleteMovie={deleteMovie}
+                            isSaved={isSaved}
                         />
                     );
                 })}

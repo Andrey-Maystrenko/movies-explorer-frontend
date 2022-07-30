@@ -6,16 +6,21 @@ import Preloader from '../../vendor/preloader/Preloader';
 import * as MoviesApi from "../../utils/MoviesApi";
 import * as MainApi from "../../utils/MainApi";
 
-export default function Movies() {
+export default function Movies(dataOfMovie, isSaved) {
     const JWT = localStorage.getItem("jwt");
+
     const [more, setMore] = React.useState(12);
     // const [moreHidden, setMoreHidden] = React.useState(true);
+
     const [foundMovies, setFoundMovies] = React.useState([]);
     console.log("foundMovies", foundMovies);
+
     const [savedMovies, setSavedMovies] = React.useState([]);
     console.log('сохраненные фильмы от стейта', savedMovies);
+
     const [searchPerformed, setSearchPerformed] = React.useState(false);
     // console.log('movies to render', toRenderFoundMovies());
+    
     const [isLoading, setIsLoading] = React.useState(false);
     console.log('isLoading', isLoading);
 
@@ -83,6 +88,7 @@ export default function Movies() {
         const movieToDelete = savedMovies.filter((movie) => movie.movieId === cardId);
         MainApi.deleteMovie(movieToDelete[0]._id, JWT);
         updateSavedMovies();
+        
     }
 
     return (
@@ -102,6 +108,8 @@ export default function Movies() {
                 foundMovies={foundMovies}
                 more={more}
                 searchPerformed={searchPerformed}
+                // dataOfMovie={dataOfMovie}
+                // isSaved={isSaved}
             />
             <Footer />
         </div>

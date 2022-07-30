@@ -6,17 +6,40 @@ function MoviesCard({
     movieData,
     saveMovie,
     deleteMovie,
-    // cardType
+    // isSaved
 }) {
+
     const [isSaved, setIsSaved] = React.useState(false);
+
+    const isSavedArray = JSON.parse(localStorage.getItem("isSavedArray"));
+    
+    React.useEffect(() => {
+        console.log('сработал ЮЗЭФФЕКТ')
+        isSavedArray.forEach(card => {
+            console.log('card.movieId', card.movieId)
+            console.log('movieData.id', movieData.id)
+
+            if (movieData.id === card.movieId) { setIsSaved(true) } else {setIsSaved(false)}
+        });
+    }, [])
+
+
+
+    // console.log('isSavedArray', isSavedArray)
+
     function handleSaveClick() {
         setIsSaved(!isSaved);
-        if (!isSaved) { saveMovie(movieData) } else {
+        if (!isSaved) {
+            saveMovie(movieData);
+            // const isSavedArrayBefore = 
+            // localStorage.setItem("isSavedArray", JSON.stringify(selectedMovies));
+        } else {
             // deleteMovie('62daf42aff988828f331f932')
             deleteMovie(movieData.id)
-
         };
     }
+
+    // function getAllSavedMovies(allSavedMovies) {return allSavedMovies};
 
     return (
         <div className="movie">
