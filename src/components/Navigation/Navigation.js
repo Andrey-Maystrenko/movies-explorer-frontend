@@ -30,7 +30,11 @@ function Navigation({isOpen, onClose}) {
                 >
                     Сохраненные фильмы
                 </Link>
-                <Link className="popup__account" to="/signin">
+                <Link 
+                className="popup__account"
+                to="/profile"
+                onClick={onClose}
+                >
                     <button className="header__account" type="button">
                         <span className="header__account-text">Аккаунт</span>
                     </button>

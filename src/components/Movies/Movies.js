@@ -5,11 +5,19 @@ import Footer from '../Footer/Footer';
 import Preloader from '../../vendor/preloader/Preloader';
 import * as MoviesApi from "../../utils/MoviesApi";
 import * as MainApi from "../../utils/MainApi";
+import { isLabelWithInternallyDisabledControl } from '@testing-library/user-event/dist/utils';
 
 export default function Movies() {
     const JWT = localStorage.getItem("jwt");
 
-    const [more, setMore] = React.useState(12);
+    // const width = window.innerWidth;
+    // console.log('window.innerWidth', window.innerWidth)
+
+    const [width, setWidth] = React.useState(window.innerWidth);
+
+    const [pattern, setPattern] = React.useState({});
+
+    // const [more, setMore] = React.useState(12);
     // const [moreHidden, setMoreHidden] = React.useState(true);
 
     const [foundMovies, setFoundMovies] = React.useState([]);
@@ -20,23 +28,21 @@ export default function Movies() {
 
     const [searchPerformed, setSearchPerformed] = React.useState(false);
     // console.log('movies to render', toRenderFoundMovies());
-    
+
     const [isLoading, setIsLoading] = React.useState(false);
-    // console.log('isLoading', isLoading);
 
-    // localStorage.setItem('isSavedArray', JSON.stringify(savedMovies));
-    // console.log('localStorage', localStorage)
-
-    // console.log('savedMovies', savedMovies)
     React.useEffect(() => {
         const storedMovies = JSON.parse(localStorage.getItem("foundMovies"));
-        if (storedMovies) {setFoundMovies(storedMovies)} else {setFoundMovies([])}
-        
-//////////////////
-        updateSavedMovies()
-/////////////////        
-    }
-    , []);
+        if (storedMovies) { setFoundMovies(storedMovies) } else { setFoundMovies([]) };
+        updateSavedMovies();
+        definePattern();
+    }, []);
+
+    React.useEffect(() => {
+        definePattern();
+    }, [width]);
+
+    window.addEventListener('resize', () => setWidth(window.innerWidth));
 
     async function findMovie(movie, chosen) {
         try {
@@ -50,7 +56,8 @@ export default function Movies() {
             if (!chosen) {
                 setFoundMovies(selectedMovies);
                 localStorage.setItem("foundMovies", JSON.stringify(selectedMovies));
-                setMore(12);
+                // setMore(12);
+                definePattern();
                 setSearchPerformed(true)
             } else {
                 const refinedMovies = selectedMovies.filter((element) =>
@@ -58,7 +65,8 @@ export default function Movies() {
                 );
                 setFoundMovies(refinedMovies);
                 localStorage.setItem("foundMovies", JSON.stringify(refinedMovies));
-                setMore(12);
+                // setMore(12);
+                definePattern();
                 setSearchPerformed(true)
             }
             localStorage.setItem("shorty", (chosen));
@@ -69,14 +77,28 @@ export default function Movies() {
             console.log(err); // выведем ошибку в консоль
         }
     }
+
+    function definePattern() {
+        if (width >= 1280) setPattern({ quantity: 12, grouth: 3 })
+        if (width < 1280 && width >= 768) setPattern({ quantity: 8, grouth: 2 })
+        if (width < 768) setPattern({ quantity: 5, grouth: 2 })
+    }
+
     function toRenderFoundMovies() {
-        const moviesToRender = foundMovies.filter((movie, index) => index < more);
+        // const moviesToRender = foundMovies.filter((movie, index) => index < more);
+        const moviesToRender = foundMovies.filter((movie, index) => index < pattern.quantity);
+
         return moviesToRender;
     }
 
+    // function showMore() {
+    //     const increase = more + 3;
+    //     setMore(increase);
+    // }
+
     function showMore() {
-        const increase = more + 3;
-        setMore(increase);
+        const increase = pattern.quantity + pattern.grouth;
+        setPattern({ quantity: increase, grouth: pattern.grouth });
     }
 
     async function updateSavedMovies() {
@@ -94,7 +116,7 @@ export default function Movies() {
         const movieToDelete = savedMovies.filter((movie) => movie.movieId === cardId);
         MainApi.deleteMovie(movieToDelete[0]._id, JWT);
         updateSavedMovies();
-        
+
     }
 
     return (
@@ -112,11 +134,12 @@ export default function Movies() {
                 toRenderFoundMovies={toRenderFoundMovies}
                 showMore={showMore}
                 foundMovies={foundMovies}
-                more={more}
+                // more={more}
+                quantity={pattern.quantity}
                 searchPerformed={searchPerformed}
                 savedMovies={savedMovies}
-                // dataOfMovie={dataOfMovie}
-                // isSaved={isSaved}
+            // dataOfMovie={dataOfMovie}
+            // isSaved={isSaved}
             />
             <Footer />
         </div>

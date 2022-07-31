@@ -8,23 +8,17 @@ function MoviesCard({
     deleteMovie,
     savedMovies
 }) {
-    console.log('savedMovies in Card', savedMovies)
+    // console.log('savedMovies in Card', savedMovies)
 
     const [isSaved, setIsSaved] = React.useState(false);
 
     async function setSavedToMovie() {
         await savedMovies.forEach(card => {
-            console.log('isSaved', isSaved)
-            // console.log('сохраненная карточка', card)
-            console.log('отображаемая карточка', movieData)
-            console.log('сохраненная ли карточка?', movieData.id === card.movieId)
             if (movieData.id === card.movieId) { setIsSaved(true) }
-            // console.log('isSaved', isSaved)
         });
     }
 
     React.useEffect(() => {
-        console.log('сработал ЮЗЭФФЕКТ');
         setSavedToMovie()
     }, [savedMovies])
 

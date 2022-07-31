@@ -9,7 +9,8 @@ function MoviesCardList({
     toRenderFoundMovies,
     showMore,
     foundMovies,
-    more,
+    // more,
+    quantity,
     searchPerformed,
     savedMovies,
     isSaved
@@ -46,7 +47,9 @@ function MoviesCardList({
             </div>
             <div className={`${foundMovies.length === 0 && searchPerformed ? "notfoundmessage" : "notfoundmessage_hidden"}`}>Ничего не найдено</div>
             <button
-                className={`${foundMovies.length <= more ? "movies__more_hidden" : "movies__more"}`}
+                // className={`${foundMovies.length <= more ? "movies__more_hidden" : "movies__more"}`}
+                className={`${foundMovies.length <= quantity ? "movies__more_hidden" : "movies__more"}`}
+
                 onClick={showMore}
             >
                 <span className="movies__more-text">Ещё</span>
