@@ -11,22 +11,22 @@ function MoviesCardList({
     foundMovies,
     more,
     searchPerformed,
-    dataOfMovie,
+    savedMovies,
     isSaved
 }) {
 
-    const [movieData, setMovieData] = React.useState([]);
+    // const [movieData, setMovieData] = React.useState([]);
 
     //  React.useEffect(() => {
     //     transmitMovieData()
     // }, []);
 
-    function transmitMovieData() {
-        dataOfMovie(movieData)
-    }
+    // function transmitMovieData() {
+    //     dataOfMovie(movieData)
+    // }
 
 
-    console.log('searchPerformed', searchPerformed)
+    // console.log('searchPerformed', searchPerformed)
     return (
         <section className="movies">
             <div className="movies__table">
@@ -39,6 +39,7 @@ function MoviesCardList({
                             saveMovie={saveMovie}
                             deleteMovie={deleteMovie}
                             isSaved={isSaved}
+                            savedMovies={savedMovies}
                         />
                     );
                 })}

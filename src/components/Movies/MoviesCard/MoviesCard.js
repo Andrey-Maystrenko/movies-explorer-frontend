@@ -1,26 +1,43 @@
 import React from "react";
 import "./MoviesCard.css";
 import { IMG_BASE_URL } from "../../../utils/MainApi";
+import * as MainApi from "../../../utils/MainApi";
+
 
 function MoviesCard({
     movieData,
     saveMovie,
     deleteMovie,
+    savedMovies
     // isSaved
 }) {
+    // const JWT = localStorage.getItem("jwt");
+    // console.log('savedMovies in Card', savedMovies)
+
+    // const isSavedArray = JSON.parse(localStorage.getItem("isSavedArray"));
+    // const isSavedArray = JSON.parse(localStorage.getItem("foundMovies"));
 
     const [isSaved, setIsSaved] = React.useState(false);
+    // const [savedMoviesInCard, setsavedMoviesInCard] = React.useState(false);
 
-    const isSavedArray = JSON.parse(localStorage.getItem("isSavedArray"));
-    
-    React.useEffect(() => {
-        console.log('сработал ЮЗЭФФЕКТ')
-        isSavedArray.forEach(card => {
-            console.log('card.movieId', card.movieId)
-            console.log('movieData.id', movieData.id)
 
-            if (movieData.id === card.movieId) { setIsSaved(true) } else {setIsSaved(false)}
+    async function setSavedToMovie() {
+        // const updatedSavedMovies = await MainApi.getSavedMovies(JWT);
+        // updatedSavedMovies.forEach(card => {
+            savedMovies.forEach(card => {
+            // console.log('isSaved', isSaved)
+            console.log('сохраненная карточка', card)
+            console.log('отображаемая карточка', movieData)
+            console.log('сохраненная ли карточка?', movieData.id === card.movieId)
+            if (movieData.id === card.movieId) { setIsSaved(true)}
+            // console.log('isSaved', isSaved)
         });
+    }
+
+    React.useEffect(() => {
+        // console.log('сработал ЮЗЭФФЕКТ');
+        setSavedToMovie()
+
     }, [])
 
 
@@ -40,6 +57,7 @@ function MoviesCard({
     }
 
     // function getAllSavedMovies(allSavedMovies) {return allSavedMovies};
+    // if (savedMovies === []) return null;
 
     return (
         <div className="movie">

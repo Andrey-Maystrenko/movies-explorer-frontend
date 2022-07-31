@@ -6,30 +6,36 @@ import Preloader from '../../vendor/preloader/Preloader';
 import * as MoviesApi from "../../utils/MoviesApi";
 import * as MainApi from "../../utils/MainApi";
 
-export default function Movies(dataOfMovie, isSaved) {
+export default function Movies() {
     const JWT = localStorage.getItem("jwt");
 
     const [more, setMore] = React.useState(12);
     // const [moreHidden, setMoreHidden] = React.useState(true);
 
     const [foundMovies, setFoundMovies] = React.useState([]);
-    console.log("foundMovies", foundMovies);
+    // console.log("foundMovies", foundMovies);
 
     const [savedMovies, setSavedMovies] = React.useState([]);
-    console.log('сохраненные фильмы от стейта', savedMovies);
+    // console.log('сохраненные фильмы от стейта', savedMovies);
 
     const [searchPerformed, setSearchPerformed] = React.useState(false);
     // console.log('movies to render', toRenderFoundMovies());
     
     const [isLoading, setIsLoading] = React.useState(false);
-    console.log('isLoading', isLoading);
+    // console.log('isLoading', isLoading);
 
-    
+    // localStorage.setItem('isSavedArray', JSON.stringify(savedMovies));
+    // console.log('localStorage', localStorage)
+
+    // console.log('savedMovies', savedMovies)
     React.useEffect(() => {
         const storedMovies = JSON.parse(localStorage.getItem("foundMovies"));
         if (storedMovies) {setFoundMovies(storedMovies)} else {setFoundMovies([])}
-        console.log('storedMoviesst', storedMovies)
-        }
+        
+//////////////////
+        updateSavedMovies()
+/////////////////        
+    }
     , []);
 
     async function findMovie(movie, chosen) {
@@ -108,6 +114,7 @@ export default function Movies(dataOfMovie, isSaved) {
                 foundMovies={foundMovies}
                 more={more}
                 searchPerformed={searchPerformed}
+                savedMovies={savedMovies}
                 // dataOfMovie={dataOfMovie}
                 // isSaved={isSaved}
             />

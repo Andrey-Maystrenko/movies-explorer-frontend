@@ -35,14 +35,14 @@ function App() {
   const JWT = localStorage.getItem("jwt");
 
   const [loggedIn, setLoggedIn] = React.useState(Boolean(JWT));
-  console.log('JWT', JWT)
+  // console.log('JWT', JWT)
 
-  const [dataOfMovie, setDataOfMovie] = React.useState([]);
+  // const [dataOfMovie, setDataOfMovie] = React.useState([]);
 
-  const [isSaved, setIsSaved] = React.useState(false);
+  // const [isSaved, setIsSaved] = React.useState(false);
 
   React.useEffect(() => {
-    console.log('useffect started');
+    // console.log('useffect started');
     // tokenCheck();
     if (loggedIn) {
       MainApi
@@ -58,8 +58,8 @@ function App() {
     }
   }, [loggedIn]);
 
-  console.log(currentUser)
-  console.log('loggedIn', loggedIn)
+  // console.log(currentUser)
+  // console.log('loggedIn', loggedIn)
 
   // function tokenCheck() {
   //   let jwt = localStorage.getItem("jwt");
@@ -76,19 +76,19 @@ function App() {
   //       });
   //   }
   // }
-  const [totalSavedMovies, setTotalSavedMovies] = React.useState([]);
+  // const [totalSavedMovies, setTotalSavedMovies] = React.useState([]);
 
-  function getAllSavedMovies(allSavedMovies) { setTotalSavedMovies(allSavedMovies) }
+  // function getAllSavedMovies(allSavedMovies) { setTotalSavedMovies(allSavedMovies) }
 
-  console.log('totalSavedMovies', totalSavedMovies)
+  // console.log('totalSavedMovies', totalSavedMovies)
   
 
-  React.useEffect((allSavedMovies) => {
-    getAllSavedMovies(allSavedMovies)
-  }, [])
+  // React.useEffect((allSavedMovies) => {
+  //   getAllSavedMovies(allSavedMovies)
+  // }, [])
   // console.log('dataOfMovie', dataOfMovie)
 
-  console.log('что пришло в из saved-movies', getAllSavedMovies)
+  // console.log('что пришло в из saved-movies', getAllSavedMovies)
 
   // React.useEffect(() => {
   //   allSavedMovies.forEach((element) => {
@@ -136,7 +136,10 @@ function App() {
   }
 
   function onSignOut() {
+    // localStorage.removeItem("jwt", "isSavedArray", "foundMovies");
     localStorage.removeItem("jwt");
+    localStorage.setItem("foundMovies", JSON.stringify([]));
+
     setLoggedIn(false);
   }
 
@@ -165,7 +168,7 @@ function App() {
             path="/saved-movies"
             component={SavedMovies}
             loggedIn={loggedIn}
-            getAllSavedMovies={getAllSavedMovies}
+            // getAllSavedMovies={getAllSavedMovies}
           //getAllSavedMovies(allSavedMovies) = getAllSavedMovies
           />
           <ProtectedRoute

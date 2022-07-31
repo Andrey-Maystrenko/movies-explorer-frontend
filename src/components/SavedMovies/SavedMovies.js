@@ -4,7 +4,7 @@ import SavedMoviesCardList from './SavedMoviesCardList/SavedMoviesCardList';
 import Footer from '../Footer/Footer';
 import * as MainApi from "../../utils/MainApi";
 
-export default function SavedMovies({ getAllSavedMovies }) {
+export default function SavedMovies() {
     const JWT = localStorage.getItem("jwt");
 
     const [more, setMore] = React.useState(12);
@@ -20,7 +20,7 @@ export default function SavedMovies({ getAllSavedMovies }) {
 
     const [moviesToRender, setMoviesToRender] = React.useState([]);
 
-    localStorage.setItem('isSavedArray', JSON.stringify(allSavedMovies));
+    // localStorage.setItem('isSavedArray', JSON.stringify(allSavedMovies));
 
     //////////////////
     // function transmitAllSavedMovies() {
@@ -33,13 +33,13 @@ export default function SavedMovies({ getAllSavedMovies }) {
         //////////////////
     }, [allSavedMovies]);
 
-    async function getInitialMovies() {
-        const savedMovies = await MainApi.getSavedMovies(JWT)
+    async function getInitialSavedMovies() {
+        const savedMovies = await MainApi.getSavedMovies(JWT);
         setAllSavedMovies(savedMovies);
     }
 
     React.useEffect(() => {
-        getInitialMovies();
+        getInitialSavedMovies();
     }, []);
 
 
