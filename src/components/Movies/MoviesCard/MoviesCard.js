@@ -26,7 +26,7 @@ function MoviesCard({
     React.useEffect(() => {
         console.log('сработал ЮЗЭФФЕКТ');
         setSavedToMovie()
-    }, [])
+    }, [savedMovies])
 
     function handleSaveClick() {
         setIsSaved(!isSaved);
