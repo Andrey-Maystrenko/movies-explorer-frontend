@@ -138,8 +138,9 @@ function App() {
   function onSignOut() {
     // localStorage.removeItem("jwt", "isSavedArray", "foundMovies");
     localStorage.removeItem("jwt");
+    localStorage.setItem("shorty", false);
+    localStorage.setItem("keyword", "");
     localStorage.setItem("foundMovies", JSON.stringify([]));
-
     setLoggedIn(false);
   }
 

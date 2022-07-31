@@ -1,63 +1,41 @@
 import React from "react";
 import "./MoviesCard.css";
 import { IMG_BASE_URL } from "../../../utils/MainApi";
-import * as MainApi from "../../../utils/MainApi";
-
 
 function MoviesCard({
     movieData,
     saveMovie,
     deleteMovie,
     savedMovies
-    // isSaved
 }) {
-    // const JWT = localStorage.getItem("jwt");
-    // console.log('savedMovies in Card', savedMovies)
-
-    // const isSavedArray = JSON.parse(localStorage.getItem("isSavedArray"));
-    // const isSavedArray = JSON.parse(localStorage.getItem("foundMovies"));
+    console.log('savedMovies in Card', savedMovies)
 
     const [isSaved, setIsSaved] = React.useState(false);
-    // const [savedMoviesInCard, setsavedMoviesInCard] = React.useState(false);
-
 
     async function setSavedToMovie() {
-        // const updatedSavedMovies = await MainApi.getSavedMovies(JWT);
-        // updatedSavedMovies.forEach(card => {
-            savedMovies.forEach(card => {
-            // console.log('isSaved', isSaved)
-            console.log('сохраненная карточка', card)
+        await savedMovies.forEach(card => {
+            console.log('isSaved', isSaved)
+            // console.log('сохраненная карточка', card)
             console.log('отображаемая карточка', movieData)
             console.log('сохраненная ли карточка?', movieData.id === card.movieId)
-            if (movieData.id === card.movieId) { setIsSaved(true)}
+            if (movieData.id === card.movieId) { setIsSaved(true) }
             // console.log('isSaved', isSaved)
         });
     }
 
     React.useEffect(() => {
-        // console.log('сработал ЮЗЭФФЕКТ');
+        console.log('сработал ЮЗЭФФЕКТ');
         setSavedToMovie()
-
     }, [])
-
-
-
-    // console.log('isSavedArray', isSavedArray)
 
     function handleSaveClick() {
         setIsSaved(!isSaved);
         if (!isSaved) {
             saveMovie(movieData);
-            // const isSavedArrayBefore = 
-            // localStorage.setItem("isSavedArray", JSON.stringify(selectedMovies));
         } else {
-            // deleteMovie('62daf42aff988828f331f932')
             deleteMovie(movieData.id)
         };
     }
-
-    // function getAllSavedMovies(allSavedMovies) {return allSavedMovies};
-    // if (savedMovies === []) return null;
 
     return (
         <div className="movie">
@@ -74,27 +52,20 @@ function MoviesCard({
                 </div>
                 <button
                     className={`${isSaved ? "movie__saved" : "movie__unsaved"}`}
-                    // className={cardType}
                     type="button"
                     onClick={handleSaveClick}
                 >
                 </button>
             </div>
-            <img
-                className="movie__image"
-                // src={data.link}
-                // src={movie}
-                src={`${IMG_BASE_URL}${movieData.image.url}`}
-                // alt={data.name}
-                // onClick={handleClick}
-                alt="кадр из фильма"
-            />
-            {/* <button
-                // className="element__trash element__trash_invisible"
-                className={cardDeleteButtonClassName}
-                type="button"
-                onClick={handleDeleteClick}
-            ></button> */}
+            <a href={movieData.trailerLink} target="_blank" rel="noreferrer">
+                <img
+                    className="movie__image"
+                    src={`${IMG_BASE_URL}${movieData.image.url}`}
+                    // onClick={handleClick}
+                    alt="кадр из фильма"
+                />
+            </a>
+
         </div>
     )
 }
@@ -105,3 +76,7 @@ export default MoviesCard;
     //     setName(currentUser.name);
     //     setDescription(currentUser.about);
     //   }, [isSaved]);
+
+    // const JWT = localStorage.getItem("jwt");
+    // const isSavedArray = JSON.parse(localStorage.getItem("isSavedArray"));
+    // const isSavedArray = JSON.parse(localStorage.getItem("foundMovies"));
