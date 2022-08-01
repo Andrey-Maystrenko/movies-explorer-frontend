@@ -2,10 +2,13 @@ import React from "react";
 import "./Register.css";
 import { Link } from "react-router-dom";
 
-function Register(
-    { handleRegister },
+function Register({
+    handleRegister,
     isFailuredRegister
+},
+
 ) {
+    console.log('isFailuredRegister', isFailuredRegister)
     const [name, setName] = React.useState("Виталий");
     const [email, setEmail] = React.useState("test@test.ru");
     const [password, setPassword] = React.useState("test");
@@ -21,6 +24,7 @@ function Register(
         setPassword(e.target.value)
     }
 
+    // function onRegister(e) {
     function onRegister(e) {
         e.preventDefault();
         handleRegister(name, email, password)
@@ -46,7 +50,7 @@ function Register(
                     <span className="register__userdata register__useremail-position">E-mail</span>
                     <input
                         className="form__input_register register__userdata-value"
-                        type="email"
+                        // type="email"
                         name="register__useremail"
                         required
                         onChange={handleEmailChange}
@@ -60,12 +64,9 @@ function Register(
                         onChange={handlePasswordChange}
                     />
                     <span
-                        // className={`${isFailuredRegister} ?
-                        //  "register__error" : "register__error_hidden"`}
-                        // id="register__error"
-                        className="register__error"
+                        className={`${isFailuredRegister ? "register__error" : "register__error_hidden"}`}
                     >
-                        Что-то пошло не так...
+                        Что-то пошло не так, попробуйте еще раз
                     </span>
                     <button
                         className="register__save-button"

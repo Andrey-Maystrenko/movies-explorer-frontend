@@ -1,10 +1,12 @@
 import React from "react";
 import "./Login.css";
+// import "../Register/Register.css"
 import { Link } from "react-router-dom";
 
 function Login(
-    { handleLogin }
+    { handleLogin, isFailuredRegister }
 ) {
+    console.log('isFailuredLogin', isFailuredRegister)
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
@@ -16,7 +18,9 @@ function Login(
     }
     function onLogin(e) {
         e.preventDefault();
-        handleLogin(email, password).catch();
+        // handleLogin(email, password).catch();
+        handleLogin(email, password);
+
     }
     return (
         <div className="login__window">
@@ -44,6 +48,11 @@ function Login(
                         onChange={handlePasswordChange}
                     />
                     {/* <span className="login__error" id="login__error">Что-то пошло не так...</span> */}
+                    <span
+                        className={`${isFailuredRegister ? "login__error" : "login__error_hidden"}`}
+                    >
+                        Что-то пошло не так, попробуйте еще раз
+                    </span>
                     <button
                         className="login__save-button"
                         type="submit"

@@ -9,7 +9,7 @@ function checkResponse(res) {
   }
   // если ошибка, отклоняем промис
   return Promise.reject(`Ошибка: ${res.status}`);
-} 
+}
 
 export const getSavedMovies = (token) => {
   return fetch(`${BASE_URL}/movies`, {
@@ -92,7 +92,8 @@ export const register = (name, email, password) => {
       },
       body: JSON.stringify({ name, email, password }),
     })
-  );
+  )
+    .then(res => res.ok ? res.json() : Promise.reject(res.status))
 };
 
 export const authorize = (email, password) => {
@@ -104,7 +105,8 @@ export const authorize = (email, password) => {
     },
     body: JSON.stringify({ email, password }),
   })
-    .then((res) => res.json())
+    // .then((res) => res.json())
+    .then(res => res.ok ? res.json() : Promise.reject(res.status))
     .then((data) => data.token)
 };
 
@@ -120,9 +122,6 @@ export const getContent = (token) => {
     // .then((res) => res.json())
     .then(checkResponse)
     .then((data) => data)
-
-
-
 };
 
 export const patchUserData = (name, email, token) => {

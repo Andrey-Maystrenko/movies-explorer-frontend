@@ -26,11 +26,14 @@ import ProtectedRoute from "../ProtectedRoute";
 import * as MainApi from "../../utils/MainApi";
 
 function App() {
+
   const [currentUser, setCurrentUser] = React.useState({});
 
   const history = useHistory();
 
-  // const [isFailuredRegister, setIsFailuredRegister] = React.useState();
+  const [isFailuredRegister, setIsFailuredRegister] = React.useState(false);
+  // console.log('isFailuredRegister', isFailuredRegister)
+
 
   const JWT = localStorage.getItem("jwt");
 
@@ -81,7 +84,7 @@ function App() {
   // function getAllSavedMovies(allSavedMovies) { setTotalSavedMovies(allSavedMovies) }
 
   // console.log('totalSavedMovies', totalSavedMovies)
-  
+
 
   // React.useEffect((allSavedMovies) => {
   //   getAllSavedMovies(allSavedMovies)
@@ -89,12 +92,6 @@ function App() {
   // console.log('dataOfMovie', dataOfMovie)
 
   // console.log('что пришло в из saved-movies', getAllSavedMovies)
-
-  // React.useEffect(() => {
-  //   allSavedMovies.forEach((element) => {
-  //     if (element.movieId === dataOfMovie.id) { setIsSaved(true) }
-  //   })
-  // }, [])
 
   function handleRegister(name, email, password) {
     MainApi
@@ -105,7 +102,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
-        // return setIsFailuredRegister(true);
+        setIsFailuredRegister(true);
       });
   }
 
@@ -121,7 +118,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
-        // return setIsFailuredRegister(true);
+        setIsFailuredRegister(true);
       });
   }
 
@@ -169,7 +166,7 @@ function App() {
             path="/saved-movies"
             component={SavedMovies}
             loggedIn={loggedIn}
-            // getAllSavedMovies={getAllSavedMovies}
+          // getAllSavedMovies={getAllSavedMovies}
           //getAllSavedMovies(allSavedMovies) = getAllSavedMovies
           />
           <ProtectedRoute
@@ -183,12 +180,13 @@ function App() {
           <Route path="/signin">
             <Login
               handleLogin={handleLogin}
+              isFailuredRegister={isFailuredRegister}
             />
           </Route>
           <Route path="/signup">
             <Register
               handleRegister={handleRegister}
-            // isFailuredRegister={isFailuredRegister}
+              isFailuredRegister={isFailuredRegister}
             />
           </Route>
           <Route path="/notfound">
