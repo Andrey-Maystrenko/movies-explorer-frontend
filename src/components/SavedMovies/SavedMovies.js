@@ -8,7 +8,12 @@ import * as MainApi from "../../utils/MainApi";
 export default function SavedMovies() {
     const JWT = localStorage.getItem("jwt");
 
-    const [more, setMore] = React.useState(12);
+    const [width, setWidth] = React.useState(window.innerWidth);
+
+    const [pattern, setPattern] = React.useState({});
+
+    // const [more, setMore] = React.useState(12);
+
 
     const [foundMovies, setFoundMovies] = React.useState([]);
     // console.log("foundMovies", foundMovies);
@@ -21,6 +26,12 @@ export default function SavedMovies() {
 
     const [moviesToRender, setMoviesToRender] = React.useState([]);
 
+    React.useEffect(() => {
+        definePattern();
+    }, [width]);
+
+    window.addEventListener('resize', () => setWidth(window.innerWidth));
+
     async function getInitialSavedMovies() {
         const savedMovies = await MainApi.getSavedMovies(JWT);
         setAllSavedMovies(savedMovies);
@@ -30,10 +41,7 @@ export default function SavedMovies() {
         getInitialSavedMovies();
     }, []);
 
-
     console.log('allSavedMovies', allSavedMovies);
-
-
 
     async function findMovie(movie, chosen) {
         try {
@@ -43,14 +51,16 @@ export default function SavedMovies() {
             )
             if (!chosen) {
                 setFoundMovies(selectedMovies);
-                setMore(12);
+                // setMore(12);
+                definePattern();
                 setSearchPerformed(true)
             } else {
                 const refinedMovies = selectedMovies.filter((element) =>
                     element.duration <= 40
                 );
                 setFoundMovies(refinedMovies);
-                setMore(12);
+                // setMore(12);
+                definePattern();
                 setSearchPerformed(true)
             }
         }
@@ -62,17 +72,28 @@ export default function SavedMovies() {
     React.useEffect(() => {
         if (searchPerformed) {
             setMoviesToRender(
-                foundMovies.filter((movie, index) => index < more))
+                foundMovies.filter((movie, index) => index < pattern.quantity))
         } else {
             setMoviesToRender(
-                allSavedMovies.filter((movie, index) => index < more))
+                allSavedMovies.filter((movie, index) => index < pattern.quantity))
         }
-    }, [searchPerformed, allSavedMovies, foundMovies, more]);
+    }, [searchPerformed, allSavedMovies, foundMovies, pattern.quantity]);
+
+    function definePattern() {
+        if (width >= 1280) setPattern({ quantity: 12, grouth: 3 })
+        if (width < 1280 && width >= 768) setPattern({ quantity: 8, grouth: 2 })
+        if (width < 768) setPattern({ quantity: 5, grouth: 2 })
+    }
 
     function showMore() {
-        const increase = more + 3;
-        setMore(increase);
+        const increase = pattern.quantity + pattern.grouth;
+        setPattern({ quantity: increase, grouth: pattern.grouth });
     }
+
+    // function showMore() {
+    //     const increase = more + 3;
+    //     setMore(increase);
+    // }
 
     async function deleteMovie(cardId) {
         const movieToDelete = moviesToRender.filter((movie) => movie._id === cardId);
@@ -97,8 +118,9 @@ export default function SavedMovies() {
                 showMore={showMore}
                 foundMovies={foundMovies}
                 allSavedMovies={allSavedMovies}
-                more={more}
+                // more={more}
                 searchPerformed={searchPerformed}
+                quantity={pattern.quantity}
             />
             <Footer />
         </div>
