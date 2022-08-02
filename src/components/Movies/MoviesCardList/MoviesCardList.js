@@ -13,7 +13,8 @@ function MoviesCardList({
     quantity,
     searchPerformed,
     savedMovies,
-    isSaved
+    isSaved,
+    isLoading
 }) {
 
     // const [movieData, setMovieData] = React.useState([]);
@@ -28,6 +29,9 @@ function MoviesCardList({
 
 
     // console.log('searchPerformed', searchPerformed)
+
+    if (isLoading) return null
+
     return (
         <section className="movies">
             <div className="movies__table">

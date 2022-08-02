@@ -5,7 +5,6 @@ import Footer from '../Footer/Footer';
 import Preloader from '../../vendor/preloader/Preloader';
 import * as MoviesApi from "../../utils/MoviesApi";
 import * as MainApi from "../../utils/MainApi";
-import { isLabelWithInternallyDisabledControl } from '@testing-library/user-event/dist/utils';
 
 export default function Movies() {
     const JWT = localStorage.getItem("jwt");
@@ -112,9 +111,9 @@ export default function Movies() {
         updateSavedMovies();
     }
 
-    function deleteMovie(cardId) {
+    async function deleteMovie(cardId) {
         const movieToDelete = savedMovies.filter((movie) => movie.movieId === cardId);
-        MainApi.deleteMovie(movieToDelete[0]._id, JWT);
+        await MainApi.deleteMovie(movieToDelete[0]._id, JWT);
         updateSavedMovies();
 
     }
@@ -138,8 +137,7 @@ export default function Movies() {
                 quantity={pattern.quantity}
                 searchPerformed={searchPerformed}
                 savedMovies={savedMovies}
-            // dataOfMovie={dataOfMovie}
-            // isSaved={isSaved}
+                isLoading={isLoading}
             />
             <Footer />
         </div>

@@ -1,5 +1,6 @@
 import React from 'react'
-import SearchForm from '../Movies/SearchForm/SearchForm';
+// import SearchForm from '../Movies/SearchForm/SearchForm';
+import SearchFormSavedMovies from "../SavedMovies/SearchFormSavedMovies/SearchFormSavedMovies";
 import SavedMoviesCardList from './SavedMoviesCardList/SavedMoviesCardList';
 import Footer from '../Footer/Footer';
 import * as MainApi from "../../utils/MainApi";
@@ -19,19 +20,6 @@ export default function SavedMovies() {
     // console.log('allSavedMovies', allSavedMovies)
 
     const [moviesToRender, setMoviesToRender] = React.useState([]);
-
-    // localStorage.setItem('isSavedArray', JSON.stringify(allSavedMovies));
-
-    //////////////////
-    // function transmitAllSavedMovies() {
-    //     getAllSavedMovies(allSavedMovies);
-    // }
-    /////////////////////
-    React.useEffect(() => {
-        ///////////////////
-        // transmitAllSavedMovies();
-        //////////////////
-    }, [allSavedMovies]);
 
     async function getInitialSavedMovies() {
         const savedMovies = await MainApi.getSavedMovies(JWT);
@@ -97,7 +85,10 @@ export default function SavedMovies() {
 
     return (
         <div>
-            <SearchForm
+            {/* <SearchForm
+                onFindMovie={findMovie}
+            /> */}
+             <SearchFormSavedMovies
                 onFindMovie={findMovie}
             />
             <SavedMoviesCardList

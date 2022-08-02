@@ -137,6 +137,8 @@ function App() {
     localStorage.removeItem("jwt");
     localStorage.setItem("shorty", false);
     localStorage.setItem("keyword", "");
+    localStorage.setItem("shortySavedMovies", false);
+    localStorage.setItem("keywordSavedMovies", "");
     localStorage.setItem("foundMovies", JSON.stringify([]));
     setLoggedIn(false);
   }
@@ -159,15 +161,11 @@ function App() {
             path="/movies"
             component={Movies}
             loggedIn={loggedIn}
-          // dataOfMovie={setDataOfMovie(dataOfMovie)}
-          // isSaved={isSaved}
           />
           <ProtectedRoute
             path="/saved-movies"
             component={SavedMovies}
             loggedIn={loggedIn}
-          // getAllSavedMovies={getAllSavedMovies}
-          //getAllSavedMovies(allSavedMovies) = getAllSavedMovies
           />
           <ProtectedRoute
             path="/profile"
