@@ -41,7 +41,7 @@ export default function SavedMovies() {
         getInitialSavedMovies();
     }, []);
 
-    console.log('allSavedMovies', allSavedMovies);
+    // console.log('allSavedMovies', allSavedMovies);
 
     async function findMovie(movie, chosen) {
         try {
@@ -101,7 +101,7 @@ export default function SavedMovies() {
         setSearchPerformed(true)
         const restedMovies = moviesToRender.filter((movie) => movie._id !== cardId);
         setFoundMovies(restedMovies);
-        console.log('deleted', movieToDelete)
+        // console.log('deleted', movieToDelete)
     }
 
     return (

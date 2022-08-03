@@ -1,3 +1,3 @@
 import React from "react";
 export const CurrentUserContext = React.createContext({});
-console.log('CurrentUserContext', CurrentUserContext);
+// console.log('CurrentUserContext', CurrentUserContext);

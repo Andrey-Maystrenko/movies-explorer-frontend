@@ -15,8 +15,8 @@ function SavedMoviesCardList({
     // more,
     searchPerformed
 }) {
-    console.log('searchPerformed', searchPerformed)
-    console.log('moviesToRender', moviesToRender)
+    // console.log('searchPerformed', searchPerformed)
+    // console.log('moviesToRender', moviesToRender)
     return (
         <section className="movies">
             <div className="movies__table">

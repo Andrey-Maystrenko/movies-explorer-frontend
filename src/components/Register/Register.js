@@ -8,7 +8,7 @@ function Register({
 },
 
 ) {
-    console.log('isFailuredRegister', isFailuredRegister)
+    // console.log('isFailuredRegister', isFailuredRegister)
     const [name, setName] = React.useState("Виталий");
     const [email, setEmail] = React.useState("test@test.ru");
     const [password, setPassword] = React.useState("test");
@@ -24,7 +24,6 @@ function Register({
         setPassword(e.target.value)
     }
 
-    // function onRegister(e) {
     function onRegister(e) {
         e.preventDefault();
         handleRegister(name, email, password)
@@ -50,7 +49,7 @@ function Register({
                     <span className="register__userdata register__useremail-position">E-mail</span>
                     <input
                         className="form__input_register register__userdata-value"
-                        // type="email"
+                        type="email"
                         name="register__useremail"
                         required
                         onChange={handleEmailChange}

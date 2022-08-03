@@ -17,17 +17,6 @@ function MoviesCardList({
     isLoading
 }) {
 
-    // const [movieData, setMovieData] = React.useState([]);
-
-    //  React.useEffect(() => {
-    //     transmitMovieData()
-    // }, []);
-
-    // function transmitMovieData() {
-    //     dataOfMovie(movieData)
-    // }
-
-
     // console.log('searchPerformed', searchPerformed)
 
     if (isLoading) return null

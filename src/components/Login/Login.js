@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function Login(
     { handleLogin, isFailuredRegister }
 ) {
-    console.log('isFailuredLogin', isFailuredRegister)
+    // console.log('isFailuredLogin', isFailuredRegister)
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 

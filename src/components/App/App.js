@@ -64,41 +64,12 @@ function App() {
   // console.log(currentUser)
   // console.log('loggedIn', loggedIn)
 
-  // function tokenCheck() {
-  //   let jwt = localStorage.getItem("jwt");
-  //   if (jwt) {
-  //     MainApi
-  //       .getContent(jwt)
-  //       .then((res) => {
-  //         // setEmail(res.email);
-  //         // setCurrentUser(res);
-  //         setLoggedIn(true);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err); // выведем ошибку в консоль
-  //       });
-  //   }
-  // }
-  // const [totalSavedMovies, setTotalSavedMovies] = React.useState([]);
-
-  // function getAllSavedMovies(allSavedMovies) { setTotalSavedMovies(allSavedMovies) }
-
-  // console.log('totalSavedMovies', totalSavedMovies)
-
-
-  // React.useEffect((allSavedMovies) => {
-  //   getAllSavedMovies(allSavedMovies)
-  // }, [])
-  // console.log('dataOfMovie', dataOfMovie)
-
-  // console.log('что пришло в из saved-movies', getAllSavedMovies)
-
   function handleRegister(name, email, password) {
     MainApi
       .register(name, email, password)
       .then(() => {
         setLoggedIn(true);
-        history.push("/");
+        history.push("/signin");
       })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
@@ -126,14 +97,13 @@ function App() {
     return MainApi
       .patchUserData(name, email, JWT)
       .then((updatedUser) => {
-        console.log('updatedUser', updatedUser)
+        // console.log('updatedUser', updatedUser)
         setCurrentUser(updatedUser)
       })
       .catch((err) => console.log(err))
   }
 
   function onSignOut() {
-    // localStorage.removeItem("jwt", "isSavedArray", "foundMovies");
     localStorage.removeItem("jwt");
     localStorage.setItem("shorty", false);
     localStorage.setItem("keyword", "");
@@ -196,3 +166,19 @@ function App() {
   );
 }
 export default withRouter(App);
+
+// function tokenCheck() {
+  //   let jwt = localStorage.getItem("jwt");
+  //   if (jwt) {
+  //     MainApi
+  //       .getContent(jwt)
+  //       .then((res) => {
+  //         // setEmail(res.email);
+  //         // setCurrentUser(res);
+  //         setLoggedIn(true);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err); // выведем ошибку в консоль
+  //       });
+  //   }
+  // }

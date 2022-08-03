@@ -1,4 +1,3 @@
-// export const BASE_URL = "https://auth.nomoreparties.co";
 export const BASE_URL = "https://api.diploma-koga-717.nomoredomains.xyz";
 // export const BASE_URL = "http://localhost:4001";
 export const IMG_BASE_URL = "https://api.nomoreparties.co";
@@ -25,21 +24,8 @@ export const getSavedMovies = (token) => {
     .then((res) => res.json());
 }
 
-// export const getInitialSavedMovies = (token) => {
-//   return fetch(`${BASE_URL}/saved-movies`, {
-//     // mode: "no-cors",
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${token}`,
-//     },
-//   })
-//     .then((res) => res.json());
-// }
-
-
 export const postMovie = (movieData, token) => {
-  console.log(token)
+  // console.log(token)
   return fetch(`${BASE_URL}/movies`, {
     method: "POST",
     headers: {
@@ -139,3 +125,15 @@ export const patchUserData = (name, email, token) => {
 //   })
 //     .then((res) => res.json())
 // };
+
+// export const getInitialSavedMovies = (token) => {
+//   return fetch(`${BASE_URL}/saved-movies`, {
+//     // mode: "no-cors",
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${token}`,
+//     },
+//   })
+//     .then((res) => res.json());
+// }

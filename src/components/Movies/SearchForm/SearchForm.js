@@ -25,10 +25,6 @@ function SearchForm({ onFindMovie }) {
         setKeyWord(e.target.value);
     }
 
-    // function handleSwitchChange(e){
-    //     setSwitchStatus(e.target.value);
-    // }
-
     return (
         <section className="search__area">
             <form

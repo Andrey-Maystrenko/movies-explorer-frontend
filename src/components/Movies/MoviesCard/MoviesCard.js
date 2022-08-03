@@ -12,8 +12,8 @@ function MoviesCard({
 
     const [isSaved, setIsSaved] = React.useState(false);
 
-    console.log('номер карточки ', movieData.id)
-    console.log('значение isSaved при отрисовке карточки', isSaved)
+    // console.log('номер карточки ', movieData.id)
+    // console.log('значение isSaved при отрисовке карточки', isSaved)
     
      function setSavedToMovie() {
         savedMovies.forEach(card => {
@@ -30,10 +30,9 @@ function MoviesCard({
         if (!isSaved) {
             saveMovie(movieData);
         } else {
-            console.log('значение isSaved при удалении лайка', isSaved)
+            // console.log('значение isSaved при удалении лайка', isSaved)
             deleteMovie(movieData.id);
         };
-
     }
 
     return (
