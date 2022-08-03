@@ -22,8 +22,8 @@ function Portfolio() {
                 </li>
                 <li className="portfolio__item">
                     <p className="porfolio__item-title">Одностраничное приложение</p>
-                    {/* <a href="https://diploma-koga-717.nomoredomains.xyz/movies" target="_blank" rel="noreferrer"> */}
-                    <a href="http://localhost:3000/movies" target="_blank" rel="noreferrer">
+                    <a href="https://diploma-koga-717.nomoredomains.xyz/movies" target="_blank" rel="noreferrer">
+                    {/* <a href="http://localhost:3000/movies" target="_blank" rel="noreferrer"> */}
 
                         <img className="portfolio__pictorgam" src={pictogram} alt="пиктограмма ссылки на позицию портфолио" />
                     </a>
