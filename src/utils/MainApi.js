@@ -1,6 +1,6 @@
 // export const BASE_URL = "https://auth.nomoreparties.co";
-// export const BASE_URL = "https://api.diploma-koga-717.nomoredomains.xyz";
-export const BASE_URL = "http://localhost:4001";
+export const BASE_URL = "https://api.diploma-koga-717.nomoredomains.xyz";
+// export const BASE_URL = "http://localhost:4001";
 export const IMG_BASE_URL = "https://api.nomoreparties.co";
 
 function checkResponse(res) {
@@ -10,6 +10,8 @@ function checkResponse(res) {
   // если ошибка, отклоняем промис
   return Promise.reject(`Ошибка: ${res.status}`);
 }
+
+// .then(res => res.ok ? res.json() : Promise.reject(res.status))
 
 export const getSavedMovies = (token) => {
   return fetch(`${BASE_URL}/movies`, {
@@ -70,19 +72,6 @@ export const deleteMovie = (movieId, token) => {
   })
 };
 
-// export const getMovieById = (movieId) => {
-//   return fetch(`${BASE_URL}/movies`, {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//       // Authorization: `Bearer ${token}`,
-//     },
-//     body: JSON.stringify({ movieId }),
-//   })
-//     .then((res) => res.json())
-// };
-
-
 export const register = (name, email, password) => {
   return (
     fetch(`${BASE_URL}/signup`, {
@@ -93,7 +82,8 @@ export const register = (name, email, password) => {
       body: JSON.stringify({ name, email, password }),
     })
   )
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    // .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(checkResponse)
 };
 
 export const authorize = (email, password) => {
@@ -105,8 +95,8 @@ export const authorize = (email, password) => {
     },
     body: JSON.stringify({ email, password }),
   })
-    // .then((res) => res.json())
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    // .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(checkResponse)
     .then((data) => data.token)
 };
 
@@ -137,3 +127,15 @@ export const patchUserData = (name, email, token) => {
     .then((res) => res.json())
     .then((data) => data);
 };
+
+// export const getMovieById = (movieId) => {
+//   return fetch(`${BASE_URL}/movies`, {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//       // Authorization: `Bearer ${token}`,
+//     },
+//     body: JSON.stringify({ movieId }),
+//   })
+//     .then((res) => res.json())
+// };

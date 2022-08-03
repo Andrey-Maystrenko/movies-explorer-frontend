@@ -137,8 +137,8 @@ function App() {
     localStorage.removeItem("jwt");
     localStorage.setItem("shorty", false);
     localStorage.setItem("keyword", "");
-    localStorage.setItem("shortySavedMovies", false);
-    localStorage.setItem("keywordSavedMovies", "");
+    // localStorage.setItem("shortySavedMovies", false);
+    // localStorage.setItem("keywordSavedMovies", "");
     localStorage.setItem("foundMovies", JSON.stringify([]));
     setLoggedIn(false);
   }
