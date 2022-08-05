@@ -116,7 +116,9 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header />
+        <Header
+          loggedIn={loggedIn}
+        />
         <Switch>
           <Route exact path="/">
             <Promo />
