@@ -13,7 +13,7 @@ function MoviesCardList({
     quantity,
     searchPerformed,
     savedMovies,
-    isSaved,
+    // isSaved,
     isLoading
 }) {
 
@@ -32,7 +32,7 @@ function MoviesCardList({
                             movieData={card}
                             saveMovie={saveMovie}
                             deleteMovie={deleteMovie}
-                            isSaved={isSaved}
+                            // isSaved={isSaved}
                             savedMovies={savedMovies}
                         />
                     );

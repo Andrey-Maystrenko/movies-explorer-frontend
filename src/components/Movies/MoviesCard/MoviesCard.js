@@ -2,7 +2,7 @@ import React from "react";
 import "./MoviesCard.css";
 import { IMG_BASE_URL } from "../../../utils/MainApi";
 
-function MoviesCard({
+ function MoviesCard({
     movieData,
     saveMovie,
     deleteMovie,
@@ -22,7 +22,7 @@ function MoviesCard({
     }
 
     React.useEffect(() => {
-        setSavedToMovie()
+     setSavedToMovie()
     }, [savedMovies])
 
     function handleSaveClick() {

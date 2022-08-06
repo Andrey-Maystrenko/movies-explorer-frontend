@@ -5,6 +5,8 @@ import Footer from '../Footer/Footer';
 import Preloader from '../../vendor/preloader/Preloader';
 import * as MoviesApi from "../../utils/MoviesApi";
 import * as MainApi from "../../utils/MainApi";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+
 
 export default function Movies() {
     const JWT = localStorage.getItem("jwt");
@@ -30,6 +32,8 @@ export default function Movies() {
 
     const [isLoading, setIsLoading] = React.useState(false);
 
+    const currentUser = React.useContext(CurrentUserContext);
+
     React.useEffect(() => {
         const storedMovies = JSON.parse(localStorage.getItem("foundMovies"));
         if (storedMovies) { setFoundMovies(storedMovies) } else { setFoundMovies([]) };
@@ -40,6 +44,10 @@ export default function Movies() {
     React.useEffect(() => {
         definePattern();
     }, [width]);
+
+    // React.useEffect(() => {
+    //     updateSavedMovies();
+    // }, [savedMovies]);
 
     window.addEventListener('resize', () => setWidth(window.innerWidth));
 
@@ -103,11 +111,14 @@ export default function Movies() {
     async function updateSavedMovies() {
         const updatedSavedMovies = await MainApi.getSavedMovies(JWT);
         // console.log('updatedSavedMovies', updatedSavedMovies)
-        setSavedMovies(updatedSavedMovies);
+        const mySavedMovies =  updatedSavedMovies.filter((movie) => (movie.owner === currentUser._id))
+        // setSavedMovies(updatedSavedMovies);
+        setSavedMovies(mySavedMovies);
+
     }
 
-    function saveMovie(movieData) {
-        MainApi.postMovie(movieData, JWT);
+    async function saveMovie(movieData) {
+        await MainApi.postMovie(movieData, JWT);
         updateSavedMovies();
     }
 

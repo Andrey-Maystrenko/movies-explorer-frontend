@@ -2,6 +2,7 @@ import React from "react";
 import {
   Route,
   Switch,
+  Redirect,
   withRouter,
   useHistory,
 } from "react-router-dom";
@@ -40,8 +41,6 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(Boolean(JWT));
   // console.log('JWT', JWT)
 
-  // const [dataOfMovie, setDataOfMovie] = React.useState([]);
-
   // const [isSaved, setIsSaved] = React.useState(false);
 
   React.useEffect(() => {
@@ -68,8 +67,7 @@ function App() {
     MainApi
       .register(name, email, password)
       .then(() => {
-        setLoggedIn(true);
-        history.push("/signin");
+        handleLogin(email, password);
       })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
@@ -84,7 +82,7 @@ function App() {
         if (token) {
           localStorage.setItem("jwt", token);
           setLoggedIn(true);
-          history.push("/");
+          history.push("/movies");
         }
       })
       .catch((err) => {
@@ -129,11 +127,13 @@ function App() {
             <Portfolio />
             <Footer />
           </Route>
+
           <ProtectedRoute
             path="/movies"
             component={Movies}
             loggedIn={loggedIn}
           />
+
           <ProtectedRoute
             path="/saved-movies"
             component={SavedMovies}
@@ -148,16 +148,22 @@ function App() {
             loggedIn={loggedIn}
           />
           <Route path="/signin">
-            <Login
-              handleLogin={handleLogin}
-              isFailuredRegister={isFailuredRegister}
-            />
+            {!loggedIn ?
+              <Login
+                handleLogin={handleLogin}
+                isFailuredRegister={isFailuredRegister}
+              /> :
+              <Redirect to="/" />
+            }
           </Route>
           <Route path="/signup">
-            <Register
-              handleRegister={handleRegister}
-              isFailuredRegister={isFailuredRegister}
-            />
+            {!loggedIn ?
+              <Register
+                handleRegister={handleRegister}
+                isFailuredRegister={isFailuredRegister}
+              /> :
+              <Redirect to="/" />
+            }
           </Route>
           <Route path="/notfound">
             <NotFound />

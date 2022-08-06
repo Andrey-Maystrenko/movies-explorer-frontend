@@ -46,7 +46,7 @@ export default function SavedMovies() {
 
     React.useEffect(() => {
         getInitialSavedMovies();
-    }, []);
+    }, []);  
 
     // console.log('mySavedMovies', mySavedMovies);
 
