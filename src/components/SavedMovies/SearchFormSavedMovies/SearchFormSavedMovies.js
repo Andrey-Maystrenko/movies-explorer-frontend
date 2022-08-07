@@ -38,7 +38,7 @@ function SearchForm({ onFindMovie }) {
                     type="search"
                     placeholder="Фильм"
                     name="movie"
-                    minLength="2"
+                    // minLength="2"
                     maxLength="300"
                     id="form__input"
                     required

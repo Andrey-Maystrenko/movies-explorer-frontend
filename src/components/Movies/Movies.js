@@ -57,13 +57,12 @@ export default function Movies() {
             const moviesArray = await MoviesApi.getInitialMovies();
             setIsLoading(false);
             const selectedMovies = moviesArray.filter((element) =>
-            ((element.nameRU !== null && element.nameRU.includes(movie)) ||
-                (element.nameEN !== null && element.nameEN.includes(movie)))
+            ((element.nameRU !== null && element.nameRU.toLowerCase().includes(movie.toLowerCase())) ||
+                (element.nameEN !== null && element.nameEN.toLowerCase().includes(movie.toLowerCase())))
             )
             if (!chosen) {
                 setFoundMovies(selectedMovies);
                 localStorage.setItem("foundMovies", JSON.stringify(selectedMovies));
-                // setMore(12);
                 definePattern();
                 setSearchPerformed(true)
             } else {
@@ -72,7 +71,6 @@ export default function Movies() {
                 );
                 setFoundMovies(refinedMovies);
                 localStorage.setItem("foundMovies", JSON.stringify(refinedMovies));
-                // setMore(12);
                 definePattern();
                 setSearchPerformed(true)
             }
@@ -111,7 +109,7 @@ export default function Movies() {
     async function updateSavedMovies() {
         const updatedSavedMovies = await MainApi.getSavedMovies(JWT);
         // console.log('updatedSavedMovies', updatedSavedMovies)
-        const mySavedMovies =  updatedSavedMovies.filter((movie) => (movie.owner === currentUser._id))
+         const mySavedMovies =  updatedSavedMovies.filter((movie) => (movie.owner === currentUser._id))
         // setSavedMovies(updatedSavedMovies);
         setSavedMovies(mySavedMovies);
 

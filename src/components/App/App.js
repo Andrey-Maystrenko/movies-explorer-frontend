@@ -165,7 +165,7 @@ function App() {
               <Redirect to="/" />
             }
           </Route>
-          <Route path="/notfound">
+          <Route path="*">
             <NotFound />
           </Route>
         </Switch>

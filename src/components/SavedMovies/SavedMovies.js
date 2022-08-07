@@ -53,8 +53,8 @@ export default function SavedMovies() {
     async function findMovie(movie, chosen) {
         try {
             const selectedMovies = mySavedMovies.filter((element) =>
-            ((element.nameRU !== null && element.nameRU.includes(movie)) ||
-                (element.nameEN !== null && element.nameEN.includes(movie)))
+            ((element.nameRU !== null && element.nameRU.toLowerCase().includes(movie.toLowerCase())) ||
+                (element.nameEN !== null && element.nameEN.toLowerCase().includes(movie.toLowerCase())))
             )
             if (!chosen) {
                 setFoundMovies(selectedMovies);
