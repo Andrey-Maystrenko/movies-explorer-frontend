@@ -67,7 +67,7 @@ function Profile(
                         // value={name}
                     />
                     <span
-                        className={`${isFailuredName ? "register__error" : "register__error_hidden"}`}
+                        className={`${isFailuredName ? "register__error register__error_profile-name" : "register__error_hidden"}`}
                     >
                         Введите корректное имя
                     </span>
@@ -82,7 +82,7 @@ function Profile(
                         // value={email}
                     />
                     <span
-                        className={`${isFailuredEmail ? "register__error" : "register__error_hidden"}`}
+                        className={`${isFailuredEmail ? "register__error register__error_profile-email" : "register__error_hidden"}`}
                     >
                         Введите корректный е-майл
                     </span>

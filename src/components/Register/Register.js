@@ -72,7 +72,7 @@ function Register({
                         onChange={handleNameChange}
                     />
                      <span
-                        className={`${isFailuredName ? "register__error" : "register__error_hidden"}`}
+                        className={`${isFailuredName ? "register__error register__error_register-name" : "register__error_hidden"}`}
                     >
                         Введите корректное имя
                     </span>
@@ -86,7 +86,7 @@ function Register({
                     // value={}
                     />
                     <span
-                        className={`${isFailuredEmail ? "register__error" : "register__error_hidden"}`}
+                        className={`${isFailuredEmail ? "register__error register__error_register-email" : "register__error_hidden"}`}
                     >
                         Введите корректный е-майл
                     </span>

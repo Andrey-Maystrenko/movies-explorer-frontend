@@ -89,13 +89,41 @@
     font-size  : 10px;
     line-height: 12px;
     color      : #EE3465;
-    position   : absolute;
-    top        : 256px;
-    left       : 0;
+    
 }
 
 .register__error_hidden {
     display: none;
+}
+
+.register__error_profile-name {
+    position   : absolute;
+    top        : 75px;
+    left       : 0;
+}
+
+.register__error_profile-email {
+    position   : absolute;
+    top        : 125px;
+    left       : 0;
+}
+
+.register__error_register-name {
+    position   : absolute;
+    top        : 96px;
+    left       : 0;
+}
+
+.register__error_register-email {
+    position   : absolute;
+    top        : 176px;
+    left       : 0;
+}
+
+.register__error_login {
+    position   : absolute;
+    top        : 96px;
+    left       : 0;
 }
 
 

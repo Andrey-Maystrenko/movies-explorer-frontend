@@ -54,7 +54,7 @@ function Login(
                         onChange={handleEmailChange}
                     />
                      <span
-                        className={`${isFailuredEmail ? "register__error" : "register__error_hidden"}`}
+                        className={`${isFailuredEmail ? "register__error register__error_login" : "register__error_hidden"}`}
                     >
                         Введите корректный е-майл
                     </span>
