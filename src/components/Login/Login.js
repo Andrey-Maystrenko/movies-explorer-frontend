@@ -2,6 +2,8 @@ import React from "react";
 import "./Login.css";
 // import "../Register/Register.css"
 import { Link } from "react-router-dom";
+import { regexEmail } from "../../utils/config"
+
 
 function Login(
     { handleLogin, isFailuredRegister }
@@ -9,10 +11,23 @@ function Login(
     // console.log('isFailuredLogin', isFailuredRegister)
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const [isFailuredEmail, setIsFailuredEmail] = React.useState(false);
+
+
+    // function handleEmailChange(e) {
+    //     setEmail(e.target.value);
+    // }
 
     function handleEmailChange(e) {
-        setEmail(e.target.value);
+        const emailIsValid = e.target.value.match(regexEmail);
+        if (emailIsValid) {
+            setEmail(e.target.value);
+            setIsFailuredEmail(false);
+        } else {
+            setIsFailuredEmail(true);
+        }
     }
+
     function handlePasswordChange(e) {
         setPassword(e.target.value);
     }
@@ -29,8 +44,7 @@ function Login(
                 <form
                     className="form"
                     onSubmit={onLogin}
-                    >
-                    
+                >
                     <span className="login__userdata login__useremail-position">E-mail</span>
                     <input
                         className="form__input_login login__userdata-value"
@@ -39,6 +53,11 @@ function Login(
                         required
                         onChange={handleEmailChange}
                     />
+                     <span
+                        className={`${isFailuredEmail ? "register__error" : "register__error_hidden"}`}
+                    >
+                        Введите корректный е-майл
+                    </span>
                     <span className="login__userdata login__password-position">Пароль</span>
                     <input
                         className="form__input_login login__userdata-value"

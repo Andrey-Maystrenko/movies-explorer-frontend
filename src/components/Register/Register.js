@@ -1,6 +1,7 @@
 import React from "react";
 import "./Register.css";
 import { Link } from "react-router-dom";
+import {regexEmail, regexName}  from "../../utils/config"
 
 function Register({
     handleRegister,
@@ -12,21 +13,45 @@ function Register({
     const [name, setName] = React.useState("Виталий");
     const [email, setEmail] = React.useState("test@test.ru");
     const [password, setPassword] = React.useState("test");
+    const [isFailuredEmail, setIsFailuredEmail] = React.useState(false);
+    const [isFailuredName, setIsFailuredName] = React.useState(false);
+
+
+    // const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    // const regexName = /^[A-Za-zА-Яа-я -]+$/;
+
+    // console.log('name', name)
+    // console.log('isFailuredName', isFailuredName)
 
     function handleNameChange(e) {
-        setName(e.target.value)
+        const nameIsValid = e.target.value.match(regexName);
+        if (nameIsValid) {
+            setName(e.target.value)
+            setIsFailuredName(false);
+        } else {
+            setIsFailuredName(true);
+        }
     }
 
     function handleEmailChange(e) {
-        setEmail(e.target.value)
+        const emailIsValid = e.target.value.match(regexEmail);
+        if (emailIsValid) {
+            setEmail(e.target.value);
+            setIsFailuredEmail(false);
+        } else {
+            setIsFailuredEmail(true);
+        }
     }
+    
     function handlePasswordChange(e) {
         setPassword(e.target.value)
     }
 
     function onRegister(e) {
         e.preventDefault();
-        handleRegister(name, email, password)
+        if (!isFailuredName  || !isFailuredEmail) {
+            handleRegister(name, email, password)
+        }
     }
     return (
         <div className="register__window">
@@ -46,6 +71,11 @@ function Register({
                         required
                         onChange={handleNameChange}
                     />
+                     <span
+                        className={`${isFailuredName ? "register__error" : "register__error_hidden"}`}
+                    >
+                        Введите корректное имя
+                    </span>
                     <span className="register__userdata register__useremail-position">E-mail</span>
                     <input
                         className="form__input_register register__userdata-value"
@@ -53,8 +83,13 @@ function Register({
                         name="register__useremail"
                         required
                         onChange={handleEmailChange}
-                        // value=
+                    // value={}
                     />
+                    <span
+                        className={`${isFailuredEmail ? "register__error" : "register__error_hidden"}`}
+                    >
+                        Введите корректный е-майл
+                    </span>
                     <span className="register__userdata register__password-position">Пароль</span>
                     <input
                         className="form__input_register register__userdata-value"

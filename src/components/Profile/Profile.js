@@ -1,28 +1,50 @@
 import React from "react";
 import "./Profile.css";
+import "../Register/Register.css"
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { regexEmail, regexName } from "../../utils/config"
 
 function Profile(
     { handlePatchUserData,
         setCurrentUser,
         onSignOut
-    },
-
+    }
 ) {
     const currentUser = React.useContext(CurrentUserContext);
     const { name, email } = currentUser;
+    const [isFailuredEmail, setIsFailuredEmail] = React.useState(false);
+    const [isFailuredName, setIsFailuredName] = React.useState(false);
 
     function handleNameChange(e) {
-        setCurrentUser({ ...currentUser, name: e.target.value })
+        const nameIsValid = e.target.value.match(regexName);
+        if (nameIsValid) {
+            setCurrentUser({ ...currentUser, name: e.target.value });
+            setIsFailuredName(false);
+        } else {
+            setIsFailuredName(true);
+        }
     }
 
+    // function handleEmailChange(e) {
+    //     setCurrentUser({ ...currentUser, email: e.target.value })
+    // }
+
     function handleEmailChange(e) {
-        setCurrentUser({ ...currentUser, email: e.target.value })
+        const emailIsValid = e.target.value.match(regexEmail);
+        if (emailIsValid) {
+            setCurrentUser({ ...currentUser, email: e.target.value })
+            setIsFailuredEmail(false);
+        } else {
+            setIsFailuredEmail(true);
+        }
     }
 
     function onPatchUserData(e) {
         e.preventDefault();
-        handlePatchUserData(name, email)
+        if (!isFailuredName || !isFailuredEmail) {
+            handlePatchUserData(name, email)
+        }
+
     }
     return (
         <div className="profile__window">
@@ -36,31 +58,41 @@ function Profile(
                     <input
                         className="form__input profile__userdata"
                         type="text"
-                        placeholder="Имя"
+                        placeholder={name}
                         name="profile__username"
                         minLength="2"
                         maxLength="30"
                         required
                         onChange={handleNameChange}
-                        value={name}
+                        // value={name}
                     />
+                    <span
+                        className={`${isFailuredName ? "register__error" : "register__error_hidden"}`}
+                    >
+                        Введите корректное имя
+                    </span>
                     <span className="profile__userdata profile__useremail-position">E-mail</span>
                     <input
                         className="form__input profile__userdata"
                         type="email"
-                        placeholder="E-mail"
+                        placeholder={email}
                         name="profile__useremail"
                         required
                         onChange={handleEmailChange}
-                        value={email}
+                        // value={email}
                     />
+                    <span
+                        className={`${isFailuredEmail ? "register__error" : "register__error_hidden"}`}
+                    >
+                        Введите корректный е-майл
+                    </span>
                     {/* <span className="popup__error" id="element__name"></span> */}
                     <button
                         className="profile__save-button"
                         type="submit"
                     >
                         <span className="profile__save-button-text">
-                            Редактировать
+                            Сохранить изменения
                         </span>
                     </button>
                     <a

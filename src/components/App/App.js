@@ -112,7 +112,8 @@ function App() {
     setLoggedIn(false);
   }
 
-  if (isGettingCurrenUser && (currentUser.name !== undefined)) return null;
+  if (isGettingCurrenUser && JSON.stringify(currentUser) !== '{}') return null;
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
