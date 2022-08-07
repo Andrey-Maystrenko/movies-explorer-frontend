@@ -53,6 +53,7 @@ function Register({
                         name="register__useremail"
                         required
                         onChange={handleEmailChange}
+                        // value=
                     />
                     <span className="register__userdata register__password-position">Пароль</span>
                     <input

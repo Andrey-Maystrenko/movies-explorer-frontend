@@ -41,7 +41,7 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(Boolean(JWT));
   // console.log('JWT', JWT)
 
-  // const [isSaved, setIsSaved] = React.useState(false);
+  const [isGettingCurrenUser, setIsGettingCurrenUser] = React.useState(true);
 
   React.useEffect(() => {
     // console.log('useffect started');
@@ -51,6 +51,7 @@ function App() {
         .getContent(JWT)
         .then((res) => {
           setCurrentUser(res)
+          setIsGettingCurrenUser(false);
         })
         .catch((err) => {
           console.log(err); // выведем ошибку в консоль
@@ -111,6 +112,8 @@ function App() {
     setLoggedIn(false);
   }
 
+  if (isGettingCurrenUser && (currentUser.name !== undefined)) return null;
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -132,6 +135,7 @@ function App() {
             path="/movies"
             component={Movies}
             loggedIn={loggedIn}
+            // isGettingCurrenUser={isGettingCurrenUser}
           />
 
           <ProtectedRoute

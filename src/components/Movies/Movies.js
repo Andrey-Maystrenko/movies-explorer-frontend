@@ -8,7 +8,9 @@ import * as MainApi from "../../utils/MainApi";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 
-export default function Movies() {
+export default function Movies({
+    // isGettingCurrenUser
+}) {
     const JWT = localStorage.getItem("jwt");
 
     // const width = window.innerWidth;
@@ -25,7 +27,7 @@ export default function Movies() {
     // console.log("foundMovies", foundMovies);
 
     const [savedMovies, setSavedMovies] = React.useState([]);
-    // console.log('сохраненные фильмы от стейта', savedMovies);
+    // console.log('savedMovies', savedMovies);
 
     const [searchPerformed, setSearchPerformed] = React.useState(false);
     // console.log('movies to render', toRenderFoundMovies());
@@ -90,16 +92,10 @@ export default function Movies() {
     }
 
     function toRenderFoundMovies() {
-        // const moviesToRender = foundMovies.filter((movie, index) => index < more);
         const moviesToRender = foundMovies.filter((movie, index) => index < pattern.quantity);
 
         return moviesToRender;
     }
-
-    // function showMore() {
-    //     const increase = more + 3;
-    //     setMore(increase);
-    // }
 
     function showMore() {
         const increase = pattern.quantity + pattern.grouth;
@@ -108,9 +104,8 @@ export default function Movies() {
 
     async function updateSavedMovies() {
         const updatedSavedMovies = await MainApi.getSavedMovies(JWT);
-        // console.log('updatedSavedMovies', updatedSavedMovies)
-         const mySavedMovies =  updatedSavedMovies.filter((movie) => (movie.owner === currentUser._id))
-        // setSavedMovies(updatedSavedMovies);
+        //    console.log('currentUser', currentUser)
+        const mySavedMovies = updatedSavedMovies.filter((movie) => (movie.owner === currentUser._id))
         setSavedMovies(mySavedMovies);
 
     }
@@ -136,7 +131,7 @@ export default function Movies() {
                 isLoading={isLoading}
             />
             <MoviesCardList
-                movies={foundMovies}
+                // movies={foundMovies}
                 saveMovie={saveMovie}
                 deleteMovie={deleteMovie}
                 toRenderFoundMovies={toRenderFoundMovies}
