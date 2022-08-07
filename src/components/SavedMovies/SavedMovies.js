@@ -35,8 +35,8 @@ export default function SavedMovies() {
 
     window.addEventListener('resize', () => setWidth(window.innerWidth));
 
-    console.log('mySavedMovies', mySavedMovies);
-    console.log('currentUser', currentUser);
+    // console.log('mySavedMovies', mySavedMovies);
+    // console.log('currentUser', currentUser);
 
     async function getInitialSavedMovies() {
         const savedMovies = await MainApi.getSavedMovies(JWT);
