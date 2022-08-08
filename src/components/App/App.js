@@ -171,9 +171,15 @@ function App() {
               <Redirect to="/" />
             }
           </Route>
-          <Route to="/description">
+          {/* <Route to="/description">
             <Description />
-          </Route>
+          </Route> */}
+          <ProtectedRoute
+            path="/description"
+            component={Description}
+            loggedIn={loggedIn}
+          />
+
           <Route path="*">
             <NotFound />
           </Route>
