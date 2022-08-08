@@ -41,7 +41,7 @@ function Profile(
 
     function onPatchUserData(e) {
         e.preventDefault();
-        if (!isFailuredName || !isFailuredEmail) {
+        if (!isFailuredName && !isFailuredEmail) {
             handlePatchUserData(name, email)
         }
 
@@ -62,7 +62,7 @@ function Profile(
                         name="profile__username"
                         minLength="2"
                         maxLength="30"
-                        required
+                        // required
                         onChange={handleNameChange}
                         // value={name}
                     />
@@ -77,7 +77,7 @@ function Profile(
                         type="email"
                         placeholder={email}
                         name="profile__useremail"
-                        required
+                        // required
                         onChange={handleEmailChange}
                         // value={email}
                     />

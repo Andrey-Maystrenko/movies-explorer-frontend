@@ -25,6 +25,7 @@ import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies"
 import ProtectedRoute from "../ProtectedRoute";
 import * as MainApi from "../../utils/MainApi";
+import Description from "../Description/Description";
 
 function App() {
 
@@ -169,6 +170,9 @@ function App() {
               /> :
               <Redirect to="/" />
             }
+          </Route>
+          <Route to="/description">
+            <Description />
           </Route>
           <Route path="*">
             <NotFound />

@@ -8,9 +8,7 @@ import * as MainApi from "../../utils/MainApi";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 
-export default function Movies({
-    // isGettingCurrenUser
-}) {
+export default function Movies() {
     const JWT = localStorage.getItem("jwt");
 
     // const width = window.innerWidth;

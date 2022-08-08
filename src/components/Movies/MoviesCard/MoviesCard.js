@@ -1,8 +1,9 @@
 import React from "react";
 import "./MoviesCard.css";
 import { IMG_BASE_URL } from "../../../utils/MainApi";
+import { Link } from "react-router-dom";
 
- function MoviesCard({
+function MoviesCard({
     movieData,
     saveMovie,
     deleteMovie,
@@ -14,15 +15,15 @@ import { IMG_BASE_URL } from "../../../utils/MainApi";
 
     // console.log('номер карточки ', movieData.id)
     // console.log('значение isSaved при отрисовке карточки', isSaved)
-    
-     function setSavedToMovie() {
+
+    function setSavedToMovie() {
         savedMovies.forEach(card => {
             if (movieData.id === card.movieId) { setIsSaved(true) }
         });
     }
 
     React.useEffect(() => {
-     setSavedToMovie()
+        setSavedToMovie()
     }, [savedMovies])
 
     function handleSaveClick() {
@@ -35,14 +36,26 @@ import { IMG_BASE_URL } from "../../../utils/MainApi";
         };
     }
 
+    function setMovieData() {
+        localStorage.setItem("currentMovie", JSON.stringify(movieData));
+        console.log('currentMovie', JSON.parse(localStorage.getItem("currentMovie")));
+    }
+
     return (
         <div className="movie">
             <div className="movie__title-group">
                 <div className="movie__parameters">
-                    <h2 className="movie__title">
+                    {/* <h2 className="movie__title">
                         {movieData.nameRU}
-                        {/* 33 слова о дизайне */}
-                    </h2>
+                    </h2> */}
+                    <Link className="movie__desrciption-link" to="/description" target="_blank">
+                        <h2
+                            className="movie__title"
+                            onClick={setMovieData}
+                        >
+                            {movieData.nameRU}
+                        </h2>
+                    </Link>
                     <p className="movie__duration">
                         {`${movieData.duration} мин`}
                         {/* 1ч 47м */}
