@@ -14,15 +14,45 @@ function Profile(
     const { name, email } = currentUser;
     const [isFailuredEmail, setIsFailuredEmail] = React.useState(false);
     const [isFailuredName, setIsFailuredName] = React.useState(false);
+    const [isUserDataUpdated, setIsUserDataUpdated] = React.useState(false);
+    const [updatedName, setUpdatedName] = React.useState(currentUser.name);
+    const [updatedEmail, setUpdatedEmail] = React.useState(currentUser.email);
+
+
+    React.useEffect(() => {
+        if (updatedName !== currentUser.name && !isFailuredName) {
+            // console.log('updatedName', updatedName)
+            // console.log('currentUser.name', currentUser.name)
+            // setCurrentUser({ ...currentUser, name: e.target.value });
+            setIsUserDataUpdated(true)
+        } else {
+            setIsUserDataUpdated(false) 
+        }
+    }, [updatedName]);
+
+    React.useEffect(() => {
+        if (updatedEmail !== currentUser.email && !isFailuredEmail) {
+            // console.log('updatedName', updatedName)
+            // console.log('currentUser.name', currentUser.name)
+            // setCurrentUser({ ...currentUser, name: e.target.value });
+            setIsUserDataUpdated(true)
+        } else {
+            setIsUserDataUpdated(false) 
+        }
+    }, [updatedEmail]);
+
+    // console.log('isUserDataUpdated', isUserDataUpdated);
 
     function handleNameChange(e) {
         const nameIsValid = e.target.value.match(regexName);
-        if (nameIsValid) {
-            setCurrentUser({ ...currentUser, name: e.target.value });
-            setIsFailuredName(false);
-        } else {
+        if (!nameIsValid) {
             setIsFailuredName(true);
+            // if (e.target.value !== currentUser.name) {
+        } else {
+            setIsFailuredName(false);
+            setUpdatedName(e.target.value);
         }
+        
     }
 
     // function handleEmailChange(e) {
@@ -31,18 +61,21 @@ function Profile(
 
     function handleEmailChange(e) {
         const emailIsValid = e.target.value.match(regexEmail);
-        if (emailIsValid) {
-            setCurrentUser({ ...currentUser, email: e.target.value })
-            setIsFailuredEmail(false);
-        } else {
+        if (!emailIsValid) {
+            // setCurrentUser({ ...currentUser, email: e.target.value })
             setIsFailuredEmail(true);
+        } else {
+            setIsFailuredEmail(false);
+            setUpdatedEmail(e.target.value);
         }
     }
 
     function onPatchUserData(e) {
         e.preventDefault();
         if (!isFailuredName && !isFailuredEmail) {
-            handlePatchUserData(name, email)
+            // handlePatchUserData(name, email)
+            handlePatchUserData(updatedName, updatedEmail)
+            setIsUserDataUpdated(false);
         }
 
     }
@@ -64,7 +97,7 @@ function Profile(
                         maxLength="30"
                         // required
                         onChange={handleNameChange}
-                        // value={name}
+                    // value={nameInInput}
                     />
                     <span
                         className={`${isFailuredName ? "register__error register__error_profile-name" : "register__error_hidden"}`}
@@ -79,7 +112,7 @@ function Profile(
                         name="profile__useremail"
                         // required
                         onChange={handleEmailChange}
-                        // value={email}
+                    // value=" "
                     />
                     <span
                         className={`${isFailuredEmail ? "register__error register__error_profile-email" : "register__error_hidden"}`}
@@ -90,8 +123,9 @@ function Profile(
                     <button
                         className="profile__save-button"
                         type="submit"
+                        disabled={!isUserDataUpdated}
                     >
-                        <span className="profile__save-button-text">
+                        <span className={`"profile__save-button-text" ${isUserDataUpdated ? "profile__save-button-text_enabled" : "profile__save-button-text_disabled"}`}>
                             Сохранить изменения
                         </span>
                     </button>
@@ -99,7 +133,9 @@ function Profile(
                         className="profile__save-button-text profile__save-button-text_red"
                         href="/#"
                         onClick={onSignOut}
-                    >Выйти из аккаунта</a>
+                    >
+                        Выйти из аккаунта
+                    </a>
                 </form>
             </section>
         </div>
