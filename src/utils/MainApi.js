@@ -46,6 +46,7 @@ export const postMovie = (movieData, token) => {
       nameEN: movieData.nameEN,
     }),
   })
+    .then(checkResponse)
 };
 
 export const deleteMovie = (movieId, token) => {

@@ -18,7 +18,6 @@ function Profile(
     const [updatedName, setUpdatedName] = React.useState(currentUser.name);
     const [updatedEmail, setUpdatedEmail] = React.useState(currentUser.email);
 
-
     React.useEffect(() => {
         if (updatedName !== currentUser.name && !isFailuredName) {
             // console.log('updatedName', updatedName)
@@ -51,13 +50,8 @@ function Profile(
         } else {
             setIsFailuredName(false);
             setUpdatedName(e.target.value);
-        }
-        
+        }  
     }
-
-    // function handleEmailChange(e) {
-    //     setCurrentUser({ ...currentUser, email: e.target.value })
-    // }
 
     function handleEmailChange(e) {
         const emailIsValid = e.target.value.match(regexEmail);
@@ -77,8 +71,8 @@ function Profile(
             handlePatchUserData(updatedName, updatedEmail)
             setIsUserDataUpdated(false);
         }
-
     }
+    
     return (
         <div className="profile__window">
             <section className="profile__content">

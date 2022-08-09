@@ -32,6 +32,9 @@ export default function Movies() {
 
     const [isLoading, setIsLoading] = React.useState(false);
 
+    const [savingIsPossible, setSavingIsPossible] = React.useState(true);
+    // console.log('savingIsPossible', savingIsPossible)
+
     const currentUser = React.useContext(CurrentUserContext);
 
     React.useEffect(() => {
@@ -39,6 +42,9 @@ export default function Movies() {
         if (storedMovies) { setFoundMovies(storedMovies) } else { setFoundMovies([]) };
         updateSavedMovies();
         definePattern();
+        //////////////////////
+        // setSavingIsPossible(!savingIsPossible);
+        ////////////////////////
     }, []);
 
     React.useEffect(() => {
@@ -50,6 +56,9 @@ export default function Movies() {
     // }, [savedMovies]);
 
     window.addEventListener('resize', () => setWidth(window.innerWidth));
+
+    localStorage.setItem("savingIsPossible", savingIsPossible);
+    console.log('savingIsPossible', localStorage.getItem("savingIsPossible"))
 
     async function findMovie(movie, chosen) {
         try {
@@ -91,7 +100,6 @@ export default function Movies() {
 
     function toRenderFoundMovies() {
         const moviesToRender = foundMovies.filter((movie, index) => index < pattern.quantity);
-
         return moviesToRender;
     }
 
@@ -105,19 +113,25 @@ export default function Movies() {
         //    console.log('currentUser', currentUser)
         const mySavedMovies = updatedSavedMovies.filter((movie) => (movie.owner === currentUser._id))
         setSavedMovies(mySavedMovies);
-
     }
 
     async function saveMovie(movieData) {
-        await MainApi.postMovie(movieData, JWT);
-        updateSavedMovies();
+        try {
+            await MainApi.postMovie(movieData, JWT);
+            updateSavedMovies();
+        }
+        catch (err) {
+            console.log("сработал catch", err); // выведем ошибку в консоль
+            // setSavingIsPossible(!savingIsPossible);
+            setSavingIsPossible(false);
+            // console.log('savingIsPossible', savingIsPossible)
+        }
     }
 
     async function deleteMovie(cardId) {
         const movieToDelete = savedMovies.filter((movie) => movie.movieId === cardId);
         await MainApi.deleteMovie(movieToDelete[0]._id, JWT);
         updateSavedMovies();
-
     }
 
     return (
@@ -140,6 +154,7 @@ export default function Movies() {
                 searchPerformed={searchPerformed}
                 savedMovies={savedMovies}
                 isLoading={isLoading}
+            // savingIsPossible={savingIsPossible}
             />
             <Footer />
         </div>

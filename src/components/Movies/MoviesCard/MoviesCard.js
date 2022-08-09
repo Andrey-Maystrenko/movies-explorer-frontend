@@ -7,11 +7,16 @@ function MoviesCard({
     movieData,
     saveMovie,
     deleteMovie,
-    savedMovies
+    savedMovies,
+    // savingIsPossible
 }) {
     // console.log('savedMovies in Card', savedMovies)
 
+
     const [isSaved, setIsSaved] = React.useState(false);
+
+    const savingIsPossible = localStorage.getItem("savingIsPossible");
+    console.log('savingIsPossible', savingIsPossible)
 
     // console.log('номер карточки ', movieData.id)
     // console.log('значение isSaved при отрисовке карточки', isSaved)
@@ -24,16 +29,30 @@ function MoviesCard({
 
     React.useEffect(() => {
         setSavedToMovie()
-    }, [savedMovies])
+    }, [savedMovies]);
+
+    React.useEffect(() => {
+        setIsSaved(false); 
+        localStorage.setItem("savingIsPossible", true);
+        setSavedToMovie()
+    }, [savingIsPossible]);
 
     function handleSaveClick() {
-        setIsSaved(!isSaved);
-        if (!isSaved) {
-            saveMovie(movieData);
-        } else {
-            // console.log('значение isSaved при удалении лайка', isSaved)
-            deleteMovie(movieData.id);
-        };
+        
+        
+        // if (savingIsPossible) {
+            if (!isSaved) {
+                saveMovie(movieData);
+            } else {
+                // console.log('значение isSaved при удалении лайка', isSaved)
+                deleteMovie(movieData.id);
+            };
+            setIsSaved(!isSaved);
+        // } 
+        // else {
+        //     setIsSaved(false); 
+        //     localStorage.setItem("savingIsPossible", true);
+        // }
     }
 
     function setMovieData() {

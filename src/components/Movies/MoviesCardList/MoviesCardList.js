@@ -14,7 +14,8 @@ function MoviesCardList({
     searchPerformed,
     savedMovies,
     // isSaved,
-    isLoading
+    isLoading,
+    // savingIsPossible
 }) {
 
     // console.log('searchPerformed', searchPerformed)
@@ -34,6 +35,7 @@ function MoviesCardList({
                             deleteMovie={deleteMovie}
                             // isSaved={isSaved}
                             savedMovies={savedMovies}
+                            // savingIsPossible={savingIsPossible}
                         />
                     );
                 })}

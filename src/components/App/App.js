@@ -36,7 +36,6 @@ function App() {
   const [isFailuredRegister, setIsFailuredRegister] = React.useState(false);
   // console.log('isFailuredRegister', isFailuredRegister)
 
-
   const JWT = localStorage.getItem("jwt");
 
   const [loggedIn, setLoggedIn] = React.useState(Boolean(JWT));
@@ -115,7 +114,6 @@ function App() {
 
   if (isGettingCurrenUser && JSON.stringify(currentUser) !== '{}') return null;
 
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -171,9 +169,6 @@ function App() {
               <Redirect to="/" />
             }
           </Route>
-          {/* <Route to="/description">
-            <Description />
-          </Route> */}
           <ProtectedRoute
             path="/description"
             component={Description}
