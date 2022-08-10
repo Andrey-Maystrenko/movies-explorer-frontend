@@ -92,6 +92,15 @@
     transform       : rotate(-45deg);
 }
 
+.notSaveMessage {
+    font-style : normal;
+    font-weight: 500;
+    font-size  : 36px;
+    line-height: 42px;
+    text-align : center;
+    margin     : 50vh auto 0;
+}
+
 @media screen and (max-width: 767px) {
     .popup__menu {
         display              : flex;

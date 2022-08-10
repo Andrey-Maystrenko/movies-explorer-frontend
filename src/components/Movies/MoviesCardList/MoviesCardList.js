@@ -58,6 +58,7 @@ function MoviesCardList({
                                 <Navigation
                                     isOpen={navigationState}
                                     onClose={closeNavigation}
+                                    counter={counter}
                                     // isOpen={!savingIsPossible}
                                     // onClose={savingIsPossible}
                                 />
