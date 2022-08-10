@@ -33,7 +33,18 @@ export default function Movies() {
     const [isLoading, setIsLoading] = React.useState(false);
 
     const [savingIsPossible, setSavingIsPossible] = React.useState(true);
+    localStorage.setItem("savingIsPossible", savingIsPossible);
+    // localStorage.setItem("savingIsPossible", true);
     // console.log('savingIsPossible', savingIsPossible)
+    // localStorage.setItem("savingIsPossible", true);
+    // const [invalidCardId, setInvalidCardId] = React.useState("");
+    // localStorage.setItem("invalidCardId", invalidCardId);
+
+    const [counter, setCounter] = React.useState(0);
+
+    console.log('savingIsPossible', localStorage.getItem("savingIsPossible"))
+    console.log('counter', counter)
+
 
     const currentUser = React.useContext(CurrentUserContext);
 
@@ -48,17 +59,20 @@ export default function Movies() {
     }, []);
 
     React.useEffect(() => {
+        setSavingIsPossible(true);
+    }, [counter]);
+
+    React.useEffect(() => {
         definePattern();
     }, [width]);
-
+    /////////////////
     // React.useEffect(() => {
-    //     updateSavedMovies();
-    // }, [savedMovies]);
+    //     const savingStatus = localStorage.getItem("savingIsPossible");
+    //     setSavingIsPossible(savingStatus)
+    // }, [savingStatus]);
 
+    ///////////////////
     window.addEventListener('resize', () => setWidth(window.innerWidth));
-
-    localStorage.setItem("savingIsPossible", savingIsPossible);
-    console.log('savingIsPossible', localStorage.getItem("savingIsPossible"))
 
     async function findMovie(movie, chosen) {
         try {
@@ -122,8 +136,14 @@ export default function Movies() {
         }
         catch (err) {
             console.log("сработал catch", err); // выведем ошибку в консоль
-            // setSavingIsPossible(!savingIsPossible);
             setSavingIsPossible(false);
+            setCounter(counter + 1);
+            // alert("Данный фильм сохранить невозможно")
+            // localStorage.setItem("savingIsPossible", false);
+            // console.log('invalidCard', movieData.id)
+            // setSavingIsPossible(!savingIsPossible);
+            // localStorage.setItem("invalidCardId", movieData.id);
+            // setInvalidCardId(movieData.id)
             // console.log('savingIsPossible', savingIsPossible)
         }
     }
@@ -154,7 +174,8 @@ export default function Movies() {
                 searchPerformed={searchPerformed}
                 savedMovies={savedMovies}
                 isLoading={isLoading}
-            // savingIsPossible={savingIsPossible}
+                savingIsPossible={savingIsPossible}
+                counter={counter}
             />
             <Footer />
         </div>

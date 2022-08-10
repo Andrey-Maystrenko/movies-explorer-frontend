@@ -1,6 +1,7 @@
 import React from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
+import Navigation from "../../Navigation/Navigation";
 
 function MoviesCardList({
     movies,
@@ -15,10 +16,25 @@ function MoviesCardList({
     savedMovies,
     // isSaved,
     isLoading,
-    // savingIsPossible
+    savingIsPossible,
+    counter
 }) {
 
     // console.log('searchPerformed', searchPerformed)
+
+    const [navigationState, setNavigationState] = React.useState();
+    console.log('navigationState', navigationState)
+
+    console.log('savingIsPossible in MoviesCardList', localStorage.getItem("savingIsPossible"))
+
+    React.useEffect(() => {
+        setNavigationState(!savingIsPossible);
+    }, [counter])
+
+    function closeNavigation() {
+        setNavigationState(false);
+    }
+
 
     if (isLoading) return null
 
@@ -28,15 +44,26 @@ function MoviesCardList({
                 {toRenderFoundMovies().map((card) => {
                     // setMovieData(card);
                     return (
-                        <MoviesCard
-                            key={card.id}
-                            movieData={card}
-                            saveMovie={saveMovie}
-                            deleteMovie={deleteMovie}
-                            // isSaved={isSaved}
-                            savedMovies={savedMovies}
+                        <>
+                            <MoviesCard
+                                key={card.id}
+                                movieData={card}
+                                saveMovie={saveMovie}
+                                deleteMovie={deleteMovie}
+                                // isSaved={isSaved}
+                                savedMovies={savedMovies}
                             // savingIsPossible={savingIsPossible}
-                        />
+                            />
+                            {/* <nav className="navigation"> */}
+                                <Navigation
+                                    isOpen={navigationState}
+                                    onClose={closeNavigation}
+                                    // isOpen={!savingIsPossible}
+                                    // onClose={savingIsPossible}
+                                />
+                            {/* </nav> */}
+                        </>
+
                     );
                 })}
             </div>

@@ -14,9 +14,15 @@ function MoviesCard({
 
 
     const [isSaved, setIsSaved] = React.useState(false);
+    // const [saveIconDisabled,setSaveIconDisabled] = React.useState(false);
+    // const [invalidCard, setInvalidCard] = React.useState("");
+
 
     const savingIsPossible = localStorage.getItem("savingIsPossible");
     console.log('savingIsPossible', savingIsPossible)
+    // const invalidCardId = localStorage.getItem("invalidCardId");
+    // console.log('invalidCardId in MoviesCard', invalidCardId)
+
 
     // console.log('номер карточки ', movieData.id)
     // console.log('значение isSaved при отрисовке карточки', isSaved)
@@ -32,10 +38,16 @@ function MoviesCard({
     }, [savedMovies]);
 
     React.useEffect(() => {
+        console.log(' сработал юзэффект, savingIsPossible =', savingIsPossible)
         setIsSaved(false); 
-        localStorage.setItem("savingIsPossible", true);
+        // localStorage.setItem("savingIsPossible", true);
+        // setSaveIconDisabled(true)
         setSavedToMovie()
     }, [savingIsPossible]);
+
+    // React.useEffect(() => {
+    //     setInvalidCard(invalidCardId)
+    // }, [savingIsPossible]);
 
     function handleSaveClick() {
         
@@ -81,8 +93,10 @@ function MoviesCard({
                     </p>
                 </div>
                 <button
+                    // className={`${(isSaved && (invalidCard !== movieData.id)) ? "movie__saved" : "movie__unsaved"}`}
                     className={`${isSaved ? "movie__saved" : "movie__unsaved"}`}
                     type="button"
+                    disabled={!savingIsPossible}
                     onClick={handleSaveClick}
                 >
                 </button>
