@@ -6,6 +6,14 @@ import Preloader from '../../vendor/preloader/Preloader';
 import * as MoviesApi from "../../utils/MoviesApi";
 import * as MainApi from "../../utils/MainApi";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import {
+    shownCardsDesktop,
+    shownCardsTablet,
+    shownCardsSmartphone,
+    addedCardsDesktop,
+    addedCardsNoDesktop,
+    shortyDuration
+} from '../../utils/config';
 
 
 export default function Movies() {
@@ -42,8 +50,8 @@ export default function Movies() {
 
     const [counter, setCounter] = React.useState(0);
 
-    console.log('savingIsPossible', localStorage.getItem("savingIsPossible"))
-    console.log('counter', counter)
+    // console.log('savingIsPossible', localStorage.getItem("savingIsPossible"))
+    // console.log('counter', counter)
 
 
     const currentUser = React.useContext(CurrentUserContext);
@@ -65,13 +73,7 @@ export default function Movies() {
     React.useEffect(() => {
         definePattern();
     }, [width]);
-    /////////////////
-    // React.useEffect(() => {
-    //     const savingStatus = localStorage.getItem("savingIsPossible");
-    //     setSavingIsPossible(savingStatus)
-    // }, [savingStatus]);
 
-    ///////////////////
     window.addEventListener('resize', () => setWidth(window.innerWidth));
 
     async function findMovie(movie, chosen) {
@@ -90,7 +92,7 @@ export default function Movies() {
                 setSearchPerformed(true)
             } else {
                 const refinedMovies = selectedMovies.filter((element) =>
-                    element.duration <= 40
+                    element.duration <= shortyDuration
                 );
                 setFoundMovies(refinedMovies);
                 localStorage.setItem("foundMovies", JSON.stringify(refinedMovies));
@@ -107,9 +109,9 @@ export default function Movies() {
     }
 
     function definePattern() {
-        if (width >= 1280) setPattern({ quantity: 12, grouth: 3 })
-        if (width < 1280 && width >= 768) setPattern({ quantity: 8, grouth: 2 })
-        if (width < 768) setPattern({ quantity: 5, grouth: 2 })
+        if (width >= 1280) setPattern({ quantity: shownCardsDesktop, grouth: addedCardsDesktop })
+        if (width < 1280 && width >= 768) setPattern({ quantity: shownCardsTablet, grouth: addedCardsNoDesktop })
+        if (width < 768) setPattern({ quantity: shownCardsSmartphone, grouth: addedCardsNoDesktop })
     }
 
     function toRenderFoundMovies() {

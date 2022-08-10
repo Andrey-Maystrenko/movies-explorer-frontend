@@ -23,9 +23,9 @@ function MoviesCardList({
     // console.log('searchPerformed', searchPerformed)
 
     const [navigationState, setNavigationState] = React.useState();
-    console.log('navigationState', navigationState)
+    // console.log('navigationState', navigationState)
 
-    console.log('savingIsPossible in MoviesCardList', localStorage.getItem("savingIsPossible"))
+    // console.log('savingIsPossible in MoviesCardList', localStorage.getItem("savingIsPossible"))
 
     React.useEffect(() => {
         setNavigationState(!savingIsPossible);

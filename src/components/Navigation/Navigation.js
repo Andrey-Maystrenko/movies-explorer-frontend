@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 
 function Navigation({ isOpen, onClose, counter }) {
-    console.log('counter', counter)
+    // console.log('counter', counter)
     return (
         <div className={`popup ${isOpen ? "" : "hidden"}`}>
             <button
