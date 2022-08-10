@@ -94,11 +94,12 @@
 
 .notSaveMessage {
     font-style : normal;
-    font-weight: 500;
-    font-size  : 36px;
-    line-height: 42px;
+    font-weight: 400;
+    font-size  : 80px;
+    line-height: 90px;
     text-align : center;
-    margin     : 50vh auto 0;
+    margin     : 30vh auto 0;
+    /* padding    : 0 20px 0; */
 }
 
 @media screen and (max-width: 767px) {
@@ -122,5 +123,10 @@
 
     .popup__close-button::after {
         height: 22px;
+    }
+
+    .notSaveMessage {
+        font-size  : 40px;
+        line-height: 44px;
     }
 }

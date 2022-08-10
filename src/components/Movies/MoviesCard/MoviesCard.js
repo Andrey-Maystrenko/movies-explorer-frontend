@@ -12,18 +12,15 @@ function MoviesCard({
 }) {
     // console.log('savedMovies in Card', savedMovies)
 
-
     const [isSaved, setIsSaved] = React.useState(false);
     // const [saveIconDisabled,setSaveIconDisabled] = React.useState(false);
     // const [invalidCard, setInvalidCard] = React.useState("");
 
 
     const savingIsPossible = localStorage.getItem("savingIsPossible");
-    console.log('savingIsPossible', savingIsPossible)
+    // console.log('savingIsPossible', savingIsPossible)
     // const invalidCardId = localStorage.getItem("invalidCardId");
     // console.log('invalidCardId in MoviesCard', invalidCardId)
-
-
     // console.log('номер карточки ', movieData.id)
     // console.log('значение isSaved при отрисовке карточки', isSaved)
 
@@ -38,11 +35,11 @@ function MoviesCard({
     }, [savedMovies]);
 
     React.useEffect(() => {
-        console.log(' сработал юзэффект, savingIsPossible =', savingIsPossible)
         setIsSaved(false); 
+        setSavedToMovie()
+        // console.log(' сработал юзэффект, savingIsPossible =', savingIsPossible)
         // localStorage.setItem("savingIsPossible", true);
         // setSaveIconDisabled(true)
-        setSavedToMovie()
     }, [savingIsPossible]);
 
     // React.useEffect(() => {
@@ -50,8 +47,6 @@ function MoviesCard({
     // }, [savingIsPossible]);
 
     function handleSaveClick() {
-        
-        
         // if (savingIsPossible) {
             if (!isSaved) {
                 saveMovie(movieData);

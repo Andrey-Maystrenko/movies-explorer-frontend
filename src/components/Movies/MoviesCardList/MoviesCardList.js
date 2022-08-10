@@ -35,7 +35,6 @@ function MoviesCardList({
         setNavigationState(false);
     }
 
-
     if (isLoading) return null
 
     return (
@@ -44,35 +43,27 @@ function MoviesCardList({
                 {toRenderFoundMovies().map((card) => {
                     // setMovieData(card);
                     return (
-                        <>
-                            <MoviesCard
-                                key={card.id}
-                                movieData={card}
-                                saveMovie={saveMovie}
-                                deleteMovie={deleteMovie}
-                                // isSaved={isSaved}
-                                savedMovies={savedMovies}
-                            // savingIsPossible={savingIsPossible}
-                            />
-                            {/* <nav className="navigation"> */}
-                                <Navigation
-                                    isOpen={navigationState}
-                                    onClose={closeNavigation}
-                                    counter={counter}
-                                    // isOpen={!savingIsPossible}
-                                    // onClose={savingIsPossible}
-                                />
-                            {/* </nav> */}
-                        </>
-
+                        <MoviesCard
+                            key={card.id}
+                            movieData={card}
+                            saveMovie={saveMovie}
+                            deleteMovie={deleteMovie}
+                            // isSaved={isSaved}
+                            savedMovies={savedMovies}
+                        />
                     );
                 })}
+                <Navigation
+                    key={counter}
+                    isOpen={navigationState}
+                    onClose={closeNavigation}
+                    counter={counter}
+                />
             </div>
             <div className={`${foundMovies.length === 0 && searchPerformed ? "notfoundmessage" : "notfoundmessage_hidden"}`}>Ничего не найдено</div>
             <button
                 // className={`${foundMovies.length <= more ? "movies__more_hidden" : "movies__more"}`}
                 className={`${foundMovies.length <= quantity ? "movies__more_hidden" : "movies__more"}`}
-
                 onClick={showMore}
             >
                 <span className="movies__more-text">Ещё</span>
