@@ -103,4 +103,8 @@
         text-align    : center;
         letter-spacing: -0.04em;
     }
+
+    .section__techs {
+        background: none;
+    }
 }

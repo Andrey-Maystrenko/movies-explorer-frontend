@@ -92,6 +92,16 @@
     transform       : rotate(-45deg);
 }
 
+.notSaveMessage {
+    font-style : normal;
+    font-weight: 400;
+    font-size  : 80px;
+    line-height: 90px;
+    text-align : center;
+    margin     : 30vh auto 0;
+    /* padding    : 0 20px 0; */
+}
+
 @media screen and (max-width: 767px) {
     .popup__menu {
         display              : flex;
@@ -113,5 +123,10 @@
 
     .popup__close-button::after {
         height: 22px;
+    }
+
+    .notSaveMessage {
+        font-size  : 40px;
+        line-height: 44px;
     }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import "./SearchForm.css";
+import "./SearchFormSavedMovies.css";
 import loop from "../../../images/loop.svg";
 import search from "../../../images/search.svg";
 
@@ -8,9 +8,9 @@ function SearchForm({ onFindMovie }) {
     const [checked, setChecked] = React.useState(false);
 
     React.useEffect(() => {
-        const checkedStatus = JSON.parse(localStorage.getItem("shorty"));
+        const checkedStatus = JSON.parse(localStorage.getItem("shortySavedMovies"));
         setChecked(checkedStatus)
-        const movie = localStorage.getItem("keyword");
+        const movie = localStorage.getItem("keywordSavedMovies");
         setKeyWord(movie);
     }, []);
 

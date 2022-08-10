@@ -89,8 +89,12 @@
     line-height: 12px;
     color      : #EE3465;
     position   : absolute;
-    top        : 256px;
+    top        : 175px;
     left       : 0;
+}
+
+.login__error_hidden {
+    display: none;
 }
 
 

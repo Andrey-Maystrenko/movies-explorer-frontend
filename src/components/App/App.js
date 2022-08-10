@@ -1,112 +1,202 @@
 import React from "react";
-import "./App.css";
-import "../../index.css";
-import Preloader from "../../vendor/preloader/Preloader";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
-// import api from "../utils/api";
-// import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import {
   Route,
   Switch,
-  // Redirect,
+  Redirect,
   withRouter,
-  // useHistory,
+  useHistory,
 } from "react-router-dom";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import "./App.css";
+import "../../index.css";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import AboutProject from "../Main/AboutProject/AboutProject";
-import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
-import SavedMovies from "../SavedMovies/MoviesCardList/MoviesCardListSaved";
 import AboutMe from "../Main/AboutMe/AboutMe";
 import Promo from "../Main/Promo/Promo";
 import NavTab from "../Main/NavTab/NavTab";
 import Techs from "../Main/Techs/Techs";
 import Portfolio from "../Main/Portfolio/Portfolio";
 import Profile from "../Profile/Profile"
-import SearchForm from "../Movies/SearchForm/SearchForm";
 import NotFound from "../NotFound/NotFound";
-// import ProtectedRoute from "./ProtectedRoute";
-// import * as mestoAuth from "../utils/moviesAuth";
+import Movies from "../Movies/Movies";
+import SavedMovies from "../SavedMovies/SavedMovies"
+import ProtectedRoute from "../ProtectedRoute";
+import * as MainApi from "../../utils/MainApi";
+import Description from "../Description/Description";
 
 function App() {
-  return (
-    <div className="page">
-      {/* <Header email={email} onSignOut={onSignOut} /> */}
-      <Header />
-      <Switch>
-        <Route exact path="/">
-          <Promo />
-          <NavTab />
-          <AboutProject />
-          <Techs />
-          <AboutMe />
-          <Portfolio />
-          <Footer />
-        </Route>
-        <Route path="/movies">
-          <SearchForm />
-          <MoviesCardList />
-          <Footer />
-        </Route>
-        <Route path="/saved-movies">
-          <SearchForm />
-          <SavedMovies />
-          <Footer />
-        </Route>
-        <Route path="/profile">
-          <Profile />
-        </Route>
-        <Route path="/signin">
-          {/* <Login handleLogin={handleLogin} /> */}
-          <Login />
-        </Route>
-        <Route path="/signup">
-          {/* <Register handleRegister={handleRegister} /> */}
-          <Register />
-        </Route>
-        <Route path="/notfound">
-          <NotFound />
-        </Route>
-      </Switch>
-      <Preloader />
-      {/* <Switch>
-          <Route>
-            {loggedIn ? <Redirect to="/main" /> : <Redirect to="/signup" />}
-          </Route>
-        </Switch> */}
-      {/* <EditProfilePopup
-          isOpen={isEditProfilePopupOpen}
-          onClose={closeAllPopups}
-          onUpdateUser={handleUpdateUser}
-        />
-        <EditAvatarPopup
-          isOpen={isEditAvatarPopupOpen}
-          onClose={closeAllPopups}
-          onUpdateAvatar={handleUpdateAvatar}
-        />
-        <AddPlacePopup
-          isOpen={isAddPlacePopupOpen}
-          onClose={closeAllPopups}
-          onAddPlace={handleAddPlaceSubmit}
-        />
-        <PopupWithForm
-          title="Вы уверены?"
-          name="delete"
-          saveButtonName="Да"
-          onClose={closeAllPopups}
-          // onSubmit
-        />
-        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-        <InfoTooltip
-          onClose={closeAllPopups}
-          onSuccess={isSuccessfulRegister}
-          onFailure={isFailuredRegister}
-          successMessage="Вы успешно зарегистрировались!"
-          failureMessge="Что-то пошло не так! Попробуйте еще раз."
 
-          /> */}
-    </div>
+  const [currentUser, setCurrentUser] = React.useState({});
+
+  const history = useHistory();
+
+  const [isFailuredRegister, setIsFailuredRegister] = React.useState(false);
+  // console.log('isFailuredRegister', isFailuredRegister)
+
+  const JWT = localStorage.getItem("jwt");
+
+  const [loggedIn, setLoggedIn] = React.useState(Boolean(JWT));
+  // console.log('JWT', JWT)
+
+  const [isGettingCurrenUser, setIsGettingCurrenUser] = React.useState(true);
+
+  React.useEffect(() => {
+    // console.log('useffect started');
+    // tokenCheck();
+    if (loggedIn) {
+      MainApi
+        .getContent(JWT)
+        .then((res) => {
+          setCurrentUser(res)
+          setIsGettingCurrenUser(false);
+        })
+        .catch((err) => {
+          console.log(err); // выведем ошибку в консоль
+          setLoggedIn(false);
+          setCurrentUser({});
+        })
+    }
+  }, [loggedIn]);
+
+  // console.log(currentUser)
+  // console.log('loggedIn', loggedIn)
+
+  function handleRegister(name, email, password) {
+    MainApi
+      .register(name, email, password)
+      .then(() => {
+        handleLogin(email, password);
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+        setIsFailuredRegister(true);
+      });
+  }
+
+  function handleLogin(email, password) {
+    return MainApi
+      .authorize(email, password)
+      .then((token) => {
+        if (token) {
+          localStorage.setItem("jwt", token);
+          setLoggedIn(true);
+          history.push("/movies");
+        }
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+        setIsFailuredRegister(true);
+      });
+  }
+
+  function handlePatchUserData(name, email) {
+    return MainApi
+      .patchUserData(name, email, JWT)
+      .then((updatedUser) => {
+        // console.log('updatedUser', updatedUser)
+        setCurrentUser(updatedUser)
+      })
+      .catch((err) => console.log(err))
+  }
+
+  function onSignOut() {
+    localStorage.removeItem("jwt");
+    localStorage.setItem("shorty", false);
+    localStorage.setItem("keyword", "");
+    // localStorage.setItem("shortySavedMovies", false);
+    // localStorage.setItem("keywordSavedMovies", "");
+    localStorage.setItem("foundMovies", JSON.stringify([]));
+    setLoggedIn(false);
+  }
+
+  if (isGettingCurrenUser && JSON.stringify(currentUser) !== '{}') return null;
+
+  return (
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="page">
+        <Header
+          loggedIn={loggedIn}
+        />
+        <Switch>
+          <Route exact path="/">
+            <Promo />
+            <NavTab />
+            <AboutProject />
+            <Techs />
+            <AboutMe />
+            <Portfolio />
+            <Footer />
+          </Route>
+
+          <ProtectedRoute
+            path="/movies"
+            component={Movies}
+            loggedIn={loggedIn}
+            // isGettingCurrenUser={isGettingCurrenUser}
+          />
+
+          <ProtectedRoute
+            path="/saved-movies"
+            component={SavedMovies}
+            loggedIn={loggedIn}
+          />
+          <ProtectedRoute
+            path="/profile"
+            component={Profile}
+            handlePatchUserData={handlePatchUserData}
+            onSignOut={onSignOut}
+            setCurrentUser={setCurrentUser}
+            loggedIn={loggedIn}
+          />
+          <Route path="/signin">
+            {!loggedIn ?
+              <Login
+                handleLogin={handleLogin}
+                isFailuredRegister={isFailuredRegister}
+              /> :
+              <Redirect to="/" />
+            }
+          </Route>
+          <Route path="/signup">
+            {!loggedIn ?
+              <Register
+                handleRegister={handleRegister}
+                isFailuredRegister={isFailuredRegister}
+              /> :
+              <Redirect to="/" />
+            }
+          </Route>
+          <ProtectedRoute
+            path="/description"
+            component={Description}
+            loggedIn={loggedIn}
+          />
+
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 export default withRouter(App);
+
+// function tokenCheck() {
+  //   let jwt = localStorage.getItem("jwt");
+  //   if (jwt) {
+  //     MainApi
+  //       .getContent(jwt)
+  //       .then((res) => {
+  //         // setEmail(res.email);
+  //         // setCurrentUser(res);
+  //         setLoggedIn(true);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err); // выведем ошибку в консоль
+  //       });
+  //   }
+  // }
