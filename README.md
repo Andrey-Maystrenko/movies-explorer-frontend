@@ -1,7 +1,7 @@
 # movies-explorer-frontend
 Домен, по которому можно обратиться к серверу (фронтэнд) https://diploma-koga-717.nomoredomains.xyz/
 
-IP адрес 130.193.42.0
+IP адрес 130.193.42.0 
 
 Ссылка на репозиторий с фронтэндом https://github.com/Andrey-Maystrenko/movies-explorer-frontend/tree/level-3
 
