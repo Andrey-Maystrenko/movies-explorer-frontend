@@ -15,7 +15,11 @@ function Navigation({ isOpen, onClose, counter }) {
             ></button>
             {!counter ?
                 <div className="popup__menu">
-                    <Link className="popup__link popup__link_main" to="/#">
+                    <Link
+                        className="popup__link popup__link_main"
+                        to="/#"
+                        onClick={onClose}
+                    >
                         Главная
                     </Link>
                     <Link
