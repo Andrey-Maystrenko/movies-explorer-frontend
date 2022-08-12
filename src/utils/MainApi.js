@@ -18,14 +18,12 @@ export const getSavedMovies = (token) => {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
-      // Authorization: token,
     },
   })
     .then((res) => res.json());
 }
 
 export const postMovie = (movieData, token) => {
-  // console.log(token)
   return fetch(`${BASE_URL}/movies`, {
     method: "POST",
     headers: {
@@ -96,7 +94,6 @@ export const getContent = (token) => {
       Authorization: `Bearer ${token}`,
     },
   })
-    // .then((res) => res.json())
     .then(checkResponse)
     .then((data) => data)
 };
