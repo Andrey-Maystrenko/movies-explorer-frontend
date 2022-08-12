@@ -1,5 +1,5 @@
-// export const BASE_URL = "https://api.diploma-koga-717.nomoredomains.xyz";
-export const BASE_URL = "http://localhost:4001";
+export const BASE_URL = "https://api.diploma-koga-717.nomoredomains.xyz";
+// export const BASE_URL = "http://localhost:4001";
 export const IMG_BASE_URL = "https://api.nomoreparties.co";
 
 function checkResponse(res) {
