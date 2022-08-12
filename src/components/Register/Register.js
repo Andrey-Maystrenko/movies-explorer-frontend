@@ -10,9 +10,9 @@ function Register({
 
 ) {
     // console.log('isFailuredRegister', isFailuredRegister)
-    const [name, setName] = React.useState("Виталий");
-    const [email, setEmail] = React.useState("test@test.ru");
-    const [password, setPassword] = React.useState("test");
+    const [name, setName] = React.useState();
+    const [email, setEmail] = React.useState();
+    const [password, setPassword] = React.useState();
     const [isFailuredEmail, setIsFailuredEmail] = React.useState(false);
     const [isFailuredName, setIsFailuredName] = React.useState(false);
 

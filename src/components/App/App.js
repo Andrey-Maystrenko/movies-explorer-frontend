@@ -110,6 +110,7 @@ function App() {
     // localStorage.setItem("keywordSavedMovies", "");
     localStorage.setItem("foundMovies", JSON.stringify([]));
     setLoggedIn(false);
+    setIsFailuredRegister(false);
   }
 
   if (isGettingCurrenUser && JSON.stringify(currentUser) !== '{}') return null;
