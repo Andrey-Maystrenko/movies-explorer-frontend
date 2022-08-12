@@ -14,15 +14,15 @@ function AboutProject() {
                     </div>
                 </div>
                 <div className="two-columns__column">
-                    <h2 className="two-columns__brief">На выполнение диплома ушло 5 недель</h2>
+                    <h2 className="two-columns__brief">На выполнение диплома ушло 8 недель</h2>
                     <div className="two-columns__main-text">
                         У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.
                     </div>
                 </div>
             </article>
             <article className="two-columns">
-                <div className="timeline timeline__schema timeline__backend timeline__backend_schema">1 неделя</div>
-                <div className="timeline timeline__schema timeline__frontend timeline__frontend_schema">4 недели</div>
+                <div className="timeline timeline__schema timeline__backend timeline__backend_schema">2 недели</div>
+                <div className="timeline timeline__schema timeline__frontend timeline__frontend_schema">6 недель</div>
             </article>
             <article className="two-columns">
                     <div className="timeline timeline__subscrypt timeline__backend">Back-end</div>

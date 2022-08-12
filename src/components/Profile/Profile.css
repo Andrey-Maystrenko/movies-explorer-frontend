@@ -62,7 +62,7 @@
 }
 
 .form__input::placeholder {
-    color: #FFFFff;
+    color: grey;
 }
 
 .profile__useremail-position {

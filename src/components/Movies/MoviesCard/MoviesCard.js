@@ -8,21 +8,13 @@ function MoviesCard({
     saveMovie,
     deleteMovie,
     savedMovies,
-    // savingIsPossible
 }) {
     // console.log('savedMovies in Card', savedMovies)
 
     const [isSaved, setIsSaved] = React.useState(false);
-    // const [saveIconDisabled,setSaveIconDisabled] = React.useState(false);
-    // const [invalidCard, setInvalidCard] = React.useState("");
-
 
     const savingIsPossible = localStorage.getItem("savingIsPossible");
     // console.log('savingIsPossible', savingIsPossible)
-    // const invalidCardId = localStorage.getItem("invalidCardId");
-    // console.log('invalidCardId in MoviesCard', invalidCardId)
-    // console.log('номер карточки ', movieData.id)
-    // console.log('значение isSaved при отрисовке карточки', isSaved)
 
     function setSavedToMovie() {
         savedMovies.forEach(card => {
@@ -35,46 +27,33 @@ function MoviesCard({
     }, [savedMovies]);
 
     React.useEffect(() => {
-        setIsSaved(false); 
+        setIsSaved(false);
         setSavedToMovie()
         // console.log(' сработал юзэффект, savingIsPossible =', savingIsPossible)
-        // localStorage.setItem("savingIsPossible", true);
-        // setSaveIconDisabled(true)
     }, [savingIsPossible]);
 
-    // React.useEffect(() => {
-    //     setInvalidCard(invalidCardId)
-    // }, [savingIsPossible]);
-
     function handleSaveClick() {
-        // if (savingIsPossible) {
-            if (!isSaved) {
-                saveMovie(movieData);
-            } else {
-                // console.log('значение isSaved при удалении лайка', isSaved)
-                deleteMovie(movieData.id);
-            };
-            setIsSaved(!isSaved);
-        // } 
-        // else {
-        //     setIsSaved(false); 
-        //     localStorage.setItem("savingIsPossible", true);
-        // }
+        if (!isSaved) {
+            saveMovie(movieData);
+        } else {
+            deleteMovie(movieData.id);
+        };
+        setIsSaved(!isSaved);
     }
 
     function setMovieData() {
         localStorage.setItem("currentMovie", JSON.stringify(movieData));
-        console.log('currentMovie', JSON.parse(localStorage.getItem("currentMovie")));
+        // console.log('currentMovie', JSON.parse(localStorage.getItem("currentMovie")));
     }
 
     return (
         <div className="movie">
             <div className="movie__title-group">
                 <div className="movie__parameters">
-                    {/* <h2 className="movie__title">
-                        {movieData.nameRU}
-                    </h2> */}
-                    <Link className="movie__desrciption-link" to="/description" target="_blank">
+                    <Link
+                        className="movie__desrciption-link"
+                        to="/description"
+                        target="_blank">
                         <h2
                             className="movie__title"
                             onClick={setMovieData}
@@ -84,11 +63,9 @@ function MoviesCard({
                     </Link>
                     <p className="movie__duration">
                         {`${movieData.duration} мин`}
-                        {/* 1ч 47м */}
                     </p>
                 </div>
                 <button
-                    // className={`${(isSaved && (invalidCard !== movieData.id)) ? "movie__saved" : "movie__unsaved"}`}
                     className={`${isSaved ? "movie__saved" : "movie__unsaved"}`}
                     type="button"
                     disabled={!savingIsPossible}
@@ -100,11 +77,9 @@ function MoviesCard({
                 <img
                     className="movie__image"
                     src={`${IMG_BASE_URL}${movieData.image.url}`}
-                    // onClick={handleClick}
                     alt="кадр из фильма"
                 />
             </a>
-
         </div>
     )
 }

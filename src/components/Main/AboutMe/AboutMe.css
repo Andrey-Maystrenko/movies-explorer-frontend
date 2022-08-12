@@ -25,8 +25,9 @@
 }
 
 .about-me__description {
-    margin   : 26px 0 0 0;
-    /* height: 88px; */
+    margin    : 26px 0 0 0;
+    text-align: justify;
+    /* height : 88px; */
 }
 
 .links {

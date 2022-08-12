@@ -3,7 +3,6 @@ import "./SavedMoviesCardList.css";
 import "../../../index.css"
 import SavedMoviesCard from "../SavedMoviesCard/SavedMoviesCard";
 
-
 function SavedMoviesCardList({
     foundMovies,
     mySavedMovies,

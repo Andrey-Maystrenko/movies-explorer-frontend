@@ -4,17 +4,14 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import Navigation from "../../Navigation/Navigation";
 
 function MoviesCardList({
-    movies,
     saveMovie,
     deleteMovie,
     toRenderFoundMovies,
     showMore,
     foundMovies,
-    // more,
     quantity,
     searchPerformed,
     savedMovies,
-    // isSaved,
     isLoading,
     savingIsPossible,
     counter
@@ -41,14 +38,12 @@ function MoviesCardList({
         <section className="movies">
             <div className="movies__table">
                 {toRenderFoundMovies().map((card) => {
-                    // setMovieData(card);
                     return (
                         <MoviesCard
                             key={card.id}
                             movieData={card}
                             saveMovie={saveMovie}
                             deleteMovie={deleteMovie}
-                            // isSaved={isSaved}
                             savedMovies={savedMovies}
                         />
                     );
@@ -62,7 +57,6 @@ function MoviesCardList({
             </div>
             <div className={`${foundMovies.length === 0 && searchPerformed ? "notfoundmessage" : "notfoundmessage_hidden"}`}>Ничего не найдено</div>
             <button
-                // className={`${foundMovies.length <= more ? "movies__more_hidden" : "movies__more"}`}
                 className={`${foundMovies.length <= quantity ? "movies__more_hidden" : "movies__more"}`}
                 onClick={showMore}
             >

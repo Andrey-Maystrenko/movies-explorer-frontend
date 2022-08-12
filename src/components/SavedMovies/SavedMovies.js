@@ -1,10 +1,17 @@
 import React from 'react'
-// import SearchForm from '../Movies/SearchForm/SearchForm';
 import SearchFormSavedMovies from "../SavedMovies/SearchFormSavedMovies/SearchFormSavedMovies";
 import SavedMoviesCardList from './SavedMoviesCardList/SavedMoviesCardList';
 import Footer from '../Footer/Footer';
 import * as MainApi from "../../utils/MainApi";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import {
+    shownCardsDesktop,
+    shownCardsTablet,
+    shownCardsSmartphone,
+    addedCardsDesktop,
+    addedCardsNoDesktop,
+    shortyDuration
+} from '../../utils/config';
 
 export default function SavedMovies() {
     const JWT = localStorage.getItem("jwt");
@@ -14,9 +21,6 @@ export default function SavedMovies() {
     const [pattern, setPattern] = React.useState({});
 
     const currentUser = React.useContext(CurrentUserContext);
-
-    // const [more, setMore] = React.useState(12);
-
 
     const [foundMovies, setFoundMovies] = React.useState([]);
     // console.log("foundMovies", foundMovies);
@@ -58,15 +62,13 @@ export default function SavedMovies() {
             )
             if (!chosen) {
                 setFoundMovies(selectedMovies);
-                // setMore(12);
                 definePattern();
                 setSearchPerformed(true)
             } else {
                 const refinedMovies = selectedMovies.filter((element) =>
-                    element.duration <= 40
+                    element.duration <= shortyDuration
                 );
                 setFoundMovies(refinedMovies);
-                // setMore(12);
                 definePattern();
                 setSearchPerformed(true)
             }
@@ -87,20 +89,15 @@ export default function SavedMovies() {
     }, [searchPerformed, mySavedMovies, foundMovies, pattern.quantity]);
 
     function definePattern() {
-        if (width >= 1280) setPattern({ quantity: 12, grouth: 3 })
-        if (width < 1280 && width >= 768) setPattern({ quantity: 8, grouth: 2 })
-        if (width < 768) setPattern({ quantity: 5, grouth: 2 })
+        if (width >= 1280) setPattern({ quantity: shownCardsDesktop, grouth: addedCardsDesktop })
+        if (width < 1280 && width >= 768) setPattern({ quantity: shownCardsTablet, grouth: addedCardsNoDesktop })
+        if (width < 768) setPattern({ quantity: shownCardsSmartphone, grouth: addedCardsNoDesktop })
     }
 
     function showMore() {
         const increase = pattern.quantity + pattern.grouth;
         setPattern({ quantity: increase, grouth: pattern.grouth });
     }
-
-    // function showMore() {
-    //     const increase = more + 3;
-    //     setMore(increase);
-    // }
 
     async function deleteMovie(cardId) {
         const movieToDelete = moviesToRender.filter((movie) => movie._id === cardId);
@@ -113,9 +110,6 @@ export default function SavedMovies() {
 
     return (
         <div>
-            {/* <SearchForm
-                onFindMovie={findMovie}
-            /> */}
             <SearchFormSavedMovies
                 onFindMovie={findMovie}
             />
@@ -125,7 +119,6 @@ export default function SavedMovies() {
                 showMore={showMore}
                 foundMovies={foundMovies}
                 mySavedMovies={mySavedMovies}
-                // more={more}
                 searchPerformed={searchPerformed}
                 quantity={pattern.quantity}
             />

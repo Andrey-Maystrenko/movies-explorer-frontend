@@ -16,6 +16,11 @@
     width: 210px;
 }
 
+.movie__desrciption-link {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
 .movie__title {
     font-style : normal;
     font-weight: 500;

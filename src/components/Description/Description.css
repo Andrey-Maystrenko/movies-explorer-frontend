@@ -12,6 +12,7 @@
     font-size  : 40px;
     line-height: 49px;
     margin     : 0;
+    text-align : center;
 }
 
 .description__data {
@@ -20,6 +21,7 @@
     font-size  : 30px;
     line-height: 37px;
     margin     : 0;
+    text-align : center;
 }
 
 .description__text {
@@ -31,25 +33,6 @@
     margin     : 0;
     text-align : justify;
 }
-
-/* .notfound__message {
-    font-style : normal;
-    font-weight: 400;
-    font-size  : 16px;
-    line-height: 19px;
-    margin     : 5px 0 0;
-}
-
-.notfound__backwards {
-    font-style     : normal;
-    font-weight    : 400;
-    font-size      : 14px;
-    line-height    : 17px;
-    text-align     : center;
-    color          : #4285F4;
-    margin         : 184px 0 60px;
-    text-decoration: none;
-} */
 
 @media screen and (max-width: 1279px) {
     .description {

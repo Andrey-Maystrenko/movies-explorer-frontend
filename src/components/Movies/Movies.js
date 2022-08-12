@@ -15,19 +15,12 @@ import {
     shortyDuration
 } from '../../utils/config';
 
-
 export default function Movies() {
     const JWT = localStorage.getItem("jwt");
-
-    // const width = window.innerWidth;
-    // console.log('window.innerWidth', window.innerWidth)
 
     const [width, setWidth] = React.useState(window.innerWidth);
 
     const [pattern, setPattern] = React.useState({});
-
-    // const [more, setMore] = React.useState(12);
-    // const [moreHidden, setMoreHidden] = React.useState(true);
 
     const [foundMovies, setFoundMovies] = React.useState([]);
     // console.log("foundMovies", foundMovies);
@@ -42,17 +35,12 @@ export default function Movies() {
 
     const [savingIsPossible, setSavingIsPossible] = React.useState(true);
     localStorage.setItem("savingIsPossible", savingIsPossible);
-    // localStorage.setItem("savingIsPossible", true);
     // console.log('savingIsPossible', savingIsPossible)
-    // localStorage.setItem("savingIsPossible", true);
-    // const [invalidCardId, setInvalidCardId] = React.useState("");
-    // localStorage.setItem("invalidCardId", invalidCardId);
+   
 
     const [counter, setCounter] = React.useState(0);
-
     // console.log('savingIsPossible', localStorage.getItem("savingIsPossible"))
     // console.log('counter', counter)
-
 
     const currentUser = React.useContext(CurrentUserContext);
 
@@ -61,9 +49,6 @@ export default function Movies() {
         if (storedMovies) { setFoundMovies(storedMovies) } else { setFoundMovies([]) };
         updateSavedMovies();
         definePattern();
-        //////////////////////
-        // setSavingIsPossible(!savingIsPossible);
-        ////////////////////////
     }, []);
 
     React.useEffect(() => {
@@ -140,13 +125,6 @@ export default function Movies() {
             console.log("сработал catch", err); // выведем ошибку в консоль
             setSavingIsPossible(false);
             setCounter(counter + 1);
-            // alert("Данный фильм сохранить невозможно")
-            // localStorage.setItem("savingIsPossible", false);
-            // console.log('invalidCard', movieData.id)
-            // setSavingIsPossible(!savingIsPossible);
-            // localStorage.setItem("invalidCardId", movieData.id);
-            // setInvalidCardId(movieData.id)
-            // console.log('savingIsPossible', savingIsPossible)
         }
     }
 
@@ -165,13 +143,11 @@ export default function Movies() {
                 isLoading={isLoading}
             />
             <MoviesCardList
-                // movies={foundMovies}
                 saveMovie={saveMovie}
                 deleteMovie={deleteMovie}
                 toRenderFoundMovies={toRenderFoundMovies}
                 showMore={showMore}
                 foundMovies={foundMovies}
-                // more={more}
                 quantity={pattern.quantity}
                 searchPerformed={searchPerformed}
                 savedMovies={savedMovies}

@@ -135,7 +135,6 @@ function App() {
             path="/movies"
             component={Movies}
             loggedIn={loggedIn}
-            // isGettingCurrenUser={isGettingCurrenUser}
           />
 
           <ProtectedRoute
@@ -174,7 +173,6 @@ function App() {
             component={Description}
             loggedIn={loggedIn}
           />
-
           <Route path="*">
             <NotFound />
           </Route>

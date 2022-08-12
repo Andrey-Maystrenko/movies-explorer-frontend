@@ -1,5 +1,6 @@
 import React from "react";
 import "./SavedMoviesCard.css";
+import { Link } from "react-router-dom";
 
 function SavedMoviesCard({
     movieData,
@@ -10,17 +11,28 @@ function SavedMoviesCard({
         deleteMovie(movieData._id)
     }
 
+    function setMovieData() {
+        localStorage.setItem("currentMovie", JSON.stringify(movieData));
+        // console.log('currentMovie', JSON.parse(localStorage.getItem("currentMovie")));
+    }
+
     return (
         <div className="movie">
             <div className="movie__title-group">
                 <div className="movie__parameters">
-                    <h2 className="movie__title">
-                        {movieData.nameRU}
-                        {/* 33 слова о дизайне */}
-                    </h2>
+                    <Link
+                        className="movie__desrciption-link"
+                        to="/description"
+                        target="_blank">
+                        <h2
+                            className="movie__title"
+                            onClick={setMovieData}
+                        >
+                            {movieData.nameRU}
+                        </h2>
+                    </Link>
                     <p className="movie__duration">
                         {`${movieData.duration} мин`}
-                        {/* 1ч 47м */}
                     </p>
                 </div>
                 <button
@@ -30,12 +42,13 @@ function SavedMoviesCard({
                 >
                 </button>
             </div>
-            <img
-                className="movie__image"
-                src={`${movieData.image}`}
-                alt={movieData.nameRU}
-            // onClick={handleClick}
-            />
+            <a href={movieData.trailerLink} target="_blank" rel="noreferrer">
+                <img
+                    className="movie__image"
+                    src={`${movieData.image}`}
+                    alt={movieData.nameRU}
+                />
+            </a>
         </div>
     )
 }

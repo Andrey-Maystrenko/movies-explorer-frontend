@@ -113,7 +113,6 @@ function Profile(
                     >
                         Введите корректный е-майл
                     </span>
-                    {/* <span className="popup__error" id="element__name"></span> */}
                     <button
                         className="profile__save-button"
                         type="submit"

@@ -1,9 +1,7 @@
 import React from "react";
 import "./Login.css";
-// import "../Register/Register.css"
 import { Link } from "react-router-dom";
 import { regexEmail } from "../../utils/config"
-
 
 function Login(
     { handleLogin, isFailuredRegister }
@@ -12,11 +10,6 @@ function Login(
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [isFailuredEmail, setIsFailuredEmail] = React.useState(false);
-
-
-    // function handleEmailChange(e) {
-    //     setEmail(e.target.value);
-    // }
 
     function handleEmailChange(e) {
         const emailIsValid = e.target.value.match(regexEmail);
@@ -33,7 +26,6 @@ function Login(
     }
     function onLogin(e) {
         e.preventDefault();
-        // handleLogin(email, password).catch();
         handleLogin(email, password);
 
     }
@@ -66,7 +58,6 @@ function Login(
                         required
                         onChange={handlePasswordChange}
                     />
-                    {/* <span className="login__error" id="login__error">Что-то пошло не так...</span> */}
                     <span
                         className={`${isFailuredRegister ? "login__error" : "login__error_hidden"}`}
                     >
